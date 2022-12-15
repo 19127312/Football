@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ball
+  - LeftPlayer
+  - RightPlayer
   layers:
   - Default
   - TransparentFX
@@ -47,4 +49,7 @@ TagManager:
     locked: 0
   - name: Earth
     uniqueID: 3417870733
+    locked: 0
+  - name: Player
+    uniqueID: 2572968829
     locked: 0
