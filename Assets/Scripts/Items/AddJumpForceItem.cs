@@ -19,14 +19,14 @@ public class AddJumpForceItem : Item
     {
         isWorking = true;
         BallController ballScript = Ball.GetComponent<BallController>();
-        Player1Controller playerScript;
+        PlayerController playerScript;
         if (ballScript.isLeftPlayer)
         {
-            playerScript = Player1.GetComponent<Player1Controller>();
+            playerScript = Player1.GetComponent<PlayerController>();
         }
         else
         {
-            playerScript = Player2.GetComponent<Player1Controller>();
+            playerScript = Player2.GetComponent<PlayerController>();
         }
         // audioPlayer.playLargeBallClip();
         playerScript.jumpForce += 10.0f;
