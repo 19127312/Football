@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ball
+  - Head
+  - LeftPlayer
+  - RightPlayer
   layers:
   - Default
   - TransparentFX
@@ -15,10 +18,10 @@ TagManager:
   - 
   - 
   - GroundLayer
-  - Player
-  - Ball
+  - RightPlayer
+  - LeftPlayer
   - Shoe
-  - 
+  - Ball
   - 
   - 
   - 
