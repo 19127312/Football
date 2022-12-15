@@ -5,11 +5,15 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
 
-    GameObject player;
+    GameObject Lplayer;
+    GameObject Rplayer;
+    GameObject AI;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        Lplayer = GameObject.FindGameObjectWithTag("LeftPlayer");
+        Rplayer = GameObject.FindGameObjectWithTag("RightPlayer");
+        AI = GameObject.FindGameObjectWithTag("AI");
     }
 
     // Update is called once per frame
@@ -19,17 +23,33 @@ public class Ball : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "RightPlayer")
         {
-            player.GetComponent<Player1Controller>().canShoot = true;
+            Rplayer.GetComponent<PlayerController>().canShoot = true;
+        }
+        if (col.gameObject.tag == "LeftPlayer")
+        {
+            Lplayer.GetComponent<PlayerController>().canShoot = true;
+        }
+        if (col.gameObject.tag == "AI")
+        {
+            AI.GetComponent<AIController>().canShoot = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "RightPlayer")
         {
-            player.GetComponent<Player1Controller>().canShoot = false;
+            Rplayer.GetComponent<PlayerController>().canShoot = false;
+        }
+        if (col.gameObject.tag == "LeftPlayer")
+        {
+            Lplayer.GetComponent<PlayerController>().canShoot = false;
+        }
+        if (col.gameObject.tag == "AI")
+        {
+            AI.GetComponent<AIController>().canShoot = false;
         }
     }
 }
