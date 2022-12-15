@@ -72,11 +72,11 @@ public class BallController : MonoBehaviour
     {
         if (col.gameObject.tag == "LeftPlayer")
         {
-            leftPlayer.GetComponent<Player1Controller>().canShoot = true;
+            leftPlayer.GetComponent<PlayerController>().canShoot = true;
         }
         else if (col.gameObject.tag == "RightPlayer")
         {
-            rightPlayer.GetComponent<Player1Controller>().canShoot = true;
+            rightPlayer.GetComponent<PlayerController>().canShoot = true;
         }
     }
 
@@ -84,11 +84,11 @@ public class BallController : MonoBehaviour
     {
         if (col.gameObject.tag == "LeftPlayer")
         {
-            leftPlayer.GetComponent<Player1Controller>().canShoot = false;
+            leftPlayer.GetComponent<PlayerController>().canShoot = false;
         }
         else if (col.gameObject.tag == "RightPlayer")
         {
-            rightPlayer.GetComponent<Player1Controller>().canShoot = false;
+            rightPlayer.GetComponent<PlayerController>().canShoot = false;
         }
     }
 
