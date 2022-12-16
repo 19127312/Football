@@ -95622,6 +95622,7 @@ MonoBehaviour:
   soundSprite: {fileID: -1050974145, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   muteSprite: {fileID: -300272793, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   musicSprite: {fileID: 1164024619, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
+  currentCharacterImage: {fileID: 0}
 --- !u!1 &1949220049
 GameObject:
   m_ObjectHideFlags: 0
