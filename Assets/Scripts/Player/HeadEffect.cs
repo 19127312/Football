@@ -9,7 +9,7 @@ public class HeadEffect : MonoBehaviour
     public GameObject player;
     public GameObject headEffect;
     public int forceHead;
-    
+    public bool isAI;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +24,17 @@ public class HeadEffect : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ball")
+        if (collision.gameObject.tag == "Ball" && !GameController.instance.endMatch && !GameController.instance.isScored)
         {
-            player.GetComponent<PlayerController>().anim.SetTrigger("Head");
+            if (isAI)
+            {
+                player.GetComponent<AIController>().anim.SetTrigger("Head");
+            }
+            else
+            {
+                player.GetComponent<PlayerController>().anim.SetTrigger("Head");
+            }
+
             headEffect.SetActive(true);
             ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceHead, 400));

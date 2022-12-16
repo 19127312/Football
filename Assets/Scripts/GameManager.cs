@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public List<Character> charactersInGame = new List<Character>();
     public List<Character> charactersOwn = new List<Character>();
     public List<Character> charactersNotOwn = new List<Character>();
-
+    private Character selectedCharacter;
     private void Awake() {
         ManageSingleton();
     }
