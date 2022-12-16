@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AudioPlayerController : MonoBehaviour
 {
+    public AudioSource audioSource;
+    private bool isMuteSound = false;
+    public string audioState = "Music";
+
     [Header("Portal")]
     [SerializeField] AudioClip portalClip;
     [SerializeField] [Range(0f,1f)]float portalVolumn=1f;
@@ -77,9 +81,12 @@ public class AudioPlayerController : MonoBehaviour
 
     private void playClip(AudioClip clip, float volume){
         if(clip!=null){
-            AudioSource.PlayClipAtPoint(clip,
+            if(isMuteSound){
+                AudioSource.PlayClipAtPoint(clip,
                                         Camera.main.transform.position,
                                         volume);
+            }
+            
         }
     }
 
@@ -125,6 +132,22 @@ public class AudioPlayerController : MonoBehaviour
 
     public void playIceClip(){
         playClip(iceClip, iceVolumn);
+    }
+
+    public void Mute(){
+        audioSource.mute=true;
+        isMuteSound=true;
+        audioState="Mute";
+    }
+    public void UnMute(){
+        audioSource.mute=false;
+        isMuteSound=false;
+        audioState="Music";
+    }
+    public void playSoundOnly(){
+        isMuteSound=false;
+        audioSource.mute=true;
+        audioState="Sound";
     }
 }
 
