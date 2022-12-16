@@ -47,9 +47,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3029051561
+    locked: 0
   - name: Grass
     uniqueID: 4249908401
     locked: 0
   - name: Earth
     uniqueID: 3417870733
+    locked: 0
+  - name: Player
+    uniqueID: 2572968829
+    locked: 0
+  - name: Goal
+    uniqueID: 3984621817
     locked: 0

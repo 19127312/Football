@@ -33,7 +33,27 @@ public class AudioPlayerController : MonoBehaviour
 
     [Header("Score")]
     [SerializeField] AudioClip scoreClip;
-    [SerializeField] [Range(0f,1f)]float scoreHitVolumn=1f;
+    [SerializeField] [Range(0f,1f)]float scoreVolumn=1f;
+
+    [Header("Ball Kick")]
+    [SerializeField] AudioClip ballKickClip;
+    [SerializeField] [Range(0f,1f)]float ballKickVolumn=1f;
+
+    // ball size audio
+
+    [Header("Large Ball")]
+    [SerializeField] AudioClip largeBallClip;
+    [SerializeField] [Range(0f,1f)]float largeBallVolumn=1f;
+
+    [Header("Small Ball")]
+    [SerializeField] AudioClip smallBallClip;
+    [SerializeField] [Range(0f,1f)]float smallBallVolumn=1f;
+
+    // effect on player
+
+    [Header("Ice")]
+    [SerializeField] AudioClip iceClip;
+    [SerializeField] [Range(0f,1f)]float iceVolumn=1f;
 
     
 
@@ -87,8 +107,24 @@ public class AudioPlayerController : MonoBehaviour
         playClip(crossBarHitClip, crossBarHitVolumn);
     }
 
-    public void playScoreHitClip(){
-        playClip(scoreClip, scoreHitVolumn);
+    public void playScoreClip(){
+        playClip(scoreClip, scoreVolumn);
+    }
+
+    public void playBallKickClip(){
+        playClip(ballKickClip, ballKickVolumn);
+    }
+
+    public void playLargeBallClip(){
+        playClip(largeBallClip, largeBallVolumn);
+    }
+
+    public void playSmallBallClip(){
+        playClip(smallBallClip, smallBallVolumn);
+    }
+
+    public void playIceClip(){
+        playClip(iceClip, iceVolumn);
     }
 }
 

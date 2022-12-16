@@ -13,10 +13,18 @@ public class BallController : MonoBehaviour
     bool isUnteleportable;
     float teleportableTimer;
 
+    public bool isLeftPlayer = true;
+
     AudioPlayerController audioPlayer;
+
+    GameObject leftPlayer;
+    GameObject rightPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
+        leftPlayer = GameObject.FindGameObjectWithTag("LeftPlayer");
+        rightPlayer = GameObject.FindGameObjectWithTag("RightPlayer");
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -25,7 +33,7 @@ public class BallController : MonoBehaviour
     {
         horizontal = UnityEngine.Input.GetAxis("Horizontal");
         vertical = UnityEngine.Input.GetAxis("Vertical");
-        
+
         if (isUnteleportable)
         {
             teleportableTimer -= Time.deltaTime;
@@ -34,7 +42,6 @@ public class BallController : MonoBehaviour
                 isUnteleportable = false;
             }
         }
-        
     }
 
     void FixedUpdate()
@@ -45,7 +52,8 @@ public class BallController : MonoBehaviour
         rb2d.MovePosition(position);
     }
 
-    public void Tele(Vector2 portPosition){
+    public void Tele(Vector2 portPosition)
+    {
         if (isUnteleportable)
             return;
         isUnteleportable = true;
@@ -55,7 +63,44 @@ public class BallController : MonoBehaviour
         audioPlayer.playPortalClip();
     }
 
-    void Awake(){
+    void Awake()
+    {
         audioPlayer = FindObjectOfType<AudioPlayerController>();
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "LeftPlayer")
+        {
+            leftPlayer.GetComponent<PlayerController>().canShoot = true;
+        }
+        else if (col.gameObject.tag == "RightPlayer")
+        {
+            rightPlayer.GetComponent<PlayerController>().canShoot = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "LeftPlayer")
+        {
+            leftPlayer.GetComponent<PlayerController>().canShoot = false;
+        }
+        else if (col.gameObject.tag == "RightPlayer")
+        {
+            rightPlayer.GetComponent<PlayerController>().canShoot = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "LeftPlayer")
+        {
+            isLeftPlayer = true;
+        }
+        else if (other.gameObject.tag == "RightPlayer")
+        {
+            isLeftPlayer = false;
+        }
     }
 }

@@ -591,8 +591,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1721998467
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: 321129346, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -869,8 +869,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1721998467
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: 1552218710, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 2556844780501828153}
   - component: {fileID: 2556844780501828152}
   - component: {fileID: 2556844780501828155}
-  - component: {fileID: 1160728810}
+  - component: {fileID: 3598108906008772837}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -985,8 +985,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1721998467
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 1518134795, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1015,7 +1015,7 @@ CircleCollider2D:
   m_Offset: {x: -0.13101965, y: 0}
   serializedVersion: 2
   m_Radius: 0.5716503
---- !u!114 &1160728810
+--- !u!114 &3598108906008772837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1024,9 +1024,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2556844780501828102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bfc274d333fcff4aa842d2a5105f77a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8100e7af08a8c734baab5ed3497b1a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 2556844780294968275}
   headEffect: {fileID: 1437171261}
+  forceHead: 300

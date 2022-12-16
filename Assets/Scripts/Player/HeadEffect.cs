@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftHeadPlayer : MonoBehaviour
+public class HeadEffect : MonoBehaviour
 {
+    // Start is called before the first frame update
     public GameObject ball;
     public GameObject player;
     public GameObject headEffect;
+    public int forceHead;
+    
     // Start is called before the first frame update
     void Start()
     {
         ball = GameObject.FindGameObjectWithTag("Ball");
-        player = GameObject.FindGameObjectWithTag("LeftPlayer");
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class LeftHeadPlayer : MonoBehaviour
             player.GetComponent<PlayerController>().anim.SetTrigger("Head");
             headEffect.SetActive(true);
             ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(300, 400));
+            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceHead, 400));
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
     }
