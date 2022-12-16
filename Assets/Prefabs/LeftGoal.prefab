@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8228529561271705237}
   - component: {fileID: 6918476081963097137}
   - component: {fileID: 4241627208586160769}
+  - component: {fileID: 1897607412}
   m_Layer: 0
   m_Name: LeftGoal
-  m_TagString: Untagged
+  m_TagString: LeftGoal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +124,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.37965155, y: -0.045443773}
@@ -149,7 +150,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.33303833, y: -0.07103777}
@@ -165,3 +166,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11078644, y: 2.8279243}
   m_EdgeRadius: 0
+--- !u!114 &1897607412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711155427418619757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee0c12035957664f85f07d37e936824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
