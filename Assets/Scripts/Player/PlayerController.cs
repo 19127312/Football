@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -19,6 +20,14 @@ public class PlayerController : MonoBehaviour
     Vector2 rawInput;
     public bool isLeftPlayer;
     public GameObject shootEffect;
+    public GameObject freezeEffect;
+    public GameObject rocketEffect;
+    public GameObject speedLightEffect;
+    public GameObject bubbleGumEffect;
+    public GameObject blackLightningEffect;
+    public GameObject brokenLegEffect;
+    public bool isFreezed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +47,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() { }
 
-    }
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
@@ -50,8 +57,12 @@ public class PlayerController : MonoBehaviour
 
     void OnShoot(InputValue value)
     {
-        anim.SetTrigger("Kick");
+        if (!isFreezed)
+        {
+            anim.SetTrigger("Kick");
+        }
     }
+
     private void FixedUpdate()
     {
         movePlayer();
@@ -82,7 +93,6 @@ public class PlayerController : MonoBehaviour
             ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(ShootForce, 500));
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
-
     }
 
     public void Jump()

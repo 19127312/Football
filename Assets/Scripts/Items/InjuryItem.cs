@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowSpeedItem : Item
+public class InjuryItem : Item
 {
     public override void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,11 +11,11 @@ public class SlowSpeedItem : Item
         if (other.gameObject.tag == "Ball")
         {
             workingTime = 3.0f;
-            StartCoroutine(SlowSpeed());
+            StartCoroutine(Injure());
         }
     }
 
-    IEnumerator SlowSpeed()
+    IEnumerator Injure()
     {
         isWorking = true;
         BallController ballScript = Ball.GetComponent<BallController>();
@@ -28,12 +28,12 @@ public class SlowSpeedItem : Item
         {
             playerScript = Player2.GetComponent<PlayerController>();
         }
-        // audioPlayer.playLargeBallClip();
-        audioPlayer.playSlowSpeedClip();
-        playerScript.blackLightningEffect.SetActive(true);
-        playerScript.speed -= 2.5f;
+        audioPlayer.playIceClip();
+        playerScript.brokenLegEffect.SetActive(true);
+        playerScript.isFreezed = true;
         yield return new WaitForSeconds(workingTime);
-        playerScript.speed += 2.5f;
-        playerScript.blackLightningEffect.SetActive(false);
+        playerScript.brokenLegEffect.SetActive(false);
+        playerScript.isFreezed = false;
+
     }
 }
