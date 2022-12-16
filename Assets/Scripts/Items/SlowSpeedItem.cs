@@ -29,9 +29,11 @@ public class SlowSpeedItem : Item
             playerScript = Player2.GetComponent<PlayerController>();
         }
         // audioPlayer.playLargeBallClip();
+        audioPlayer.playSlowSpeedClip();
+        playerScript.blackLightningEffect.SetActive(true);
         playerScript.speed -= 2.5f;
         yield return new WaitForSeconds(workingTime);
         playerScript.speed += 2.5f;
-        // audioPlayer.playSmallBallClip();
+        playerScript.blackLightningEffect.SetActive(false);
     }
 }
