@@ -10,6 +10,7 @@ TagManager:
   - RightPlayer
   - LeftPlayerHeadEffect
   - AI
+  - AIHead
   layers:
   - Default
   - TransparentFX

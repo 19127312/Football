@@ -17,24 +17,18 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public int ShootForce;
     Vector2 rawInput;
-    public bool isLeftPlayer;
     public GameObject shootEffect;
+
+    AudioPlayerController audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         ball = GameObject.FindGameObjectWithTag("Ball");
+        audioPlayer = FindObjectOfType<AudioPlayerController>();
         isGrounded = true;
         canShoot = false;
-        if (isLeftPlayer)
-        {
-            ShootForce = 400;
-        }
-        else
-        {
-            ShootForce = -400;
-        }
     }
 
     // Update is called once per frame
@@ -51,10 +45,15 @@ public class PlayerController : MonoBehaviour
     void OnShoot(InputValue value)
     {
         anim.SetTrigger("Kick");
+
     }
     private void FixedUpdate()
     {
-        movePlayer();
+        if (!GameController.instance.endMatch && !GameController.instance.isScored)
+        {
+            movePlayer();
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
@@ -76,8 +75,9 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot()
     {
-        if (canShoot)
+        if (canShoot && !GameController.instance.endMatch && !GameController.instance.isScored)
         {
+            audioPlayer.playKickClip();
             shootEffect.SetActive(true);
             ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(ShootForce, 500));
             StartCoroutine(ExecuteAfterTime(0.1f));
@@ -87,8 +87,9 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && !GameController.instance.endMatch && !GameController.instance.isScored)
         {
+            audioPlayer.playJumpClip();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
