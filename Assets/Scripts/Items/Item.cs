@@ -25,8 +25,8 @@ public class Item : MonoBehaviour
     void Start()
     {
         Ball = GameObject.Find("Ball");
-        Player1 = GameObject.Find("Player1");
-        Player2 = GameObject.Find("Player2");
+        Player1 = GameObject.Find("Player 1");
+        Player2 = GameObject.Find("Player 2");
         Goal1 = GameObject.Find("LeftGoal");
         Goal2 = GameObject.Find("RightGoal");
     }
@@ -40,6 +40,10 @@ public class Item : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<Collider2D>().enabled = false;
+
+            // enable background
+            GameObject backGround = this.gameObject.transform.GetChild(0).gameObject;
+            backGround.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 

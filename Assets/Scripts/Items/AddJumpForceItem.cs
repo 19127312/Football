@@ -28,10 +28,11 @@ public class AddJumpForceItem : Item
         {
             playerScript = Player2.GetComponent<PlayerController>();
         }
-        // audioPlayer.playLargeBallClip();
-        playerScript.jumpForce += 10.0f;
+        audioPlayer.playHighJumpClip();
+        playerScript.rocketEffect.SetActive(true);
+        playerScript.jumpForce += 5.0f;
         yield return new WaitForSeconds(workingTime);
-        playerScript.jumpForce -= 10.0f;
-        // audioPlayer.playSmallBallClip();
+        playerScript.jumpForce -= 5.0f;
+        playerScript.rocketEffect.SetActive(false);
     }
 }

@@ -60,7 +60,30 @@ public class AudioPlayerController : MonoBehaviour
     [SerializeField][Range(0f, 1f)] float iceVolumn = 1f;
 
 
+    [Header("High Jump")]
+    [SerializeField] AudioClip highJumpClip;
+    [SerializeField] [Range(0f,1f)]float highJumpVolumn=1f;
+    
+    [Header("Jump Disable")]
+    [SerializeField] AudioClip jumpDisableClip;
+    [SerializeField] [Range(0f,1f)]float jumpDisableVolumn=1f;
 
+
+    [Header("Speed")]
+    [SerializeField] AudioClip speedClip;
+    [SerializeField] [Range(0f,1f)]float speedVolumn=1f;
+
+    [Header("Slow Speed")]
+    [SerializeField] AudioClip slowSpeedClip;
+    [SerializeField] [Range(0f,1f)]float slowSpeedVolumn=1f;
+
+    [Header("Injure")]
+    [SerializeField] AudioClip injureClip;
+    [SerializeField] [Range(0f,1f)]float injureVolumn=1f;
+
+    [Header("Invicible")]
+    [SerializeField] AudioClip invicibleClip;
+    [SerializeField] [Range(0f,1f)]float invicibleVolumn=1f;
     static AudioPlayerController instance;
 
     private void Awake()
@@ -152,6 +175,32 @@ public class AudioPlayerController : MonoBehaviour
         playClip(iceClip, iceVolumn);
     }
 
+
+    public void playHighJumpClip(){
+        playClip(highJumpClip, highJumpVolumn);
+    }
+
+    public void playJumpDisableClip(){
+        playClip(jumpDisableClip, jumpDisableVolumn);
+    }
+
+    public void playSpeedClip(){
+        playClip(speedClip, speedVolumn);
+    }
+
+    public void playSlowSpeedClip(){
+        playClip(slowSpeedClip, slowSpeedVolumn);
+    }
+
+    public void playInjureClip(){
+        playClip(injureClip, injureVolumn);
+    }
+
+    public void playInvicibleClip(){
+        playClip(invicibleClip, invicibleVolumn);
+    }
+
+
     public void Mute()
     {
         audioSource.mute = true;
@@ -170,6 +219,7 @@ public class AudioPlayerController : MonoBehaviour
         audioSource.mute = true;
         audioState = "Sound";
     }
+
 }
 
 

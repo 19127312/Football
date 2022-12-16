@@ -12,7 +12,7 @@ public class GoalGrowItem : Item
         //
         if (other.gameObject.tag == "Ball")
         {
-            childObject = this.gameObject.transform.GetChild(0).gameObject;
+            childObject = this.gameObject.transform.GetChild(1).gameObject;
             childObject.GetComponent<SpriteRenderer>().enabled = false;
             workingTime = 3.0f;
             StartCoroutine(GrowGoal());
