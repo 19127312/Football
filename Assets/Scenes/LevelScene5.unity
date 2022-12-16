@@ -145,6 +145,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CircleObstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 1139280727858118425, guid: 7652f6693e2a36044890445dccc4eda2, type: 3}
+      propertyPath: vertical
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139280727858118425, guid: 7652f6693e2a36044890445dccc4eda2, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1139280727858118427, guid: 7652f6693e2a36044890445dccc4eda2, type: 3}
       propertyPath: m_RootOrder
       value: 14
