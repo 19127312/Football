@@ -11,6 +11,8 @@ TagManager:
   - LeftPlayerHeadEffect
   - AI
   - AIHead
+  - RightGoal
+  - LeftGoal
   layers:
   - Default
   - TransparentFX
