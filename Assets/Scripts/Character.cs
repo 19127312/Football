@@ -9,7 +9,7 @@ public class Character : ScriptableObject {
     
 
     // Start is called before the first frame update
-    [SerializeField] string name;
+    [SerializeField] string namePlayer;
     [SerializeField] Sprite image;
     [SerializeField] int goldToBuy;
     [SerializeField] int level;
@@ -17,6 +17,7 @@ public class Character : ScriptableObject {
     [SerializeField] int statToUpgrade;
     [SerializeField] int speedStat;
     [SerializeField] int shootStat;
+    [SerializeField] bool isOwn;
     public string Name { get => name; set => name = value; }
     public Sprite Image { get => image; set => image = value; }
     public int GoldToBuy { get => goldToBuy; }
@@ -25,6 +26,7 @@ public class Character : ScriptableObject {
     public int StatToUpgrade { get => statToUpgrade; set => statToUpgrade = value; }
     public int SpeedStat { get => speedStat; set => speedStat = value; }
     public int ShootStat { get => shootStat; set => shootStat = value; }
+    public bool IsOwn { get => isOwn; set => isOwn = value; }
     public bool IsMaxLevel(){
         return level==maxStat;
     }

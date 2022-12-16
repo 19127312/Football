@@ -60,6 +60,11 @@ public class AudioPlayerController : MonoBehaviour
     [SerializeField][Range(0f, 1f)] float iceVolumn = 1f;
 
 
+    [Header("Button Click")]
+    [SerializeField] AudioClip buttonClickClip;
+    [SerializeField] [Range(0f,1f)]float buttonClickVolumn=1f;
+
+
     [Header("High Jump")]
     [SerializeField] AudioClip highJumpClip;
     [SerializeField] [Range(0f,1f)]float highJumpVolumn=1f;
@@ -106,12 +111,14 @@ public class AudioPlayerController : MonoBehaviour
         }
     }
 
+
     private void playClip(AudioClip clip, float volume)
     {
         if (clip != null)
         {
             if (!isMuteSound)
             {
+
                 AudioSource.PlayClipAtPoint(clip,
                                         Camera.main.transform.position,
                                         volume);
@@ -200,6 +207,10 @@ public class AudioPlayerController : MonoBehaviour
         playClip(invicibleClip, invicibleVolumn);
     }
 
+    public void playButtonClickClip(){
+        playClip(buttonClickClip, buttonClickVolumn);
+    }
+    
 
     public void Mute()
     {
