@@ -765,8 +765,7 @@ MonoBehaviour:
     m_Bits: 256
   canShoot: 0
   anim: {fileID: 0}
-  ShootForce: 0
-  isLeftPlayer: 1
+  ShootForce: 400
   shootEffect: {fileID: 1496615188}
 --- !u!114 &1491413331
 MonoBehaviour:
@@ -1031,3 +1030,4 @@ MonoBehaviour:
   player: {fileID: 2556844780294968275}
   headEffect: {fileID: 1437171261}
   forceHead: 300
+  isAI: 0
