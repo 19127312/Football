@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44221c05f7e273947ab53b758e27ad61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 4529185924173549960}
   portalClip: {fileID: 8300000, guid: 2010e25bfc9e83d40a1c03f30dc4fc5b, type: 3}
   portalVolumn: 1
   kickClip: {fileID: 8300000, guid: d76bc039f028a3d4f9a5e56dcaa66568, type: 3}
