@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a513212052c8a45ab7cfbc55807a08, type: 3}
   m_Name: Fox
   m_EditorClassIdentifier: 
-  name: Fox
+  namePlayer: 
   image: {fileID: -1541138330, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   goldToBuy: 100
   level: 0
   maxStat: 0
   statToUpgrade: 0
-  speedStat: 0
-  shootStat: 0
+  speedStat: 6
+  shootStat: 290
+  jumpStat: 8
   isOwn: 1
