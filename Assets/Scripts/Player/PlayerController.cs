@@ -26,9 +26,8 @@ public class PlayerController : MonoBehaviour
     public GameObject bubbleGumEffect;
     public GameObject blackLightningEffect;
     public GameObject brokenLegEffect;
+    public GameObject Skill;
     public bool isFreezed = false;
-
-
 
     AudioPlayerController audioPlayer;
 
@@ -54,15 +53,17 @@ public class PlayerController : MonoBehaviour
 
     void OnShoot(InputValue value)
     {
-
         if (!isFreezed)
         {
             anim.SetTrigger("Kick");
         }
 
         anim.SetTrigger("Kick");
+    }
 
-
+    void OnSkill(InputValue value)
+    {
+        // skill.run();
     }
 
     private void FixedUpdate()
