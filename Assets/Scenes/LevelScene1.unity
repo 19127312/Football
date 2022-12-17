@@ -185,10 +185,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3480955690096363436, guid: c7318849b7b84664dafeb0cc84b1749e, type: 3}
   m_PrefabInstance: {fileID: 197800216}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &328216555 stripped
+--- !u!114 &504335696 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7730216872896944395, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-  m_PrefabInstance: {fileID: 704174953}
+  m_PrefabInstance: {fileID: 892073650}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -519,9 +519,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 477210217950612844, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f92f9accf89c4f04e8503093286a31c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
---- !u!1001 &704174953
+--- !u!1001 &892073650
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -614,14 +618,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7730216873325401615, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
       propertyPath: m_Name
-      value: ScoreBoard
+      value: CanvasUIGameplay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
---- !u!114 &932590556 stripped
+--- !u!114 &901335965 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7730216873407898535, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-  m_PrefabInstance: {fileID: 704174953}
+  m_CorrespondingSourceObject: {fileID: 7730216873435850145, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 892073650}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -743,17 +747,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7e544a9da924241ab4cca194b2699f, type: 3}
---- !u!114 &1400660716 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7730216873435850145, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-  m_PrefabInstance: {fileID: 704174953}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1560853925
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +886,17 @@ MonoBehaviour:
   speed: 5
   timeunteleportable: 0.5
   isLeftPlayer: 1
+--- !u!114 &1625253656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7730216873407898535, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 892073650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1819519941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1119,7 @@ PrefabInstance:
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: goalLeft
       value: 
-      objectReference: {fileID: 932590556}
+      objectReference: {fileID: 1625253656}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: isScored
       value: 0
@@ -1123,7 +1127,7 @@ PrefabInstance:
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: goalRight
       value: 
-      objectReference: {fileID: 328216555}
+      objectReference: {fileID: 504335696}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatch
       value: 30
@@ -1131,7 +1135,7 @@ PrefabInstance:
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatchText
       value: 
-      objectReference: {fileID: 1400660716}
+      objectReference: {fileID: 901335965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
 --- !u!1001 &6076590801471110265
