@@ -9,8 +9,8 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
     public TMP_Text goalLeft, goalRight, timeMatchText;
-    public int goalLeftCount, goalRightCount, timeMatch;
-    public bool isScored, endMatch;
+    public int goalLeftCount=0, goalRightCount=0, timeMatch=30;
+    public bool isScored=false, endMatch=false;
     GameObject ball, AI, LPlayer, RPlayer;
     public bool Pve;
     void Awake()
@@ -19,11 +19,6 @@ public class GameController : MonoBehaviour
         {
             instance = this;
         }
-        goalLeftCount = 0;
-        goalRightCount = 0;
-        isScored = false;
-        endMatch = false;
-        timeMatch = 30;
     }
     // Start is called before the first frame update
     void Start()
