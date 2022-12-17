@@ -19,105 +19,178 @@ public class UIManager : MonoBehaviour
         soundSprite,
         muteSprite,
         musicSprite;
-    
-    [Header("Current Character")]
-    public Image currentCharacterImage;
-    public GameObject currentPricePanel;
-    public TextMeshProUGUI  currentPriceText;
     private UnityAction newGameAction;
     private UnityAction backMainMenuAction;
+
+    [Header("Current Player 1")]
+    public Image currentCharacter1Image;
+    public GameObject currentPrice1Panel;
+    public TextMeshProUGUI currentPrice1Text;
+    public TextMeshProUGUI currentShoot1Text;
+    public TextMeshProUGUI currentSpeed1Text;
+    public TextMeshProUGUI currentJump1Text;
+
+
+    [Header("Current Player 2")]
+    public Image currentCharacter2Image;
+    public GameObject currentPrice2Panel;
+    public TextMeshProUGUI currentPrice2Text;
+
+    public TextMeshProUGUI currentShoot2Text;
+    public TextMeshProUGUI currentSpeed2Text;
+    public TextMeshProUGUI currentJump2Text;
+
+    [Header("Menu")]
+    public GameObject selecteModeMenu;
+    public GameObject levelUpMenu;
+    public GameObject OneVsOneMenu;
+    public GameObject OneVsAIMenu;
+    public GameObject chooseLevelMenu;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-      
+
         audioPlayerController = FindObjectOfType<AudioPlayerController>();
-        if(audioPlayerController.audioState == "Music"){
+        if (audioPlayerController.audioState == "Music")
+        {
             musicAndSoundOption.sprite = musicSprite;
         }
-        else if(audioPlayerController.audioState == "Sound"){
+        else if (audioPlayerController.audioState == "Sound")
+        {
             musicAndSoundOption.sprite = soundSprite;
         }
-        else if(audioPlayerController.audioState == "Mute"){
+        else if (audioPlayerController.audioState == "Mute")
+        {
             musicAndSoundOption.sprite = muteSprite;
         }
     }
 
     // Update is called once per frame
-    public void NewGame(){
+    public void NewGame()
+    {
         audioPlayerController.playButtonClickClip();
         newGameAction = () => SceneManager.LoadScene("ChooseCharacterScene");
-        StartCoroutine(HoldHostage(newGameAction));   
-        
+        StartCoroutine(HoldHostage(newGameAction));
+
     }
-    public void BackMainMenu(){
+    public void BackMainMenu()
+    {
         audioPlayerController.playButtonClickClip();
         backMainMenuAction = () => SceneManager.LoadScene("MenuScene");
-        StartCoroutine(HoldHostage(backMainMenuAction));   
-        
+        StartCoroutine(HoldHostage(backMainMenuAction));
+
     }
-    public void LoadGame(){
+    public void BackToSelectModeMenu()
+    {
+        selecteModeMenu.SetActive(true);
+        OneVsOneMenu.SetActive(false);
+        OneVsAIMenu.SetActive(false);
+        levelUpMenu.SetActive(false);
+    }
+    public void LoadGame()
+    {
         audioPlayerController.playButtonClickClip();
     }
-    public void ExitGame(){
+    public void ExitGame()
+    {
         Application.Quit();
     }
-    public void LevelUpPlayer(){
-        audioPlayerController.playButtonClickClip();
+    public void LevelUpPlayer()
+    {
     }
-    public void OneVsOne(){
-        audioPlayerController.playButtonClickClip();
+    public void OneVsOne()
+    {
+        selecteModeMenu.SetActive(false);
+        OneVsOneMenu.SetActive(true);
+    }
+    public void OneVsAI()
+    {
 
     }
-    public void OneVsAI(){
-        audioPlayerController.playButtonClickClip();
-
-    }
-    public void ChangeVolume(){
+    public void ChangeVolume()
+    {
         // Sound only -> Mute
-        if(musicAndSoundOption.sprite == soundSprite){
+        if (musicAndSoundOption.sprite == soundSprite)
+        {
             musicAndSoundOption.sprite = muteSprite;
             audioPlayerController.Mute();
         }
         //Mute -> Music
-        else if(musicAndSoundOption.sprite == muteSprite){
+        else if (musicAndSoundOption.sprite == muteSprite)
+        {
             musicAndSoundOption.sprite = musicSprite;
             audioPlayerController.UnMute();
         }
         //Music -> Sound only
-        else if(musicAndSoundOption.sprite == musicSprite){
+        else if (musicAndSoundOption.sprite == musicSprite)
+        {
             musicAndSoundOption.sprite = soundSprite;
             audioPlayerController.playSoundOnly();
 
         }
-      
-    }
-    public void goToLeftCharacter(){
-                audioPlayerController.playButtonClickClip();
 
-        gameManager.changeLeftCharacter();
-        updateCurrentCharacter(gameManager.GetSelectedCharacter());
     }
-    public void goToRightCharacter(){
-                audioPlayerController.playButtonClickClip();
+    public void goToLeftCharacter(int playerNumber)
+    {
+        audioPlayerController.playButtonClickClip();
 
-        gameManager.changeRightCharacter();
-        updateCurrentCharacter(gameManager.GetSelectedCharacter());
+        gameManager.changeLeftCharacter(playerNumber);
+        updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
     }
-    public void updateCurrentCharacter(Character character){
-        currentCharacterImage.sprite = character.Image;
-        currentPriceText.text = character.GoldToBuy.ToString();
-        if(character.IsOwn){
-            currentPricePanel.SetActive(false);
-        }else{
-            currentPricePanel.SetActive(true);
+    public void goToRightCharacter(int playerNumber)
+    {
+        audioPlayerController.playButtonClickClip();
+
+        gameManager.changeRightCharacter(playerNumber);
+        updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+    }
+    public void updateCurrentCharacter(Character character, int playerNumber)
+    {
+        Debug.Log(character.ShootStat.ToString());
+        if (playerNumber == 1)
+        {
+            currentCharacter1Image.sprite = character.Image;
+            currentPrice1Text.text = character.GoldToBuy.ToString();
+            currentShoot1Text.text = character.ShootStat.ToString();
+            currentSpeed1Text.text = character.SpeedStat.ToString();
+            currentJump1Text.text = character.JumpStat.ToString();
+
+            if (character.IsOwn)
+            {
+                currentPrice1Panel.SetActive(false);
+            }
+            else
+            {
+                currentPrice1Panel.SetActive(true);
+            }
         }
+        else
+        {
+            currentCharacter2Image.sprite = character.Image;
+            currentPrice2Text.text = character.GoldToBuy.ToString();
+            currentShoot2Text.text = character.ShootStat.ToString();
+            currentSpeed2Text.text = character.SpeedStat.ToString();
+            currentJump2Text.text = character.JumpStat.ToString();
+            if (character.IsOwn)
+            {
+                currentPrice2Panel.SetActive(false);
+            }
+            else
+            {
+                currentPrice2Panel.SetActive(true);
+            }
+        }
+
     }
     private IEnumerator HoldHostage(UnityAction callback)
     {
         yield return new WaitForSeconds(0.5f);
         callback.Invoke();
     }
-    
+
 }
