@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -19,7 +20,18 @@ public class PlayerController : MonoBehaviour
     Vector2 rawInput;
     public GameObject shootEffect;
 
+    public GameObject freezeEffect;
+    public GameObject rocketEffect;
+    public GameObject speedLightEffect;
+    public GameObject bubbleGumEffect;
+    public GameObject blackLightningEffect;
+    public GameObject brokenLegEffect;
+    public bool isFreezed = false;
+
+
+
     AudioPlayerController audioPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +44,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() { }
 
-    }
     void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
@@ -44,9 +54,17 @@ public class PlayerController : MonoBehaviour
 
     void OnShoot(InputValue value)
     {
+
+        if (!isFreezed)
+        {
+            anim.SetTrigger("Kick");
+        }
+
         anim.SetTrigger("Kick");
 
+
     }
+
     private void FixedUpdate()
     {
         if (!GameController.instance.endMatch && !GameController.instance.isScored)
@@ -82,7 +100,6 @@ public class PlayerController : MonoBehaviour
             ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(ShootForce, 500));
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
-
     }
 
     public void Jump()

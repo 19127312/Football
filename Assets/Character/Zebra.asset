@@ -20,3 +20,4 @@ MonoBehaviour:
   statToUpgrade: 0
   speedStat: 0
   shootStat: 0
+  isOwn: 1

@@ -8,8 +8,16 @@ public class Ball : MonoBehaviour
     GameObject Lplayer;
     GameObject Rplayer;
     GameObject AI;
-    public GameObject goal;
+  
     public Rigidbody2D rb;
+
+    public float timeunteleportable = 0.5f;
+    bool isUnteleportable;
+    float teleportableTimer;
+
+    public bool isLeftPlayer = true;
+
+    AudioPlayerController audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +30,28 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isUnteleportable)
+                {
+                    teleportableTimer -= Time.deltaTime;
+                    if (teleportableTimer < 0)
+                    {
+                        isUnteleportable = false;
+                    }
+                }
+    }
+     void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayerController>();
+    }
+    public void Tele(Vector2 portPosition)
+    {
+        if (isUnteleportable)
+            return;
+        isUnteleportable = true;
+        teleportableTimer = timeunteleportable;
 
+        transform.position = portPosition;
+        audioPlayer.playPortalClip();
     }
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -83,6 +112,17 @@ public class Ball : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 GameController.instance.ContinueGame();
             }
+        }
+    }
+     void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "LeftPlayer")
+        {
+            isLeftPlayer = true;
+        }
+        else if (other.gameObject.tag == "RightPlayer")
+        {
+            isLeftPlayer = false;
         }
     }
 }
