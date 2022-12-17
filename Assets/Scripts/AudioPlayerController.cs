@@ -62,33 +62,45 @@ public class AudioPlayerController : MonoBehaviour
 
     [Header("Button Click")]
     [SerializeField] AudioClip buttonClickClip;
-    [SerializeField] [Range(0f,1f)]float buttonClickVolumn=1f;
+    [SerializeField][Range(0f, 1f)] float buttonClickVolumn = 1f;
 
 
     [Header("High Jump")]
     [SerializeField] AudioClip highJumpClip;
-    [SerializeField] [Range(0f,1f)]float highJumpVolumn=1f;
-    
+    [SerializeField][Range(0f, 1f)] float highJumpVolumn = 1f;
+
     [Header("Jump Disable")]
     [SerializeField] AudioClip jumpDisableClip;
-    [SerializeField] [Range(0f,1f)]float jumpDisableVolumn=1f;
+    [SerializeField][Range(0f, 1f)] float jumpDisableVolumn = 1f;
 
 
     [Header("Speed")]
     [SerializeField] AudioClip speedClip;
-    [SerializeField] [Range(0f,1f)]float speedVolumn=1f;
+    [SerializeField][Range(0f, 1f)] float speedVolumn = 1f;
 
     [Header("Slow Speed")]
     [SerializeField] AudioClip slowSpeedClip;
-    [SerializeField] [Range(0f,1f)]float slowSpeedVolumn=1f;
+    [SerializeField][Range(0f, 1f)] float slowSpeedVolumn = 1f;
 
     [Header("Injure")]
     [SerializeField] AudioClip injureClip;
-    [SerializeField] [Range(0f,1f)]float injureVolumn=1f;
+    [SerializeField][Range(0f, 1f)] float injureVolumn = 1f;
 
     [Header("Invicible")]
     [SerializeField] AudioClip invicibleClip;
-    [SerializeField] [Range(0f,1f)]float invicibleVolumn=1f;
+    [SerializeField][Range(0f, 1f)] float invicibleVolumn = 1f;
+
+    [Header("Match Lose")]
+    [SerializeField] AudioClip matchLoseClip;
+    [SerializeField][Range(0f, 1f)] float matchLoseVolumn = 1f;
+
+    [Header("Match Win")]
+    [SerializeField] AudioClip matchWinClip;
+    [SerializeField][Range(0f, 1f)] float matchWinVolumn = 1f;
+
+    [Header("Match Draw")]
+    [SerializeField] AudioClip matchDrawClip;
+    [SerializeField][Range(0f, 1f)] float matchDrawVolumn = 1f;
     static AudioPlayerController instance;
 
     private void Awake()
@@ -183,34 +195,55 @@ public class AudioPlayerController : MonoBehaviour
     }
 
 
-    public void playHighJumpClip(){
+    public void playHighJumpClip()
+    {
         playClip(highJumpClip, highJumpVolumn);
     }
 
-    public void playJumpDisableClip(){
+    public void playJumpDisableClip()
+    {
         playClip(jumpDisableClip, jumpDisableVolumn);
     }
 
-    public void playSpeedClip(){
+    public void playSpeedClip()
+    {
         playClip(speedClip, speedVolumn);
     }
 
-    public void playSlowSpeedClip(){
+    public void playSlowSpeedClip()
+    {
         playClip(slowSpeedClip, slowSpeedVolumn);
     }
 
-    public void playInjureClip(){
+    public void playInjureClip()
+    {
         playClip(injureClip, injureVolumn);
     }
 
-    public void playInvicibleClip(){
+    public void playInvicibleClip()
+    {
         playClip(invicibleClip, invicibleVolumn);
     }
 
-    public void playButtonClickClip(){
+    public void playButtonClickClip()
+    {
         playClip(buttonClickClip, buttonClickVolumn);
     }
-    
+
+    public void playMatchLoseClip()
+    {
+        playClip(matchLoseClip, matchLoseVolumn);
+    }
+
+    public void playMatchWinClip()
+    {
+        playClip(matchWinClip, matchWinVolumn);
+    }
+
+    public void playMatchDrawClip()
+    {
+        playClip(matchDrawClip, matchDrawVolumn);
+    }
 
     public void Mute()
     {

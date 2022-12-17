@@ -49,7 +49,9 @@ MonoBehaviour:
   timeMatchText: {fileID: 0}
   goalLeftCount: 0
   goalRightCount: 0
-  timeMatch: 0
+  timeMatch: 10
   isScored: 0
   endMatch: 0
-  Pve: 0
+  Pve: 1
+  audioPlayer: {fileID: 0}
+  panel: {fileID: 0}
