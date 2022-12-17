@@ -8,7 +8,7 @@ public class Ball : MonoBehaviour
     GameObject Lplayer;
     GameObject Rplayer;
     GameObject AI;
-  
+
     public Rigidbody2D rb;
 
     public float timeunteleportable = 0.5f;
@@ -31,15 +31,15 @@ public class Ball : MonoBehaviour
     void Update()
     {
         if (isUnteleportable)
-                {
-                    teleportableTimer -= Time.deltaTime;
-                    if (teleportableTimer < 0)
-                    {
-                        isUnteleportable = false;
-                    }
-                }
+        {
+            teleportableTimer -= Time.deltaTime;
+            if (teleportableTimer < 0)
+            {
+                isUnteleportable = false;
+            }
+        }
     }
-     void Awake()
+    void Awake()
     {
         audioPlayer = FindObjectOfType<AudioPlayerController>();
     }
@@ -95,6 +95,7 @@ public class Ball : MonoBehaviour
         {
             if (!GameController.instance.isScored && !GameController.instance.endMatch)
             {
+                audioPlayer.playScoreClip();
                 GameController.instance.goalLeftCount++;
                 GameController.instance.isScored = true;
                 rb.velocity = Vector2.zero;
@@ -106,6 +107,7 @@ public class Ball : MonoBehaviour
         {
             if (!GameController.instance.isScored && !GameController.instance.endMatch)
             {
+                audioPlayer.playScoreClip();
                 GameController.instance.goalRightCount++;
                 GameController.instance.isScored = true;
                 rb.velocity = Vector2.zero;
@@ -114,7 +116,7 @@ public class Ball : MonoBehaviour
             }
         }
     }
-     void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "LeftPlayer")
         {
