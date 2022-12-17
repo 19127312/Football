@@ -1117,9 +1117,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 932590556}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
+      propertyPath: isScored
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: goalRight
       value: 
       objectReference: {fileID: 328216555}
+    - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
+      propertyPath: timeMatch
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatchText
       value: 
