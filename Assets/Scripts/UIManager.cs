@@ -11,16 +11,12 @@ public class UIManager : MonoBehaviour
 {
     [Header("Music and Sound Options")]
     public Image musicAndSoundOption;
-    private AudioPlayerController audioPlayerController;
-    private GameManager gameManager;
-
 
     public Sprite
         soundSprite,
         muteSprite,
         musicSprite;
-    private UnityAction newGameAction;
-    private UnityAction backMainMenuAction;
+
 
     [Header("Current Player 1")]
     public Image currentCharacter1Image;
@@ -47,7 +43,16 @@ public class UIManager : MonoBehaviour
     public GameObject OneVsAIMenu;
     public GameObject chooseLevelMenu;
 
-
+    private AudioPlayerController audioPlayerController;
+    private GameManager gameManager;
+    private UnityAction newGameAction;
+    private UnityAction backMainMenuAction;
+    private enum Mode
+    {
+        OneVsOne,
+        OneVsAI,
+    }
+    private Mode mode = Mode.OneVsOne;
 
 
     // Start is called before the first frame update
@@ -69,14 +74,31 @@ public class UIManager : MonoBehaviour
             musicAndSoundOption.sprite = muteSprite;
         }
     }
+    void Update()
+    {
+        ManagementPlay();
+    }
 
     // Update is called once per frame
+
+    private void ManagementPlay()
+    {
+        switch (mode)
+        {
+            case Mode.OneVsOne:
+
+                break;
+            case Mode.OneVsAI:
+                break;
+            default:
+                break;
+        }
+    }
     public void NewGame()
     {
         audioPlayerController.playButtonClickClip();
         newGameAction = () => SceneManager.LoadScene("ChooseCharacterScene");
         StartCoroutine(HoldHostage(newGameAction));
-
     }
     public void BackMainMenu()
     {
@@ -87,6 +109,7 @@ public class UIManager : MonoBehaviour
     }
     public void BackToSelectModeMenu()
     {
+        audioPlayerController.playButtonClickClip();
         selecteModeMenu.SetActive(true);
         OneVsOneMenu.SetActive(false);
         OneVsAIMenu.SetActive(false);
@@ -102,14 +125,20 @@ public class UIManager : MonoBehaviour
     }
     public void LevelUpPlayer()
     {
+        audioPlayerController.playButtonClickClip();
+
     }
     public void OneVsOne()
     {
+        audioPlayerController.playButtonClickClip();
         selecteModeMenu.SetActive(false);
         OneVsOneMenu.SetActive(true);
+        mode = Mode.OneVsOne;
     }
     public void OneVsAI()
     {
+        audioPlayerController.playButtonClickClip();
+        mode = Mode.OneVsAI;
 
     }
     public void ChangeVolume()
@@ -163,10 +192,13 @@ public class UIManager : MonoBehaviour
             if (character.IsOwn)
             {
                 currentPrice1Panel.SetActive(false);
+                currentCharacter1Image.color = new Color(1f, 1f, 1f, 1f);
+
             }
             else
             {
                 currentPrice1Panel.SetActive(true);
+                currentCharacter1Image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             }
         }
         else
@@ -179,10 +211,14 @@ public class UIManager : MonoBehaviour
             if (character.IsOwn)
             {
                 currentPrice2Panel.SetActive(false);
+                currentCharacter2Image.color = new Color(1f, 1f, 1f, 1f);
+
             }
             else
             {
                 currentPrice2Panel.SetActive(true);
+                currentCharacter2Image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+
             }
         }
 
