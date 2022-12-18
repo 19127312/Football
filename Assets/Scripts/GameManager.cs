@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     private Character selectedCharacter1;
     private Character selectedCharacter2;
+    private int currentMoney = 0;
 
     private void Awake()
     {
@@ -111,5 +112,9 @@ public class GameManager : MonoBehaviour
             return selectedCharacter2;
         }
 
+    }
+    public void ModifyMoney(int amount)
+    {
+        currentMoney += amount;
     }
 }
