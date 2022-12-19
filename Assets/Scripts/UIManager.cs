@@ -47,6 +47,12 @@ public class UIManager : MonoBehaviour
     private GameManager gameManager;
     private UnityAction newGameAction;
     private UnityAction backMainMenuAction;
+
+    [Header("OneVsOne")]
+    public Button nextButton;
+    public Image nextButtonImage ;
+    public Sprite nextEnableButtonImage;
+    public Sprite nextDiableButtonImage;
     private enum Mode
     {
         OneVsOne,
@@ -76,7 +82,7 @@ public class UIManager : MonoBehaviour
     }
     void Update()
     {
-        ManagementPlay();
+        
     }
 
     // Update is called once per frame
@@ -86,7 +92,20 @@ public class UIManager : MonoBehaviour
         switch (mode)
         {
             case Mode.OneVsOne:
-
+                bool ownPlayer1 = gameManager.GetSelectedCharacter(1).IsOwn;
+                bool ownPlayer2 = gameManager.GetSelectedCharacter(2).IsOwn;   
+                if(ownPlayer1 && ownPlayer2)
+                {
+                   Debug.Log("Both players are own");
+                   nextButton.interactable = true;
+                   nextButtonImage.sprite = nextEnableButtonImage;
+                }
+                else
+                {
+                    Debug.Log("One of players is not own");
+                    nextButton.interactable = false;
+                    nextButtonImage.sprite = nextDiableButtonImage;
+                }
                 break;
             case Mode.OneVsAI:
                 break;
@@ -170,6 +189,7 @@ public class UIManager : MonoBehaviour
 
         gameManager.changeLeftCharacter(playerNumber);
         updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+        ManagementPlay();
     }
     public void goToRightCharacter(int playerNumber)
     {
@@ -177,10 +197,10 @@ public class UIManager : MonoBehaviour
 
         gameManager.changeRightCharacter(playerNumber);
         updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+        ManagementPlay();
     }
     public void updateCurrentCharacter(Character character, int playerNumber)
     {
-        Debug.Log(character.ShootStat.ToString());
         if (playerNumber == 1)
         {
             currentCharacter1Image.sprite = character.Image;
@@ -223,6 +243,15 @@ public class UIManager : MonoBehaviour
         }
 
     }
+    public void BuyCharacter(int playerNumber)
+    {
+        audioPlayerController.playButtonClickClip();
+        gameManager.ModifyMoney(-gameManager.GetSelectedCharacter(playerNumber).GoldToBuy);
+        gameManager.BuyCharacter(gameManager.GetSelectedCharacter(playerNumber));
+        updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+        ManagementPlay();
+    }
+
     private IEnumerator HoldHostage(UnityAction callback)
     {
         yield return new WaitForSeconds(0.5f);
