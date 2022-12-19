@@ -117,4 +117,8 @@ public class GameManager : MonoBehaviour
     {
         currentMoney += amount;
     }
+    public void BuyCharacter(Character character)
+    {
+        character.IsOwn = true;
+    }
 }
