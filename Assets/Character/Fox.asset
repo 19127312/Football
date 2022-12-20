@@ -22,3 +22,4 @@ MonoBehaviour:
   shootStat: 290
   jumpStat: 8
   isOwn: 1
+  skillPrefab: {fileID: 4451715478083833182, guid: 90943e645f2af254f888a953c4666713, type: 3}

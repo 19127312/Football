@@ -1061,7 +1061,10 @@ MonoBehaviour:
   bubbleGumEffect: {fileID: 7816505197862665567}
   blackLightningEffect: {fileID: 4253636072383190233}
   brokenLegEffect: {fileID: 1694536634618970426}
+  Skill: {fileID: 0}
   isFreezed: 0
+  isLeftPlayer: 0
+  head: {fileID: 3480955689114759667}
 --- !u!114 &3480955690096363437
 MonoBehaviour:
   m_ObjectHideFlags: 0

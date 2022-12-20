@@ -28,10 +28,21 @@ public class PlayerController : MonoBehaviour
     public GameObject brokenLegEffect;
     public GameObject Skill;
     public bool isFreezed = false;
+    [SerializeField] bool isLeftPlayer;
+    [SerializeField] GameObject head;
+    [SerializeField] GameObject skill;
+
+
+    private GameManager gameManager;
+
 
     AudioPlayerController audioPlayer;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,6 +51,25 @@ public class PlayerController : MonoBehaviour
         audioPlayer = FindObjectOfType<AudioPlayerController>();
         isGrounded = true;
         canShoot = false;
+        gameManager = FindObjectOfType<GameManager>();
+
+        if (isLeftPlayer)
+        {
+            head.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedCharacter1.Image;
+            speed = (float)gameManager.SelectedCharacter1.SpeedStat;
+            jumpForce = (float)gameManager.SelectedCharacter1.JumpStat;
+            ShootForce = (int)gameManager.SelectedCharacter1.ShootStat;
+            skill = gameManager.SelectedCharacter1.SkillPrefab;
+        }
+        else
+        {
+            head.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedCharacter2.Image;
+            speed = (float)gameManager.SelectedCharacter2.SpeedStat;
+            jumpForce = (float)gameManager.SelectedCharacter2.JumpStat;
+            ShootForce = -(int)gameManager.SelectedCharacter2.ShootStat;
+            skill = gameManager.SelectedCharacter2.SkillPrefab;
+
+        }
     }
 
     // Update is called once per frame
@@ -64,6 +94,7 @@ public class PlayerController : MonoBehaviour
     void OnSkill(InputValue value)
     {
         // skill.run();
+        skill.GetComponent<Skills>().UseSkill();
     }
 
     private void FixedUpdate()

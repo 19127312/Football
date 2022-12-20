@@ -10,10 +10,14 @@ public class HeadEffect : MonoBehaviour
     public GameObject headEffect;
     public int forceHead;
     public bool isAI;
+    AudioPlayerController audioPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
         ball = GameObject.FindGameObjectWithTag("Ball");
+        audioPlayer = FindObjectOfType<AudioPlayerController>();
+
     }
 
     // Update is called once per frame
@@ -34,7 +38,7 @@ public class HeadEffect : MonoBehaviour
             {
                 player.GetComponent<PlayerController>().anim.SetTrigger("Head");
             }
-
+            audioPlayer.playHeadClip();
             headEffect.SetActive(true);
             ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceHead, 400));

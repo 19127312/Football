@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.Events;
-
 public class UIManager : MonoBehaviour
 {
     [Header("Music and Sound Options")]
@@ -42,30 +41,33 @@ public class UIManager : MonoBehaviour
     public GameObject OneVsOneMenu;
     public GameObject OneVsAIMenu;
     public GameObject chooseLevelMenu;
+    public GameObject mainMenu;
 
     private AudioPlayerController audioPlayerController;
     private GameManager gameManager;
-    private UnityAction newGameAction;
-    private UnityAction backMainMenuAction;
+
 
     [Header("OneVsOne")]
+    public TextMeshProUGUI currentMoneyText;
     public Button nextButton;
-    public Image nextButtonImage ;
+    public Image nextButtonImage;
     public Sprite nextEnableButtonImage;
     public Sprite nextDiableButtonImage;
-    private enum Mode
-    {
-        OneVsOne,
-        OneVsAI,
-    }
-    private Mode mode = Mode.OneVsOne;
+    [Header("Choose Level Menu")]
+
+    public Image levelDescriptionImage;
+    public Sprite lv0;
+    public Sprite lv1;
+    public Sprite lv2;
+    public Sprite lv3;
+    public Sprite lv4;
+    public Sprite lv5;
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-
         audioPlayerController = FindObjectOfType<AudioPlayerController>();
         if (audioPlayerController.audioState == "Music")
         {
@@ -79,51 +81,58 @@ public class UIManager : MonoBehaviour
         {
             musicAndSoundOption.sprite = muteSprite;
         }
+        updateCurrentCharacter(gameManager.GetSelectedCharacter(1), 1);
+        updateCurrentCharacter(gameManager.GetSelectedCharacter(2), 2);
+
     }
     void Update()
     {
-        
+        if (currentMoneyText != null)
+        {
+            currentMoneyText.text = gameManager.CurrentMoney().ToString();
+        }
     }
 
     // Update is called once per frame
 
     private void ManagementPlay()
     {
-        switch (mode)
+        switch (GameManager.instance.currentGameMode)
         {
-            case Mode.OneVsOne:
+            case GameManager.GameMode.OneVsOne:
                 bool ownPlayer1 = gameManager.GetSelectedCharacter(1).IsOwn;
-                bool ownPlayer2 = gameManager.GetSelectedCharacter(2).IsOwn;   
-                if(ownPlayer1 && ownPlayer2)
+                bool ownPlayer2 = gameManager.GetSelectedCharacter(2).IsOwn;
+                if (ownPlayer1 && ownPlayer2)
                 {
-                   Debug.Log("Both players are own");
-                   nextButton.interactable = true;
-                   nextButtonImage.sprite = nextEnableButtonImage;
+                    nextButton.interactable = true;
+                    nextButtonImage.sprite = nextEnableButtonImage;
                 }
                 else
                 {
-                    Debug.Log("One of players is not own");
                     nextButton.interactable = false;
                     nextButtonImage.sprite = nextDiableButtonImage;
                 }
                 break;
-            case Mode.OneVsAI:
+            case GameManager.GameMode.OneVsAI:
                 break;
             default:
+                Debug.Log("Game Mode is not selected");
                 break;
         }
     }
     public void NewGame()
     {
         audioPlayerController.playButtonClickClip();
-        newGameAction = () => SceneManager.LoadScene("ChooseCharacterScene");
-        StartCoroutine(HoldHostage(newGameAction));
+        selecteModeMenu.SetActive(true);
+        OneVsOneMenu.SetActive(false);
+        OneVsAIMenu.SetActive(false);
+        levelUpMenu.SetActive(false);
+        mainMenu.SetActive(false);
     }
     public void BackMainMenu()
     {
-        audioPlayerController.playButtonClickClip();
-        backMainMenuAction = () => SceneManager.LoadScene("MenuScene");
-        StartCoroutine(HoldHostage(backMainMenuAction));
+        mainMenu.SetActive(true);
+        selecteModeMenu.SetActive(false);
 
     }
     public void BackToSelectModeMenu()
@@ -133,6 +142,18 @@ public class UIManager : MonoBehaviour
         OneVsOneMenu.SetActive(false);
         OneVsAIMenu.SetActive(false);
         levelUpMenu.SetActive(false);
+    }
+    public void BackFromChooseLevelMenuOneVsOne()
+    {
+        audioPlayerController.playButtonClickClip();
+        chooseLevelMenu.SetActive(false);
+        OneVsOneMenu.SetActive(true);
+    }
+    public void ToChooseLevelMenuOneVsOne()
+    {
+        audioPlayerController.playButtonClickClip();
+        chooseLevelMenu.SetActive(true);
+        OneVsOneMenu.SetActive(false);
     }
     public void LoadGame()
     {
@@ -152,13 +173,12 @@ public class UIManager : MonoBehaviour
         audioPlayerController.playButtonClickClip();
         selecteModeMenu.SetActive(false);
         OneVsOneMenu.SetActive(true);
-        mode = Mode.OneVsOne;
+        GameManager.instance.currentGameMode = GameManager.GameMode.OneVsOne;
     }
     public void OneVsAI()
     {
         audioPlayerController.playButtonClickClip();
-        mode = Mode.OneVsAI;
-
+        GameManager.instance.currentGameMode = GameManager.GameMode.OneVsAI;
     }
     public void ChangeVolume()
     {
@@ -245,10 +265,16 @@ public class UIManager : MonoBehaviour
     }
     public void BuyCharacter(int playerNumber)
     {
-        audioPlayerController.playButtonClickClip();
+        if (gameManager.GetSelectedCharacter(playerNumber).GoldToBuy > gameManager.CurrentMoney())
+        {
+            return;
+        }
+        audioPlayerController.playBuyClip();
+
         gameManager.ModifyMoney(-gameManager.GetSelectedCharacter(playerNumber).GoldToBuy);
         gameManager.BuyCharacter(gameManager.GetSelectedCharacter(playerNumber));
-        updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+        updateCurrentCharacter(GameManager.instance.SelectedCharacter1, 1);
+        updateCurrentCharacter(GameManager.instance.SelectedCharacter2, 2);
         ManagementPlay();
     }
 
@@ -257,5 +283,89 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         callback.Invoke();
     }
+    public void ChangeLevel(int level)
+    {
+        switch (level)
+        {
+            case 0:
+                GameManager.instance.currentLevelPlayed = 0;
+                levelDescriptionImage.sprite = lv0;
+                break;
+            case 1:
+                GameManager.instance.currentLevelPlayed = 1;
+                levelDescriptionImage.sprite = lv1;
+                break;
+            case 2:
+                GameManager.instance.currentLevelPlayed = 2;
+                levelDescriptionImage.sprite = lv2;
+                break;
+            case 3:
+                GameManager.instance.currentLevelPlayed = 3;
+                levelDescriptionImage.sprite = lv3;
+                break;
+            case 4:
+                GameManager.instance.currentLevelPlayed = 4;
+                levelDescriptionImage.sprite = lv4;
+                break;
+            case 5:
+                GameManager.instance.currentLevelPlayed = 5;
+                levelDescriptionImage.sprite = lv5;
+                break;
+            default:
+                break;
+        }
+    }
+    public void ChangeGameRule(int mode)
+    {
+        switch (mode)
+        {
+            case 0:
+                GameManager.instance.currentGameRule = GameManager.GameRule.Random;
+                break;
+            case 1:
+                GameManager.instance.currentGameRule = GameManager.GameRule.Score7;
+                break;
+            case 2:
+                GameManager.instance.currentGameRule = GameManager.GameRule.Score9;
+                break;
+            case 3:
+                GameManager.instance.currentGameRule = GameManager.GameRule.Time30;
+                break;
+            case 4:
+                GameManager.instance.currentGameRule = GameManager.GameRule.Time60;
+                break;
+            default:
+                break;
+        }
+    }
+    public void PlayGameButton()
+    {
+        switch (GameManager.instance.currentLevelPlayed)
+        {
+            case 0:
+                SceneManager.LoadScene("LevelScene" + UnityEngine.Random.Range(1, 6).ToString());
+                break;
+            case 1:
+                SceneManager.LoadScene("LevelScene1");
 
+                break;
+            case 2:
+                SceneManager.LoadScene("LevelScene2");
+
+                break;
+            case 3:
+                SceneManager.LoadScene("LevelScene3");
+
+                break;
+            case 4:
+                SceneManager.LoadScene("LevelScene4");
+
+                break;
+            case 5:
+                SceneManager.LoadScene("LevelScene5");
+                break;
+            default:
+                break;
+        }
+    }
 }

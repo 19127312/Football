@@ -42,7 +42,11 @@ public class AudioPlayerController : MonoBehaviour
     [Header("Ball Kick")]
     [SerializeField] AudioClip ballKickClip;
     [SerializeField][Range(0f, 1f)] float ballKickVolumn = 1f;
-
+    [Header("Ball Head")]
+    [SerializeField] AudioClip HeadClip;
+    [SerializeField][Range(0f, 1f)] float headVolumn = 1f;
+    [Header("Ball Hit")]
+    [SerializeField][Range(0f, 2f)] float ballHitVolumn = 1f;
     // ball size audio
 
     [Header("Large Ball")]
@@ -101,6 +105,10 @@ public class AudioPlayerController : MonoBehaviour
     [Header("Match Draw")]
     [SerializeField] AudioClip matchDrawClip;
     [SerializeField][Range(0f, 1f)] float matchDrawVolumn = 1f;
+
+    [Header("Button Click")]
+    [SerializeField] AudioClip buyClip;
+    [SerializeField][Range(0f, 1f)] float buyClipVolumn = 1f;
     static AudioPlayerController instance;
 
     private void Awake()
@@ -263,7 +271,19 @@ public class AudioPlayerController : MonoBehaviour
         audioSource.mute = true;
         audioState = "Sound";
     }
+    public void playBuyClip()
+    {
+        playClip(buyClip, buyClipVolumn);
+    }
 
+    public void playHeadClip()
+    {
+        playClip(HeadClip, headVolumn);
+    }
+    public void playBallHit()
+    {
+        playClip(HeadClip, ballHitVolumn);
+    }
 }
 
 
