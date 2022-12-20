@@ -118,6 +118,7 @@ public class Ball : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
+        audioPlayer.playBallHit();
         if (other.gameObject.tag == "LeftPlayer")
         {
             isLeftPlayer = true;

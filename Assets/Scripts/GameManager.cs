@@ -5,12 +5,31 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    static GameManager instance;
+    public enum GameMode
+    {
+        OneVsOne,
+        OneVsAI,
+    }
+    public enum GameRule
+    {
+        Random,
+        Time30,
+        Time60,
+        Score7,
+        Score9,
+    }
+    public static GameManager instance;
     public List<Character> charactersInGame = new List<Character>();
 
     private Character selectedCharacter1;
     private Character selectedCharacter2;
-    private int currentMoney = 0;
+    public int currentLevelPlayed = 0;
+    public Character SelectedCharacter1 { get => selectedCharacter1; }
+    public Character SelectedCharacter2 { get => selectedCharacter2; }
+
+    private int currentMoney = 1000;
+    public GameMode currentGameMode = GameMode.OneVsOne;
+    public GameRule currentGameRule = GameRule.Score7;
 
     private void Awake()
     {
@@ -35,6 +54,11 @@ public class GameManager : MonoBehaviour
     {
         selectedCharacter1 = charactersInGame[0];
         selectedCharacter2 = charactersInGame[0];
+    }
+
+    public int CurrentMoney()
+    {
+        return currentMoney;
     }
 
     // Update is called once per frame

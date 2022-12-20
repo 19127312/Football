@@ -22,6 +22,7 @@ public class Character : ScriptableObject
     [SerializeField] int jumpStat;
 
     [SerializeField] bool isOwn;
+    [SerializeField] GameObject skillPrefab;
 
     public string Name { get => name; set => name = value; }
     public Sprite Image { get => image; set => image = value; }
@@ -35,7 +36,7 @@ public class Character : ScriptableObject
 
     public bool IsOwn { get => isOwn; set => isOwn = value; }
 
-
+    public GameObject SkillPrefab { get => skillPrefab; }
     public bool IsMaxLevel()
     {
         return level == maxStat;

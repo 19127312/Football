@@ -13,6 +13,7 @@ TagManager:
   - AIHead
   - RightGoal
   - LeftGoal
+  - GameManager
   layers:
   - Default
   - TransparentFX
