@@ -81,7 +81,7 @@
                 {
                     "name": "",
                     "id": "85ef70ec-3e4f-4b7f-aa60-13af1a6a8f4c",
-                    "path": "<Keyboard>/numpadEnter",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -92,7 +92,7 @@
                 {
                     "name": "",
                     "id": "2b463c4d-d641-49c2-b1a8-ad722fad564e",
-                    "path": "<Keyboard>/numpadPeriod",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
