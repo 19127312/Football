@@ -1091,7 +1091,7 @@ PrefabInstance:
       objectReference: {fileID: 504335696}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatch
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatchText
