@@ -18,7 +18,7 @@ public class InjuryItem : Item
     IEnumerator Injure()
     {
         isWorking = true;
-        BallController ballScript = Ball.GetComponent<BallController>();
+        Ball ballScript = Ball.GetComponent<Ball>();
         PlayerController playerScript;
         if (!ballScript.isLeftPlayer)
         {

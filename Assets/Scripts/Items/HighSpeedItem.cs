@@ -18,7 +18,7 @@ public class HighSpeedItem : Item
     IEnumerator HighSpeed()
     {
         isWorking = true;
-        BallController ballScript = Ball.GetComponent<BallController>();
+        Ball ballScript = Ball.GetComponent<Ball>();
         PlayerController playerScript;
         if (ballScript.isLeftPlayer)
         {

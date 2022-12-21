@@ -88,7 +88,6 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("Kick");
         }
 
-        anim.SetTrigger("Kick");
     }
 
     void OnSkill(InputValue value)
