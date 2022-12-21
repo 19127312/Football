@@ -24,7 +24,7 @@ public class GoalShrunkItem : Item
         isWorking = true;
         Vector3 initSize = Goal1.transform.localScale;
 
-        BallController scriptName = Ball.GetComponent<BallController>();
+        Ball scriptName = Ball.GetComponent<Ball>();
         audioPlayer.playGoalShrinkClip();
         if (!scriptName.isLeftPlayer)
         {

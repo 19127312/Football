@@ -23,7 +23,7 @@ public class GoalGrowItem : Item
     {
         isWorking = true;
         Vector3 initSize = Goal1.transform.localScale;
-        BallController scriptName = Ball.GetComponent<BallController>();
+        Ball scriptName = Ball.GetComponent<Ball>();
         audioPlayer.playGoalGrowClip();
         if (scriptName.isLeftPlayer)
         {

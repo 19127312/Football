@@ -18,7 +18,7 @@ public class BigSizeItem : Item
     IEnumerator GrowPlayerSize()
     {
         isWorking = true;
-        BallController ballScript = Ball.GetComponent<BallController>();
+        Ball ballScript = Ball.GetComponent<Ball>();
         audioPlayer.playLargeBallClip();
         if (ballScript.isLeftPlayer)
         {

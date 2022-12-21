@@ -18,7 +18,7 @@ public class SmallSizeItem : Item
     IEnumerator GrowPlayerSize()
     {
         isWorking = true;
-        BallController ballScript = Ball.GetComponent<BallController>();
+        Ball ballScript = Ball.GetComponent<Ball>();
         audioPlayer.playSmallBallClip();
         if (!ballScript.isLeftPlayer)
         {
