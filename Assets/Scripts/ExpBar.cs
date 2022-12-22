@@ -11,21 +11,32 @@ public class ExpBar : MonoBehaviour
     [SerializeField] Image outlineImage;
     [SerializeField] Image levelImage;
     [SerializeField] Color color;
-    public int currentLevel = 0;
-    public float currentExp = 0;
-
-    public float maxExp = 100;
-    private Coroutine coroutine;
-
-    void OnEnable()
+    public int currentLevel { get; set; }
+    public float currentExp { get; set; }
+    public float maxExp { get; set; }
+    void Start()
     {
-        fillImage.color = color;
-        currentLevel = 0;
-        currentExp = 0;
-        fillImage.fillAmount = currentExp;
-        UpdateExp(110, 10.0f);
+        InitColor();
     }
 
+    void Update()
+    {
+
+    }
+    public void AddExp(Character character, float exp)
+    {
+        if (character.Level == 0)
+        {
+            character.Level = 1;
+        }
+        currentExp = character.CurrentExp;
+        currentLevel = character.Level;
+        levelText.text = currentLevel.ToString();
+        float totalExp = currentExp + exp;
+        maxExp = currentLevel * 100;
+        Debug.Log(currentLevel);
+        StartCoroutine(AnimateProgress(currentExp / maxExp, totalExp / maxExp, 0.5f, character));
+    }
     void InitColor()
     {
         fillImage.color = color;
@@ -33,29 +44,37 @@ public class ExpBar : MonoBehaviour
         levelImage.color = color;
     }
 
-    public void UpdateExp(int exp, float duration)
+    private IEnumerator AnimateProgress(float start, float end, float duration, Character character)
     {
-        if (coroutine != null)
+        float counter = 0f;
+        while (counter < duration)
         {
-            StopCoroutine(coroutine);
-        }
-        float targetExp = currentExp + exp;
-        coroutine = StartCoroutine(FillRoutine(targetExp, duration));
-    }
-
-    private IEnumerator FillRoutine(float targetExp, float duration)
-    {
-        float timer = 0;
-        float tempExp = currentExp;
-        float diff = targetExp - tempExp;
-        currentExp = targetExp;
-        while (timer < duration)
-        {
-            timer += Time.deltaTime;
-            float percent = timer / duration;
-            fillImage.fillAmount = tempExp + diff * percent;
+            counter += Time.deltaTime;
+            float progress = Mathf.Lerp(start, end, counter / duration);
+            fillImage.fillAmount = progress;
             yield return null;
         }
-        // if (currentExp)
+        if (fillImage.fillAmount >= 1)
+        {
+            LevelUp(character, end * maxExp - maxExp);
+        }
+        else
+        {
+            character.CurrentExp = end * maxExp;
+        }
+    }
+    void LevelUp(Character character, float exp)
+    {
+        currentLevel++;
+        changeStat(character);
+        character.Level = currentLevel;
+        character.CurrentExp = 0;
+        levelText.text = currentLevel.ToString();
+        AddExp(character, exp);
+    }
+
+    void changeStat(Character character)
+    {
+        character.StatToUpgrade += 1;
     }
 }

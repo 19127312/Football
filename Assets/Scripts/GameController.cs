@@ -14,8 +14,13 @@ public class GameController : MonoBehaviour
     GameObject ball, AI, LPlayer, RPlayer;
     public bool Pve;
     public AudioPlayerController audioPlayer;
-    public GameObject panel;
+    public GameObject panel, expPanel;
     int restartTime;
+    private GameManager gameManager;
+    private Character leftPlayer, rightPlayer;
+    int levelLeftPlayer, levelRightPlayer;
+    int currentExpLeftPlayer, currentExpRightPlayer;
+    bool isStart = false;
     void Awake()
     {
         if (instance == null)
@@ -30,6 +35,10 @@ public class GameController : MonoBehaviour
         LPlayer = GameObject.FindGameObjectWithTag("LeftPlayer");
         audioPlayer = FindObjectOfType<AudioPlayerController>();
         restartTime = timeMatch;
+        gameManager = FindObjectOfType<GameManager>();
+        leftPlayer = gameManager.GetSelectedCharacter(1);
+        rightPlayer = gameManager.GetSelectedCharacter(2);
+        isStart = true;
         if (Pve)
         {
             AI = GameObject.FindGameObjectWithTag("AI");
@@ -38,8 +47,8 @@ public class GameController : MonoBehaviour
         {
             RPlayer = GameObject.FindGameObjectWithTag("RightPlayer");
         }
-
-        StartCoroutine(CountDown());
+        if (isStart)
+            StartCoroutine(CountDown());
     }
 
     // Update is called once per frame
@@ -48,7 +57,6 @@ public class GameController : MonoBehaviour
         goalLeft.text = goalLeftCount.ToString();
         goalRight.text = goalRightCount.ToString();
         timeMatchText.text = timeMatch.ToString();
-
     }
 
     IEnumerator CountDown()
@@ -59,6 +67,7 @@ public class GameController : MonoBehaviour
             timeMatch--;
         }
         endMatch = true;
+        isStart = false;
         showPanel();
     }
     public void ContinueGame()
@@ -78,6 +87,7 @@ public class GameController : MonoBehaviour
     {
         if (endMatch)
         {
+
             if (panel)
             {
                 panel.SetActive(true);
@@ -85,14 +95,50 @@ public class GameController : MonoBehaviour
                 TMP_Text Lscore = panel.transform.Find("ScoreLeft").GetComponent<TMP_Text>();
                 TMP_Text Rscore = panel.transform.Find("ScoreRight").GetComponent<TMP_Text>();
                 Image iconWinner = panel.transform.Find("IconWinner").GetComponent<Image>();
-                Button btnRestart = panel.transform.Find("RestartButton").GetComponent<Button>();
+                Button btnNext = panel.transform.Find("NextButton").GetComponent<Button>();
                 showResult(result, Lscore, Rscore, iconWinner);
-                btnRestart.onClick.AddListener(restartGame);
-                //StopCoroutine(CountDown());
+                btnNext.onClick.AddListener(showExpPanel);
+
             }
         }
     }
-
+    float calculateExp(int goal)
+    {
+        return goal * 10;
+    }
+    void showExpPanel()
+    {
+        panel.SetActive(false);
+        if (expPanel)
+        {
+            expPanel.SetActive(true);
+            ExpBar expBarLeft = expPanel.transform.Find("LeftPlayer").Find("Expbar").GetComponent<ExpBar>();
+            expBarLeft.AddExp(leftPlayer, calculateExp(goalLeftCount));
+            Image iconLeft = expPanel.transform.Find("LeftPlayer").Find("Icon").GetComponent<Image>();
+            iconLeft.sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+            if (!Pve)
+            {
+                ExpBar expBarRight = expPanel.transform.Find("RightPlayer").Find("Expbar").GetComponent<ExpBar>();
+                if (leftPlayer.IsEqual(rightPlayer))
+                {
+                    expBarLeft.AddExp(leftPlayer, calculateExp(goalLeftCount + goalRightCount));
+                }
+                else
+                {
+                    expBarRight.AddExp(rightPlayer, calculateExp(goalRightCount));
+                }
+                Image iconRight = expPanel.transform.Find("RightPlayer").Find("Icon").GetComponent<Image>();
+                iconRight.sprite = RPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+            }
+            else
+            {
+                GameObject expBarRight = expPanel.transform.Find("RightPlayer").gameObject;
+                expBarRight.SetActive(false);
+            }
+            Button btnRestart = expPanel.transform.Find("RestartButton").GetComponent<Button>();
+            btnRestart.onClick.AddListener(restartGame);
+        }
+    }
     void restartGame()
     {
         goalLeftCount = 0;
@@ -100,12 +146,14 @@ public class GameController : MonoBehaviour
         timeMatch = restartTime;
         endMatch = false;
         isScored = false;
-        if (panel)
+        if (expPanel)
         {
-            panel.SetActive(false);
+            expPanel.SetActive(false);
         }
         resetGameObject();
-        StartCoroutine(CountDown());
+        isStart = true;
+        if (isStart)
+            StartCoroutine(CountDown());
     }
 
     void showResult(TMP_Text result, TMP_Text Lscore, TMP_Text Rscore, Image iconWinner)

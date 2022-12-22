@@ -880,6 +880,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1923033338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1923033338, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 892073650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2044839403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1078,6 +1083,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1373140157}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
+      propertyPath: expPanel
+      value: 
+      objectReference: {fileID: 1923033338}
+    - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: goalLeft
       value: 
       objectReference: {fileID: 1625253656}
@@ -1087,7 +1096,7 @@ PrefabInstance:
       objectReference: {fileID: 504335696}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatch
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatchText

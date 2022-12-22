@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         ManageSingleton();
+        selectedCharacter1 = charactersInGame[0];
+        selectedCharacter2 = charactersInGame[0];
+        selectedShirt1 = shirtInGame[0];
+        selectedShirt2 = shirtInGame[0];
     }
 
     private void ManageSingleton()
@@ -58,10 +62,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        selectedCharacter1 = charactersInGame[0];
-        selectedCharacter2 = charactersInGame[0];
-        selectedShirt1 = shirtInGame[0];
-        selectedShirt2 = shirtInGame[0];
+
     }
 
     public int CurrentMoney()
