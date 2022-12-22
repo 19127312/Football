@@ -63,6 +63,9 @@ MonoBehaviour:
   scoreVolumn: 1
   ballKickClip: {fileID: 8300000, guid: cffd1ab862c2fc949a2ae241b5dd3c04, type: 3}
   ballKickVolumn: 1
+  HeadClip: {fileID: 8300000, guid: 42ba03d38c5267b4c862a2b87a5479f1, type: 3}
+  headVolumn: 1
+  ballHitVolumn: 0.5
   largeBallClip: {fileID: 8300000, guid: 18b4cb627ca22d842b75d89dee4af5de, type: 3}
   largeBallVolumn: 1
   smallBallClip: {fileID: 8300000, guid: 2c9ebf8428329804baefbc057471bc63, type: 3}

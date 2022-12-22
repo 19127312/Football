@@ -54,10 +54,18 @@ public class UIManager : MonoBehaviour
 
     [Header("OneVsOne")]
     public TextMeshProUGUI currentMoneyText;
+
     public Button nextButton;
     public Image nextButtonImage;
     public Sprite nextEnableButtonImage;
     public Sprite nextDiableButtonImage;
+
+    [Header("OneVsAI")]
+    public TextMeshProUGUI currentMoneyTextAI;
+
+    public Button nextButtonAI;
+    public Image nextButtonImageAI;
+
     [Header("Choose Level Menu")]
 
     public Image levelDescriptionImage;
@@ -97,6 +105,10 @@ public class UIManager : MonoBehaviour
         if (currentMoneyText != null)
         {
             currentMoneyText.text = gameManager.CurrentMoney().ToString();
+        }
+        if (currentMoneyTextAI != null)
+        {
+            currentMoneyTextAI.text = gameManager.CurrentMoney().ToString();
         }
     }
 
@@ -189,6 +201,8 @@ public class UIManager : MonoBehaviour
     {
         audioPlayerController.playButtonClickClip();
         GameManager.instance.currentGameMode = GameManager.GameMode.OneVsAI;
+        selecteModeMenu.SetActive(false);
+        OneVsAIMenu.SetActive(true);
     }
     public void ChangeVolume()
     {
