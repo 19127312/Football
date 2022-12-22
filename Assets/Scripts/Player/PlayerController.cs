@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public bool isFreezed = false;
     [SerializeField] bool isLeftPlayer;
     [SerializeField] GameObject head;
+    [SerializeField] GameObject shirt;
     [SerializeField] GameObject skill;
 
 
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         if (isLeftPlayer)
         {
             head.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedCharacter1.Image;
+            shirt.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedShirt1.Image;
             speed = (float)gameManager.SelectedCharacter1.SpeedStat;
             jumpForce = (float)gameManager.SelectedCharacter1.JumpStat;
             ShootForce = (int)gameManager.SelectedCharacter1.ShootStat;
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             head.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedCharacter2.Image;
+            shirt.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedShirt2.Image;
             speed = (float)gameManager.SelectedCharacter2.SpeedStat;
             jumpForce = (float)gameManager.SelectedCharacter2.JumpStat;
             ShootForce = -(int)gameManager.SelectedCharacter2.ShootStat;

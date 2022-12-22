@@ -19,8 +19,11 @@ public class UIManager : MonoBehaviour
 
     [Header("Current Player 1")]
     public Image currentCharacter1Image;
+    public Image currentShirt1Image;
     public GameObject currentPrice1Panel;
+    public GameObject currentPriceShirt1Panel;
     public TextMeshProUGUI currentPrice1Text;
+    public TextMeshProUGUI currentPriceShirt1Text;
     public TextMeshProUGUI currentShoot1Text;
     public TextMeshProUGUI currentSpeed1Text;
     public TextMeshProUGUI currentJump1Text;
@@ -28,9 +31,11 @@ public class UIManager : MonoBehaviour
 
     [Header("Current Player 2")]
     public Image currentCharacter2Image;
+    public Image currentShirt2Image;
     public GameObject currentPrice2Panel;
+    public GameObject currentPriceShirt2Panel;
     public TextMeshProUGUI currentPrice2Text;
-
+    public TextMeshProUGUI currentPriceShirt2Text;
     public TextMeshProUGUI currentShoot2Text;
     public TextMeshProUGUI currentSpeed2Text;
     public TextMeshProUGUI currentJump2Text;
@@ -83,6 +88,8 @@ public class UIManager : MonoBehaviour
         }
         updateCurrentCharacter(gameManager.GetSelectedCharacter(1), 1);
         updateCurrentCharacter(gameManager.GetSelectedCharacter(2), 2);
+        updateCurrentShirt(gameManager.GetSelectedShirt(1), 1);
+        updateCurrentShirt(gameManager.GetSelectedShirt(2), 2);
 
     }
     void Update()
@@ -102,7 +109,9 @@ public class UIManager : MonoBehaviour
             case GameManager.GameMode.OneVsOne:
                 bool ownPlayer1 = gameManager.GetSelectedCharacter(1).IsOwn;
                 bool ownPlayer2 = gameManager.GetSelectedCharacter(2).IsOwn;
-                if (ownPlayer1 && ownPlayer2)
+                bool ownShirt1 = gameManager.GetSelectedShirt(1).IsOwn;
+                bool ownShirt2 = gameManager.GetSelectedShirt(2).IsOwn;
+                if (ownPlayer1 && ownPlayer2 && ownShirt1 && ownShirt2)
                 {
                     nextButton.interactable = true;
                     nextButtonImage.sprite = nextEnableButtonImage;
@@ -112,6 +121,7 @@ public class UIManager : MonoBehaviour
                     nextButton.interactable = false;
                     nextButtonImage.sprite = nextDiableButtonImage;
                 }
+
                 break;
             case GameManager.GameMode.OneVsAI:
                 break;
@@ -219,11 +229,28 @@ public class UIManager : MonoBehaviour
         updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
         ManagementPlay();
     }
+    public void goToLeftShirt(int playerNumber)
+    {
+        audioPlayerController.playButtonClickClip();
+
+        gameManager.changeLeftShirt(playerNumber);
+        updateCurrentShirt(gameManager.GetSelectedShirt(playerNumber), playerNumber);
+        ManagementPlay();
+    }
+    public void goToRightShirt(int playerNumber)
+    {
+        audioPlayerController.playButtonClickClip();
+
+        gameManager.changeRightShirt(playerNumber);
+        updateCurrentShirt(gameManager.GetSelectedShirt(playerNumber), playerNumber);
+        ManagementPlay();
+    }
     public void updateCurrentCharacter(Character character, int playerNumber)
     {
         if (playerNumber == 1)
         {
             currentCharacter1Image.sprite = character.Image;
+
             currentPrice1Text.text = character.GoldToBuy.ToString();
             currentShoot1Text.text = character.ShootStat.ToString();
             currentSpeed1Text.text = character.SpeedStat.ToString();
@@ -263,6 +290,39 @@ public class UIManager : MonoBehaviour
         }
 
     }
+    public void updateCurrentShirt(Shirt shirt, int playerNumber)
+    {
+        if (playerNumber == 1)
+        {
+            currentShirt1Image.sprite = shirt.Image;
+            currentPriceShirt1Text.text = shirt.GoldToBuy.ToString();
+            if (shirt.IsOwn)
+            {
+                currentPriceShirt1Panel.SetActive(false);
+                currentShirt1Image.color = new Color(1f, 1f, 1f, 1f);
+            }
+            else
+            {
+                currentPriceShirt1Panel.SetActive(true);
+                currentShirt1Image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            }
+        }
+        else
+        {
+            currentShirt2Image.sprite = shirt.Image;
+            currentPriceShirt2Text.text = shirt.GoldToBuy.ToString();
+            if (shirt.IsOwn)
+            {
+                currentPriceShirt2Panel.SetActive(false);
+                currentShirt2Image.color = new Color(1f, 1f, 1f, 1f);
+            }
+            else
+            {
+                currentPriceShirt2Panel.SetActive(true);
+                currentShirt2Image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            }
+        }
+    }
     public void BuyCharacter(int playerNumber)
     {
         if (gameManager.GetSelectedCharacter(playerNumber).GoldToBuy > gameManager.CurrentMoney())
@@ -277,12 +337,22 @@ public class UIManager : MonoBehaviour
         updateCurrentCharacter(GameManager.instance.SelectedCharacter2, 2);
         ManagementPlay();
     }
-
-    private IEnumerator HoldHostage(UnityAction callback)
+    public void BuyShirt(int playerNumber)
     {
-        yield return new WaitForSeconds(0.5f);
-        callback.Invoke();
+        if (gameManager.GetSelectedShirt(playerNumber).GoldToBuy > gameManager.CurrentMoney())
+        {
+            return;
+        }
+        audioPlayerController.playBuyClip();
+
+        gameManager.ModifyMoney(-gameManager.GetSelectedShirt(playerNumber).GoldToBuy);
+        gameManager.BuyShirt(gameManager.GetSelectedShirt(playerNumber));
+        updateCurrentShirt(GameManager.instance.SelectedShirt1, 1);
+        updateCurrentShirt(GameManager.instance.SelectedShirt2, 2);
+        ManagementPlay();
     }
+
+
     public void ChangeLevel(int level)
     {
         switch (level)

@@ -946,6 +946,8 @@ MonoBehaviour:
   isFreezed: 0
   isLeftPlayer: 1
   head: {fileID: 2556844780501828102}
+  shirt: {fileID: 2556844780306129755}
+  skill: {fileID: 0}
 --- !u!114 &1491413331
 MonoBehaviour:
   m_ObjectHideFlags: 0

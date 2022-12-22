@@ -8,7 +8,9 @@ public class Shirt : ScriptableObject
     // Start is called before the first frame update
     [SerializeField] Sprite image;
     [SerializeField] bool isOwn;
+    [SerializeField] int goldToBuy;
 
-    public Sprite Image { get => image;  }
+    public int GoldToBuy { get => goldToBuy; }
+    public Sprite Image { get => image; }
     public bool IsOwn { get => isOwn; set => isOwn = value; }
 }

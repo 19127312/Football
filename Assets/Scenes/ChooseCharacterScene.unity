@@ -511,6 +511,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41003258}
   m_CullTransparentMesh: 1
+--- !u!1 &106089270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2418518722208233061, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+  m_PrefabInstance: {fileID: 1108289192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &149302588
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +835,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222487382}
   m_CullTransparentMesh: 1
+--- !u!114 &231096584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3983618972156308073, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+  m_PrefabInstance: {fileID: 1108289192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &269879483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,6 +1762,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeedValue1
       objectReference: {fileID: 0}
+    - target: {fileID: 616663900886870602, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945578787}
+    - target: {fileID: 616663900886870602, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goToLeftShirt
+      objectReference: {fileID: 0}
     - target: {fileID: 4013285304138129171, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1781,6 +1805,46 @@ PrefabInstance:
     - target: {fileID: 5594989044371741939, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945578787}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyShirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086651452714938168, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945578787}
+    - target: {fileID: 6086651452714938168, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goToRightShirt
       objectReference: {fileID: 0}
     - target: {fileID: 6768883002519618950, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1935,6 +1999,11 @@ MonoBehaviour:
 --- !u!1 &541196884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1304184124392084190, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+  m_PrefabInstance: {fileID: 541196881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &541196886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2418518722208233061, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
   m_PrefabInstance: {fileID: 541196881}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &558613020 stripped
@@ -3144,6 +3213,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &934613341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5933483671879402519, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+  m_PrefabInstance: {fileID: 1108289192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &938156930 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2828178265280829081, guid: 73604f4c386e83a448990afe1f17f0b6, type: 3}
@@ -4206,6 +4286,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeedValue2
       objectReference: {fileID: 0}
+    - target: {fileID: 616663900886870602, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945578787}
+    - target: {fileID: 616663900886870602, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goToLeftShirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 616663900886870602, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3123956737859384952, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -4245,6 +4337,50 @@ PrefabInstance:
     - target: {fileID: 5594989044371741939, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945578787}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyShirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627667049278096293, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086651452714938168, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945578787}
+    - target: {fileID: 6086651452714938168, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goToRightShirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086651452714938168, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6768883002519618950, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -4612,6 +4748,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 991166622784166536, guid: 93cbe1654b3de40489f4034494c9692a, type: 3}
   m_PrefabInstance: {fileID: 843525970}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1356316154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5933483671879402519, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+  m_PrefabInstance: {fileID: 541196881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363661032
 GameObject:
   m_ObjectHideFlags: 0
@@ -6519,14 +6666,20 @@ MonoBehaviour:
   muteSprite: {fileID: -300272793, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   musicSprite: {fileID: 1164024619, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   currentCharacter1Image: {fileID: 886904473}
+  currentShirt1Image: {fileID: 2138070163}
   currentPrice1Panel: {fileID: 541196884}
+  currentPriceShirt1Panel: {fileID: 541196886}
   currentPrice1Text: {fileID: 541196883}
+  currentPriceShirt1Text: {fileID: 1356316154}
   currentShoot1Text: {fileID: 881939760}
   currentSpeed1Text: {fileID: 1503313200}
   currentJump1Text: {fileID: 209576930}
   currentCharacter2Image: {fileID: 314964259}
+  currentShirt2Image: {fileID: 231096584}
   currentPrice2Panel: {fileID: 1108289194}
+  currentPriceShirt2Panel: {fileID: 106089270}
   currentPrice2Text: {fileID: 1108289193}
+  currentPriceShirt2Text: {fileID: 934613341}
   currentShoot2Text: {fileID: 1593654887}
   currentSpeed2Text: {fileID: 1937635137}
   currentJump2Text: {fileID: 1152429381}
@@ -7415,6 +7568,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102786485}
   m_CullTransparentMesh: 1
+--- !u!114 &2138070163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3983618972156308073, guid: 0ec13c9e711b6e94a9000ac46a75c452, type: 3}
+  m_PrefabInstance: {fileID: 541196881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5932412921076379756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7426,6 +7590,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: shirtInGame.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: shirtInGame.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a3301155d12bdf94fb682cdf3e0d9398, type: 2}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: shirtInGame.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a6dda262a5859404192d1d2ed74f22e3, type: 2}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: shirtInGame.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 295bed37fc1914a48aae3ca6231e14e9, type: 2}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: shirtInGame.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b67a9ad633663548aaef955df45d0e3, type: 2}
     - target: {fileID: 5932412920865141611, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: m_RootOrder
       value: 4
