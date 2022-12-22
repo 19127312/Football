@@ -50,6 +50,9 @@ public class UIManager : MonoBehaviour
 
     private AudioPlayerController audioPlayerController;
     private GameManager gameManager;
+    [Header("Share Resources")]
+    public GameObject currentCharacter1Panel;
+    public GameObject MoneyPanel;
 
 
     [Header("OneVsOne")]
@@ -61,8 +64,6 @@ public class UIManager : MonoBehaviour
     public Sprite nextDiableButtonImage;
 
     [Header("OneVsAI")]
-    public TextMeshProUGUI currentMoneyTextAI;
-
     public Button nextButtonAI;
     public Image nextButtonImageAI;
 
@@ -106,10 +107,7 @@ public class UIManager : MonoBehaviour
         {
             currentMoneyText.text = gameManager.CurrentMoney().ToString();
         }
-        if (currentMoneyTextAI != null)
-        {
-            currentMoneyTextAI.text = gameManager.CurrentMoney().ToString();
-        }
+
     }
 
     // Update is called once per frame
@@ -196,6 +194,10 @@ public class UIManager : MonoBehaviour
         selecteModeMenu.SetActive(false);
         OneVsOneMenu.SetActive(true);
         GameManager.instance.currentGameMode = GameManager.GameMode.OneVsOne;
+        currentCharacter1Panel.transform.SetParent(OneVsOneMenu.transform);
+        currentCharacter1Panel.transform.localPosition = new Vector3(-400, 240, 0);
+
+        MoneyPanel.transform.SetParent(OneVsOneMenu.transform);
     }
     public void OneVsAI()
     {
@@ -203,6 +205,10 @@ public class UIManager : MonoBehaviour
         GameManager.instance.currentGameMode = GameManager.GameMode.OneVsAI;
         selecteModeMenu.SetActive(false);
         OneVsAIMenu.SetActive(true);
+        currentCharacter1Panel.transform.SetParent(OneVsAIMenu.transform);
+        currentCharacter1Panel.transform.localPosition = new Vector3(0, 240, 0);
+        MoneyPanel.transform.SetParent(OneVsAIMenu.transform);
+
     }
     public void ChangeVolume()
     {
