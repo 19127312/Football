@@ -56,6 +56,6 @@ public class ExpBar : MonoBehaviour
             fillImage.fillAmount = tempExp + diff * percent;
             yield return null;
         }
-        if (currentExp)
+        // if (currentExp)
     }
 }

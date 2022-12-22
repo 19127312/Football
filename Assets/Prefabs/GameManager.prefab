@@ -49,6 +49,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4c6dc7e0d6195240ac34d2ff7d7fdce, type: 2}
   - {fileID: 11400000, guid: 1edf48bed4ca1b94ea7809cfe7151ab8, type: 2}
   - {fileID: 11400000, guid: ec973792eda74b7418e63afe1f90211d, type: 2}
+  shirtInGame:
+  - {fileID: 11400000, guid: a3301155d12bdf94fb682cdf3e0d9398, type: 2}
+  - {fileID: 11400000, guid: a6dda262a5859404192d1d2ed74f22e3, type: 2}
+  - {fileID: 11400000, guid: 295bed37fc1914a48aae3ca6231e14e9, type: 2}
+  - {fileID: 11400000, guid: 1b67a9ad633663548aaef955df45d0e3, type: 2}
   currentLevelPlayed: 0
   currentGameMode: 0
   currentGameRule: 0
