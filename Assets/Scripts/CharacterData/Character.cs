@@ -18,9 +18,7 @@ public class Character : ScriptableObject
     [SerializeField] int statToUpgrade;
     [SerializeField] int speedStat;
     [SerializeField] int shootStat;
-
     [SerializeField] int jumpStat;
-
     [SerializeField] bool isOwn;
     [SerializeField] GameObject skillPrefab;
 
@@ -48,6 +46,10 @@ public class Character : ScriptableObject
     public bool IsEqual(Character character)
     {
         return name == character.name;
+    }
+    public Sprite GetSkillSprite()
+    {
+        return skillPrefab.GetComponent<SpriteRenderer>().sprite;
     }
 
 }

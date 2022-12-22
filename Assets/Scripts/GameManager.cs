@@ -20,12 +20,18 @@ public class GameManager : MonoBehaviour
     }
     public static GameManager instance;
     public List<Character> charactersInGame = new List<Character>();
+    public List<Shirt> shirtInGame = new List<Shirt>();
 
     private Character selectedCharacter1;
+    private Shirt selectedShirt1;
+    private Shirt selectedShirt2;
+
     private Character selectedCharacter2;
     public int currentLevelPlayed = 0;
     public Character SelectedCharacter1 { get => selectedCharacter1; }
     public Character SelectedCharacter2 { get => selectedCharacter2; }
+    public Shirt SelectedShirt1 { get => selectedShirt1; }
+    public Shirt SelectedShirt2 { get => selectedShirt2; }
 
     private int currentMoney = 1000;
     public GameMode currentGameMode = GameMode.OneVsOne;
@@ -54,6 +60,8 @@ public class GameManager : MonoBehaviour
     {
         selectedCharacter1 = charactersInGame[0];
         selectedCharacter2 = charactersInGame[0];
+        selectedShirt1 = shirtInGame[0];
+        selectedShirt2 = shirtInGame[0];
     }
 
     public int CurrentMoney()
@@ -96,6 +104,65 @@ public class GameManager : MonoBehaviour
             selectedCharacter2 = charactersInGame[index];
         }
     }
+    public void changeLeftShirt(int playerNumber)
+    {
+        int index = 0;
+        if (playerNumber == 1)
+        {
+            index = shirtInGame.IndexOf(selectedShirt1);
+        }
+        else
+        {
+            index = shirtInGame.IndexOf(selectedShirt2);
+
+        }
+        if (index == 0)
+        {
+            index = shirtInGame.Count - 1;
+        }
+        else
+        {
+            index--;
+        }
+
+        if (playerNumber == 1)
+        {
+            selectedShirt1 = shirtInGame[index];
+        }
+        else
+        {
+            selectedShirt2 = shirtInGame[index];
+        }
+    }
+    public void changeRightShirt(int playerNumber)
+    {
+        int index = 0;
+        if (playerNumber == 1)
+        {
+            index = shirtInGame.IndexOf(selectedShirt1);
+        }
+        else
+        {
+            index = shirtInGame.IndexOf(selectedShirt2);
+
+        }
+        if (index == shirtInGame.Count - 1)
+        {
+            index = 0;
+        }
+        else
+        {
+            index++;
+        }
+        if (playerNumber == 1)
+        {
+            selectedShirt1 = shirtInGame[index];
+        }
+        else
+        {
+            selectedShirt2 = shirtInGame[index];
+        }
+    }
     public void changeRightCharacter(int playerNumber)
     {
         int index = 0;
@@ -135,7 +202,17 @@ public class GameManager : MonoBehaviour
         {
             return selectedCharacter2;
         }
-
+    }
+    public Shirt GetSelectedShirt(int playerNumber)
+    {
+        if (playerNumber == 1)
+        {
+            return selectedShirt1;
+        }
+        else
+        {
+            return selectedShirt2;
+        }
     }
     public void ModifyMoney(int amount)
     {
@@ -144,5 +221,9 @@ public class GameManager : MonoBehaviour
     public void BuyCharacter(Character character)
     {
         character.IsOwn = true;
+    }
+    public void BuyShirt(Shirt shirt)
+    {
+        shirt.IsOwn = true;
     }
 }
