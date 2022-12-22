@@ -14,6 +14,8 @@ public class Character : ScriptableObject
     [SerializeField] Sprite image;
     [SerializeField] int goldToBuy;
     [SerializeField] int level;
+    [SerializeField] int exp;
+    [SerializeField] int expToNextLevel;
     [SerializeField] int maxStat;
     [SerializeField] int statToUpgrade;
     [SerializeField] int speedStat;
@@ -33,7 +35,8 @@ public class Character : ScriptableObject
     public int SpeedStat { get => speedStat; set => speedStat = value; }
     public int ShootStat { get => shootStat; set => shootStat = value; }
     public int JumpStat { get => jumpStat; set => jumpStat = value; }
-
+    public int Exp { get => exp; set => exp = value; }
+    public int ExpToNextLevel { get => expToNextLevel; set => expToNextLevel = value; }
     public bool IsOwn { get => isOwn; set => isOwn = value; }
 
     public GameObject SkillPrefab { get => skillPrefab; }
