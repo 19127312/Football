@@ -52,6 +52,8 @@ MonoBehaviour:
   timeMatch: 10
   isScored: 0
   endMatch: 0
-  Pve: 1
+  isShowPanel: 0
+  Pve: 0
   audioPlayer: {fileID: 0}
   panel: {fileID: 0}
+  expPanel: {fileID: 0}
