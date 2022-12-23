@@ -114,13 +114,14 @@ public class UIManager : MonoBehaviour
 
     private void ManagementPlay()
     {
+        bool ownPlayer1 = gameManager.GetSelectedCharacter(1).IsOwn;
+        bool ownPlayer2 = gameManager.GetSelectedCharacter(2).IsOwn;
+        bool ownShirt1 = gameManager.GetSelectedShirt(1).IsOwn;
+        bool ownShirt2 = gameManager.GetSelectedShirt(2).IsOwn;
         switch (GameManager.instance.currentGameMode)
         {
             case GameManager.GameMode.OneVsOne:
-                bool ownPlayer1 = gameManager.GetSelectedCharacter(1).IsOwn;
-                bool ownPlayer2 = gameManager.GetSelectedCharacter(2).IsOwn;
-                bool ownShirt1 = gameManager.GetSelectedShirt(1).IsOwn;
-                bool ownShirt2 = gameManager.GetSelectedShirt(2).IsOwn;
+
                 if (ownPlayer1 && ownPlayer2 && ownShirt1 && ownShirt2)
                 {
                     nextButton.interactable = true;
@@ -134,6 +135,17 @@ public class UIManager : MonoBehaviour
 
                 break;
             case GameManager.GameMode.OneVsAI:
+
+                if (ownPlayer1 && ownShirt1)
+                {
+                    nextButtonAI.interactable = true;
+                    nextButtonImageAI.sprite = nextEnableButtonImage;
+                }
+                else
+                {
+                    nextButtonAI.interactable = false;
+                    nextButtonImageAI.sprite = nextDiableButtonImage;
+                }
                 break;
             default:
                 Debug.Log("Game Mode is not selected");
@@ -163,18 +175,43 @@ public class UIManager : MonoBehaviour
         OneVsAIMenu.SetActive(false);
         levelUpMenu.SetActive(false);
     }
-    public void BackFromChooseLevelMenuOneVsOne()
+    public void BackFromChooseLevelMenu()
     {
         audioPlayerController.playButtonClickClip();
         chooseLevelMenu.SetActive(false);
-        OneVsOneMenu.SetActive(true);
+
+        switch (GameManager.instance.currentGameMode)
+        {
+            case GameManager.GameMode.OneVsOne: //OneVsOne
+                OneVsOneMenu.SetActive(true);
+                break;
+            case GameManager.GameMode.OneVsAI: //OneVsAI
+                OneVsAIMenu.SetActive(true);
+                break;
+            default:
+                Debug.Log("Menu is not selected");
+                break;
+        }
+
     }
-    public void ToChooseLevelMenuOneVsOne()
+    public void ToChooseLevelMenu()
     {
         audioPlayerController.playButtonClickClip();
         chooseLevelMenu.SetActive(true);
-        OneVsOneMenu.SetActive(false);
+        switch (GameManager.instance.currentGameMode)
+        {
+            case GameManager.GameMode.OneVsOne: //OneVsOne
+                OneVsOneMenu.SetActive(false);
+                break;
+            case GameManager.GameMode.OneVsAI: //OneVsAI
+                OneVsAIMenu.SetActive(false);
+                break;
+            default:
+                Debug.Log("Menu is not selected");
+                break;
+        }
     }
+
     public void LoadGame()
     {
         audioPlayerController.playButtonClickClip();
@@ -410,7 +447,26 @@ public class UIManager : MonoBehaviour
         switch (mode)
         {
             case 0:
-                GameManager.instance.currentGameRule = GameManager.GameRule.Random;
+
+                int randomMode = UnityEngine.Random.Range(0, 4);
+                switch (randomMode)
+                {
+                    case 0:
+                        GameManager.instance.currentGameRule = GameManager.GameRule.Time60;
+                        break;
+                    case 1:
+                        GameManager.instance.currentGameRule = GameManager.GameRule.Score7;
+                        break;
+                    case 2:
+                        GameManager.instance.currentGameRule = GameManager.GameRule.Score9;
+                        break;
+                    case 3:
+                        GameManager.instance.currentGameRule = GameManager.GameRule.Time30;
+                        break;
+
+                    default:
+                        break;
+                }
                 break;
             case 1:
                 GameManager.instance.currentGameRule = GameManager.GameRule.Score7;
