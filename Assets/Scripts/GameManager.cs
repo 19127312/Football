@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     }
     public enum GameRule
     {
-        Random,
         Time30,
         Time60,
         Score7,
@@ -62,7 +61,25 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        int randomMode = UnityEngine.Random.Range(0, 4);
+        switch (randomMode)
+        {
+            case 0:
+                currentGameRule = GameManager.GameRule.Time60;
+                break;
+            case 1:
+                currentGameRule = GameManager.GameRule.Score7;
+                break;
+            case 2:
+                currentGameRule = GameManager.GameRule.Score9;
+                break;
+            case 3:
+                currentGameRule = GameManager.GameRule.Time30;
+                break;
 
+            default:
+                break;
+        }
     }
 
     public int CurrentMoney()
