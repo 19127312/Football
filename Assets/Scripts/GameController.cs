@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
     public TMP_Text goalLeft, goalRight, timeMatchText;
     public int goalLeftCount = 0, goalRightCount = 0, timeMatch = 30;
-    public bool isScored = false, endMatch = false;
+    public bool isScored = false, endMatch = false, isShowPanel = false;
     GameObject ball, AI, LPlayer, RPlayer;
     public bool Pve;
     public AudioPlayerController audioPlayer;
@@ -20,7 +19,7 @@ public class GameController : MonoBehaviour
     private Character leftPlayer, rightPlayer;
     int levelLeftPlayer, levelRightPlayer;
     int currentExpLeftPlayer, currentExpRightPlayer;
-    bool isStart = false;
+    Image TimeMatchImage;
     void Awake()
     {
         if (instance == null)
@@ -34,11 +33,12 @@ public class GameController : MonoBehaviour
         ball = GameObject.FindGameObjectWithTag("Ball");
         LPlayer = GameObject.FindGameObjectWithTag("LeftPlayer");
         audioPlayer = FindObjectOfType<AudioPlayerController>();
-        restartTime = timeMatch;
+
         gameManager = FindObjectOfType<GameManager>();
         leftPlayer = gameManager.GetSelectedCharacter(1);
         rightPlayer = gameManager.GetSelectedCharacter(2);
-        isStart = true;
+        TimeMatchImage = GameObject.Find("TimeBorder").GetComponent<Image>();
+
         if (Pve)
         {
             AI = GameObject.FindGameObjectWithTag("AI");
@@ -47,8 +47,29 @@ public class GameController : MonoBehaviour
         {
             RPlayer = GameObject.FindGameObjectWithTag("RightPlayer");
         }
-        if (isStart)
+
+        if (gameManager.currentGameRule == GameManager.GameRule.Time30)
+        {
+            timeMatch = 30;
             StartCoroutine(CountDown());
+        }
+        else if (gameManager.currentGameRule == GameManager.GameRule.Time60)
+        {
+            timeMatch = 60;
+            StartCoroutine(CountDown());
+        }
+        else if (gameManager.currentGameRule == GameManager.GameRule.Score7)
+        {
+            TimeMatchImage.enabled = false;
+            timeMatchText.enabled = false;
+
+        }
+        else if (gameManager.currentGameRule == GameManager.GameRule.Score9)
+        {
+            TimeMatchImage.enabled = false;
+            timeMatchText.enabled = false;
+        }
+        restartTime = timeMatch;
     }
 
     // Update is called once per frame
@@ -57,6 +78,15 @@ public class GameController : MonoBehaviour
         goalLeft.text = goalLeftCount.ToString();
         goalRight.text = goalRightCount.ToString();
         timeMatchText.text = timeMatch.ToString();
+        if (gameManager.currentGameRule == GameManager.GameRule.Score7)
+        {
+            startScoreGameMode(7);
+
+        }
+        else if (gameManager.currentGameRule == GameManager.GameRule.Score9)
+        {
+            startScoreGameMode(9);
+        }
     }
 
     IEnumerator CountDown()
@@ -67,7 +97,6 @@ public class GameController : MonoBehaviour
             timeMatch--;
         }
         endMatch = true;
-        isStart = false;
         showPanel();
     }
     public void ContinueGame()
@@ -87,10 +116,10 @@ public class GameController : MonoBehaviour
     {
         if (endMatch)
         {
-
             if (panel)
             {
                 panel.SetActive(true);
+                isShowPanel = true;
                 TMP_Text result = panel.transform.Find("Result").GetComponent<TMP_Text>();
                 TMP_Text Lscore = panel.transform.Find("ScoreLeft").GetComponent<TMP_Text>();
                 TMP_Text Rscore = panel.transform.Find("ScoreRight").GetComponent<TMP_Text>();
@@ -98,7 +127,6 @@ public class GameController : MonoBehaviour
                 Button btnNext = panel.transform.Find("NextButton").GetComponent<Button>();
                 showResult(result, Lscore, Rscore, iconWinner);
                 btnNext.onClick.AddListener(showExpPanel);
-
             }
         }
     }
@@ -106,9 +134,10 @@ public class GameController : MonoBehaviour
     {
         return goal * 10;
     }
-    void showExpPanel()
+    public void showExpPanel()
     {
         panel.SetActive(false);
+        isShowPanel = false;
         if (expPanel)
         {
             expPanel.SetActive(true);
@@ -150,10 +179,26 @@ public class GameController : MonoBehaviour
         {
             expPanel.SetActive(false);
         }
+        if (panel)
+        {
+            panel.SetActive(false);
+            isShowPanel = false;
+        }
         resetGameObject();
-        isStart = true;
-        if (isStart)
+        if (gameManager.currentGameRule == GameManager.GameRule.Time30 || gameManager.currentGameRule == GameManager.GameRule.Time60)
+        {
             StartCoroutine(CountDown());
+        }
+        else if (gameManager.currentGameRule == GameManager.GameRule.Score7)
+        {
+            TimeMatchImage.enabled = false;
+            timeMatchText.enabled = false;
+        }
+        else if (gameManager.currentGameRule == GameManager.GameRule.Score9)
+        {
+            TimeMatchImage.enabled = false;
+            timeMatchText.enabled = false;
+        }
     }
 
     void showResult(TMP_Text result, TMP_Text Lscore, TMP_Text Rscore, Image iconWinner)
@@ -162,49 +207,108 @@ public class GameController : MonoBehaviour
         ball.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         Lscore.text = goalLeftCount.ToString();
         Rscore.text = goalRightCount.ToString();
-        if (Pve)
+        if (gameManager.currentGameRule == GameManager.GameRule.Time30 || gameManager.currentGameRule == GameManager.GameRule.Time60)
         {
-
-            if (goalLeftCount > goalRightCount)
+            if (Pve)
             {
-                audioPlayer.playMatchWinClip();
-                result.text = "You win";
-                iconWinner.GetComponent<Image>().sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
-            }
-            else if (goalLeftCount < goalRightCount)
-            {
-                audioPlayer.playMatchLoseClip();
-                result.text = "You lose";
-                iconWinner.GetComponent<Image>().sprite = AI.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                if (goalLeftCount > goalRightCount)
+                {
+                    audioPlayer.playMatchWinClip();
+                    result.text = "You win";
+                    iconWinner.GetComponent<Image>().sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
+                else if (goalLeftCount < goalRightCount)
+                {
+                    audioPlayer.playMatchLoseClip();
+                    result.text = "You lose";
+                    iconWinner.GetComponent<Image>().sprite = AI.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
+                else
+                {
+                    audioPlayer.playMatchDrawClip();
+                    result.text = "Draw";
+                }
             }
             else
             {
-                audioPlayer.playMatchDrawClip();
-                result.text = "Draw";
+                if (goalLeftCount > goalRightCount)
+                {
+                    audioPlayer.playMatchWinClip();
+                    result.text = "Player 1 win";
+                    iconWinner.GetComponent<Image>().sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
+                else if (goalLeftCount < goalRightCount)
+                {
+                    audioPlayer.playMatchWinClip();
+                    result.text = "Player 2 win";
+                    iconWinner.GetComponent<Image>().sprite = RPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
+                else
+                {
+                    audioPlayer.playMatchDrawClip();
+                    result.text = "Draw";
+                }
             }
         }
         else
         {
-            if (goalLeftCount > goalRightCount)
+            int numGoal = 0;
+            if (gameManager.currentGameRule == GameManager.GameRule.Score7)
             {
-                audioPlayer.playMatchWinClip();
-                result.text = "Player 1 win";
-                iconWinner.GetComponent<Image>().sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                numGoal = 7;
             }
-            else if (goalLeftCount < goalRightCount)
+            else if (gameManager.currentGameRule == GameManager.GameRule.Score9)
             {
-                audioPlayer.playMatchWinClip();
-                result.text = "Player 2 win";
-                iconWinner.GetComponent<Image>().sprite = RPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                numGoal = 9;
+            }
+            if (Pve)
+            {
+                if (goalLeftCount == numGoal)
+                {
+                    audioPlayer.playMatchWinClip();
+                    result.text = "You win";
+                    iconWinner.GetComponent<Image>().sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
+                else if (goalRightCount == numGoal)
+                {
+                    audioPlayer.playMatchLoseClip();
+                    result.text = "You lose";
+                    iconWinner.GetComponent<Image>().sprite = AI.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
             }
             else
             {
-                audioPlayer.playMatchDrawClip();
-                result.text = "Draw";
+                if (goalLeftCount == numGoal)
+                {
+                    audioPlayer.playMatchWinClip();
+                    result.text = "Player 1 win";
+                    iconWinner.GetComponent<Image>().sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
+                else if (goalRightCount == numGoal)
+                {
+                    audioPlayer.playMatchWinClip();
+                    result.text = "Player 2 win";
+                    iconWinner.GetComponent<Image>().sprite = RPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                }
             }
         }
     }
 
+    void startScoreGameMode(int num)
+    {
+        if (!endMatch)
+        {
+            if (goalLeftCount == num || goalRightCount == num)
+            {
+                endMatch = true;
+                if (!isShowPanel)
+                {
+                    showPanel();
+                }
+
+            }
+        }
+    }
     void resetGameObject()
     {
         ball.transform.position = new Vector3(0, 0, 0);
