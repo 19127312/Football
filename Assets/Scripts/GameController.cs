@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     int levelLeftPlayer, levelRightPlayer;
     int currentExpLeftPlayer, currentExpRightPlayer;
     Image TimeMatchImage;
+    private IEnumerator coroutine;
+
     void Awake()
     {
         if (instance == null)
@@ -38,7 +40,7 @@ public class GameController : MonoBehaviour
         leftPlayer = gameManager.GetSelectedCharacter(1);
         rightPlayer = gameManager.GetSelectedCharacter(2);
         TimeMatchImage = GameObject.Find("TimeBorder").GetComponent<Image>();
-
+        coroutine = CountDown();
         if (Pve)
         {
             AI = GameObject.FindGameObjectWithTag("AI");
@@ -50,13 +52,13 @@ public class GameController : MonoBehaviour
 
         if (gameManager.currentGameRule == GameManager.GameRule.Time30)
         {
-            timeMatch = 30;
-            StartCoroutine(CountDown());
+            timeMatch = 10;
+            StartCoroutine(coroutine);
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Time60)
         {
-            timeMatch = 60;
-            StartCoroutine(CountDown());
+            timeMatch = 10;
+            StartCoroutine(coroutine);
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Score7)
         {
@@ -87,10 +89,13 @@ public class GameController : MonoBehaviour
         {
             startScoreGameMode(9);
         }
+
+
     }
 
     IEnumerator CountDown()
     {
+        Debug.Log("CountDown");
         while (timeMatch > 0)
         {
             yield return new WaitForSeconds(1);
@@ -172,7 +177,6 @@ public class GameController : MonoBehaviour
     {
         goalLeftCount = 0;
         goalRightCount = 0;
-        timeMatch = restartTime;
         endMatch = false;
         isScored = false;
         if (expPanel)
@@ -187,7 +191,9 @@ public class GameController : MonoBehaviour
         resetGameObject();
         if (gameManager.currentGameRule == GameManager.GameRule.Time30 || gameManager.currentGameRule == GameManager.GameRule.Time60)
         {
-            StartCoroutine(CountDown());
+            // StopCoroutine(coroutine);
+            StartCoroutine(coroutine);
+
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Score7)
         {
