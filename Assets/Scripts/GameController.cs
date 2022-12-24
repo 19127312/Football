@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour
     int levelLeftPlayer, levelRightPlayer;
     int currentExpLeftPlayer, currentExpRightPlayer;
     Image TimeMatchImage;
-    private IEnumerator coroutine;
 
     void Awake()
     {
@@ -40,10 +39,18 @@ public class GameController : MonoBehaviour
         leftPlayer = gameManager.GetSelectedCharacter(1);
         rightPlayer = gameManager.GetSelectedCharacter(2);
         TimeMatchImage = GameObject.Find("TimeBorder").GetComponent<Image>();
-        coroutine = CountDown();
+        if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+        {
+            Pve = true;
+        }
+        else
+        {
+            Pve = false;
+        }
         if (Pve)
         {
             AI = GameObject.FindGameObjectWithTag("AI");
+            AI.SetActive(true);
         }
         else
         {
@@ -52,13 +59,13 @@ public class GameController : MonoBehaviour
 
         if (gameManager.currentGameRule == GameManager.GameRule.Time30)
         {
-            timeMatch = 10;
-            StartCoroutine(coroutine);
+            timeMatch = 30;
+            StartCoroutine(CountDown());
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Time60)
         {
-            timeMatch = 10;
-            StartCoroutine(coroutine);
+            timeMatch = 60;
+            StartCoroutine(CountDown());
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Score7)
         {
@@ -95,7 +102,6 @@ public class GameController : MonoBehaviour
 
     IEnumerator CountDown()
     {
-        Debug.Log("CountDown");
         while (timeMatch > 0)
         {
             yield return new WaitForSeconds(1);
@@ -179,6 +185,7 @@ public class GameController : MonoBehaviour
         goalRightCount = 0;
         endMatch = false;
         isScored = false;
+        timeMatch = restartTime;
         if (expPanel)
         {
             expPanel.SetActive(false);
@@ -191,8 +198,8 @@ public class GameController : MonoBehaviour
         resetGameObject();
         if (gameManager.currentGameRule == GameManager.GameRule.Time30 || gameManager.currentGameRule == GameManager.GameRule.Time60)
         {
-            // StopCoroutine(coroutine);
-            StartCoroutine(coroutine);
+            StopAllCoroutines();
+            StartCoroutine(CountDown());
 
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Score7)
