@@ -40,20 +40,16 @@ public class PlayerController : MonoBehaviour
     AudioPlayerController audioPlayer;
 
     // Start is called before the first frame update
-    void Awake()
-    {
 
-    }
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         ball = GameObject.FindGameObjectWithTag("Ball");
         audioPlayer = FindObjectOfType<AudioPlayerController>();
         isGrounded = true;
         canShoot = false;
-        gameManager = FindObjectOfType<GameManager>();
-
         if (isLeftPlayer)
         {
             head.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedCharacter1.Image;
@@ -73,6 +69,14 @@ public class PlayerController : MonoBehaviour
             skill = gameManager.SelectedCharacter2.SkillPrefab;
 
         }
+        if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+        {
+            if (!isLeftPlayer)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
     }
 
     // Update is called once per frame
