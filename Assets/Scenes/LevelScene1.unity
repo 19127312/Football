@@ -1625,6 +1625,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: currentGameMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: currentGameRule
       value: 0
       objectReference: {fileID: 0}
@@ -1983,7 +1987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 511531194474331304, guid: ecee103b76b8b854faa81fd6c431f980, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 511531194474331311, guid: ecee103b76b8b854faa81fd6c431f980, type: 3}
       propertyPath: m_RootOrder
@@ -2315,7 +2319,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4186641179512541191, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6076590802544278634, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
       propertyPath: m_RootOrder
@@ -2364,6 +2368,10 @@ PrefabInstance:
     - target: {fileID: 6076590802544278635, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
       propertyPath: m_Name
       value: BackGround
+      objectReference: {fileID: 0}
+    - target: {fileID: 6076590802544278635, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
