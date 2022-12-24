@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
         {
             instance = this;
         }
+
     }
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,6 @@ public class GameController : MonoBehaviour
         if (Pve)
         {
             AI = GameObject.FindGameObjectWithTag("AI");
-            AI.SetActive(true);
         }
         else
         {

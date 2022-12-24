@@ -18,6 +18,10 @@ public class AIController : MonoBehaviour
 
     GameObject player;
     // Start is called before the first frame update
+    void Awake()
+    {
+
+    }
     void Start()
     {
         ball = GameObject.FindGameObjectWithTag("Ball");
@@ -26,6 +30,15 @@ public class AIController : MonoBehaviour
         canShoot = false;
         isGrounded = true;
         player = GameObject.FindGameObjectWithTag("LeftPlayer");
+        if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+        {
+            Debug.Log("AI");
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
