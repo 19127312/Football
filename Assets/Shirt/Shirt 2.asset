@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Shirt 2
   m_EditorClassIdentifier: 
   image: {fileID: -725302830, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
-  isOwn: 0
+  isOwn: 1
   goldToBuy: 20
+  name: shirt2

@@ -49,7 +49,7 @@ public class AIController : MonoBehaviour
 
         Vector2 move = new Vector2(horizontal, vertical);
         anim.SetFloat("Speed", move.magnitude);
-        if (!GameController.instance.endMatch && !GameController.instance.isScored)
+        if (!GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
         {
             Move();
             Shoot();
