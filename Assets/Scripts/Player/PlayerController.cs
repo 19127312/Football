@@ -28,16 +28,32 @@ public class PlayerController : MonoBehaviour
     public GameObject brokenLegEffect;
     public GameObject Skill;
     public bool isFreezed = false;
-    [SerializeField] bool isLeftPlayer;
-    [SerializeField] GameObject head;
-    [SerializeField] GameObject shirt;
-    [SerializeField] GameObject skill;
 
+    [SerializeField]
+    bool isLeftPlayer;
+
+    [SerializeField]
+    GameObject head;
+
+    [SerializeField]
+    GameObject shirt;
+
+    [SerializeField]
+    GameObject skill;
+
+    [SerializeField]
+    Transform positionSkill;
+
+    private GameObject skillInit;
 
     private GameManager gameManager;
 
-
     AudioPlayerController audioPlayer;
+
+    // handle cool down
+    float coolDownTimer;
+    public float coolDownTime = 15.0f;
+    bool isSkillReady = true;
 
     // Start is called before the first frame update
 
@@ -58,6 +74,8 @@ public class PlayerController : MonoBehaviour
             jumpForce = (float)gameManager.SelectedCharacter1.JumpStat;
             ShootForce = (int)gameManager.SelectedCharacter1.ShootStat;
             skill = gameManager.SelectedCharacter1.SkillPrefab;
+            skillInit = Instantiate(skill, positionSkill.position, positionSkill.rotation);
+            skillInit.gameObject.tag = "Skill1";
         }
         else
         {
@@ -67,7 +85,8 @@ public class PlayerController : MonoBehaviour
             jumpForce = (float)gameManager.SelectedCharacter2.JumpStat;
             ShootForce = -(int)gameManager.SelectedCharacter2.ShootStat;
             skill = gameManager.SelectedCharacter2.SkillPrefab;
-
+            skillInit = Instantiate(skill, positionSkill.position, positionSkill.rotation);
+            skillInit.gameObject.tag = "Skill2";
         }
         if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
         {
@@ -77,10 +96,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        coolDownTimer = coolDownTime;
     }
 
     // Update is called once per frame
-    void Update() { }
+    void Update()
+    {
+        if (!isSkillReady)
+        {
+            coolDownTimer -= Time.deltaTime;
+            if (coolDownTimer < 0)
+            {
+                isSkillReady = true;
+            }
+        }
+    }
 
     void OnMove(InputValue value)
     {
@@ -94,13 +124,27 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger("Kick");
         }
-
     }
 
     void OnSkill(InputValue value)
     {
-        // skill.run();
-        skill.GetComponent<Skills>().UseSkill();
+        // cool down
+
+        if (isSkillReady)
+        {
+            coolDownTimer = coolDownTime;
+            isSkillReady = false;
+            GameObject skillObject;
+            if (isLeftPlayer)
+            {
+                skillObject = GameObject.FindGameObjectWithTag("Skill1");
+            }
+            else
+            {
+                skillObject = GameObject.FindGameObjectWithTag("Skill2");
+            }
+            skillObject.GetComponent<Skills>().UseSkill(isLeftPlayer);
+        }
     }
 
     private void FixedUpdate()
