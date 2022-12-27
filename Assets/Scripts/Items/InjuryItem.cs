@@ -20,20 +20,37 @@ public class InjuryItem : Item
         isWorking = true;
         Ball ballScript = Ball.GetComponent<Ball>();
         PlayerController playerScript;
+        AIController aiScript;
+        audioPlayer.playIceClip();
         if (!ballScript.isLeftPlayer)
         {
             playerScript = Player1.GetComponent<PlayerController>();
+            playerScript.brokenLegEffect.SetActive(true);
+            playerScript.isFreezed = true;
+            yield return new WaitForSeconds(workingTime);
+            playerScript.brokenLegEffect.SetActive(false);
+            playerScript.isFreezed = false;
         }
         else
         {
-            playerScript = Player2.GetComponent<PlayerController>();
+            if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+            {
+                aiScript = AI.GetComponent<AIController>();
+                aiScript.brokenLegEffect.SetActive(true);
+                aiScript.isFreezed = true;
+                yield return new WaitForSeconds(workingTime);
+                aiScript.brokenLegEffect.SetActive(false);
+                aiScript.isFreezed = false;
+            }
+            else
+            {
+                playerScript = Player2.GetComponent<PlayerController>();
+                playerScript.brokenLegEffect.SetActive(true);
+                playerScript.isFreezed = true;
+                yield return new WaitForSeconds(workingTime);
+                playerScript.brokenLegEffect.SetActive(false);
+                playerScript.isFreezed = false;
+            }
         }
-        audioPlayer.playIceClip();
-        playerScript.brokenLegEffect.SetActive(true);
-        playerScript.isFreezed = true;
-        yield return new WaitForSeconds(workingTime);
-        playerScript.brokenLegEffect.SetActive(false);
-        playerScript.isFreezed = false;
-
     }
 }

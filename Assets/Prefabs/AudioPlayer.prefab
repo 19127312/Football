@@ -74,17 +74,17 @@ MonoBehaviour:
   iceVolumn: 1
   buttonClickClip: {fileID: 8300000, guid: 30114d418d1c4a04ebdabed3001939d7, type: 3}
   buttonClickVolumn: 1
-  highJumpClip: {fileID: 0}
+  highJumpClip: {fileID: 8300000, guid: 0ca80994a9869424297d8ba883f3ec02, type: 3}
   highJumpVolumn: 1
-  jumpDisableClip: {fileID: 0}
+  jumpDisableClip: {fileID: 8300000, guid: acb8331729010094d9a198e19de24f80, type: 3}
   jumpDisableVolumn: 1
-  speedClip: {fileID: 0}
+  speedClip: {fileID: 8300000, guid: d13dabd1a99499143b9e1ed42618d065, type: 3}
   speedVolumn: 1
-  slowSpeedClip: {fileID: 0}
+  slowSpeedClip: {fileID: 8300000, guid: ac6ec58fa2193cf48abc0dbcd252dafc, type: 3}
   slowSpeedVolumn: 1
-  injureClip: {fileID: 0}
+  injureClip: {fileID: 8300000, guid: d9ff9f4458d62e045a46661caca588db, type: 3}
   injureVolumn: 1
-  invicibleClip: {fileID: 0}
+  invicibleClip: {fileID: 8300000, guid: 1a012260cd5532c48922c714f74a9402, type: 3}
   invicibleVolumn: 1
   matchLoseClip: {fileID: 8300000, guid: dbe17096ac7b2ce4185b86baf0382763, type: 3}
   matchLoseVolumn: 1
@@ -94,6 +94,10 @@ MonoBehaviour:
   matchDrawVolumn: 1
   buyClip: {fileID: 8300000, guid: 17fe12f154f414843b289be0ccf7922c, type: 3}
   buyClipVolumn: 1
+  skillExchangeClip: {fileID: 8300000, guid: da67a027785af69449dda1a828ba8d59, type: 3}
+  skillExchangeClipVolumn: 1
+  skillDefenceClip: {fileID: 8300000, guid: f28f19a60205ac748936587d4cdb8172, type: 3}
+  skillDefenceClipVolumn: 1
 --- !u!82 &4529185924173549960
 AudioSource:
   m_ObjectHideFlags: 0

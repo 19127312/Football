@@ -20,20 +20,38 @@ public class SlowSpeedItem : Item
         isWorking = true;
         Ball ballScript = Ball.GetComponent<Ball>();
         PlayerController playerScript;
+        AIController aiScript;
+        audioPlayer.playSlowSpeedClip();
         if (!ballScript.isLeftPlayer)
         {
             playerScript = Player1.GetComponent<PlayerController>();
+
+            playerScript.blackLightningEffect.SetActive(true);
+            playerScript.speed -= 2.5f;
+            yield return new WaitForSeconds(workingTime);
+            playerScript.speed += 2.5f;
+            playerScript.blackLightningEffect.SetActive(false);
         }
         else
         {
-            playerScript = Player2.GetComponent<PlayerController>();
+            if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+            {
+                aiScript = AI.GetComponent<AIController>();
+                aiScript.blackLightningEffect.SetActive(true);
+                aiScript.speed -= 2.5f;
+                yield return new WaitForSeconds(workingTime);
+                aiScript.speed += 2.5f;
+                aiScript.blackLightningEffect.SetActive(false);
+            }
+            else
+            {
+                playerScript = Player2.GetComponent<PlayerController>();
+                playerScript.blackLightningEffect.SetActive(true);
+                playerScript.speed -= 2.5f;
+                yield return new WaitForSeconds(workingTime);
+                playerScript.speed += 2.5f;
+                playerScript.blackLightningEffect.SetActive(false);
+            }
         }
-        // audioPlayer.playLargeBallClip();
-        audioPlayer.playSlowSpeedClip();
-        playerScript.blackLightningEffect.SetActive(true);
-        playerScript.speed -= 2.5f;
-        yield return new WaitForSeconds(workingTime);
-        playerScript.speed += 2.5f;
-        playerScript.blackLightningEffect.SetActive(false);
     }
 }

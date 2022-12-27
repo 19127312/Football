@@ -123,7 +123,7 @@ public class Ball : MonoBehaviour
         {
             isLeftPlayer = true;
         }
-        else if (other.gameObject.tag == "RightPlayer")
+        else if (other.gameObject.tag == "RightPlayer" || other.gameObject.tag == "AI")
         {
             isLeftPlayer = false;
         }

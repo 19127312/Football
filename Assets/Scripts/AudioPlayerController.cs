@@ -109,6 +109,14 @@ public class AudioPlayerController : MonoBehaviour
     [Header("Button Click")]
     [SerializeField] AudioClip buyClip;
     [SerializeField][Range(0f, 1f)] float buyClipVolumn = 1f;
+
+    [Header("Skill Exchange")]
+    [SerializeField] AudioClip skillExchangeClip;
+    [SerializeField][Range(0f, 1f)] float skillExchangeClipVolumn = 1f;
+
+    [Header("Skill Defence")]
+    [SerializeField] AudioClip skillDefenceClip;
+    [SerializeField][Range(0f, 1f)] float skillDefenceClipVolumn = 1f;
     static AudioPlayerController instance;
 
     private void Awake()
@@ -283,6 +291,16 @@ public class AudioPlayerController : MonoBehaviour
     public void playBallHit()
     {
         playClip(HeadClip, ballHitVolumn);
+    }
+
+    public void playSkillExchange()
+    {
+        playClip(skillExchangeClip, skillExchangeClipVolumn);
+    }
+
+    public void playSkillDefence()
+    {
+        playClip(skillDefenceClip, skillDefenceClipVolumn);
     }
 }
 

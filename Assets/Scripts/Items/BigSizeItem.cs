@@ -30,11 +30,22 @@ public class BigSizeItem : Item
         }
         else
         {
-            Vector3 initSize = Player2.transform.localScale;
-            Player2.transform.position += new Vector3(0f, 1f, 0f);
-            Player2.transform.localScale += new Vector3(0.5f, 0.5f, 0f);
-            yield return new WaitForSeconds(workingTime);
-            Player2.transform.localScale = initSize;
+            if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+            {
+                Vector3 initSize = AI.transform.localScale;
+                AI.transform.position += new Vector3(0f, 1f, 0f);
+                AI.transform.localScale += new Vector3(0.5f, 0.5f, 0f);
+                yield return new WaitForSeconds(workingTime);
+                AI.transform.localScale = initSize;
+            }
+            else
+            {
+                Vector3 initSize = Player2.transform.localScale;
+                Player2.transform.position += new Vector3(0f, 1f, 0f);
+                Player2.transform.localScale += new Vector3(0.5f, 0.5f, 0f);
+                yield return new WaitForSeconds(workingTime);
+                Player2.transform.localScale = initSize;
+            }
         }
         audioPlayer.playSmallBallClip();
     }
