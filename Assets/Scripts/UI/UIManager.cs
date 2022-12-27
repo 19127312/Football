@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.SceneManagement;
-using System;
 using UnityEngine.Events;
+using TMPro;
+
 public class UIManager : MonoBehaviour
 {
+
     [Header("Music and Sound Options")]
     public Image musicAndSoundOption;
 
@@ -77,10 +80,12 @@ public class UIManager : MonoBehaviour
     public Sprite lv4;
     public Sprite lv5;
 
+    private bool isSave = false;
 
     // Start is called before the first frame update
     void Start()
     {
+
         gameManager = FindObjectOfType<GameManager>();
         audioPlayerController = FindObjectOfType<AudioPlayerController>();
         if (audioPlayerController.audioState == "Music")
@@ -95,6 +100,7 @@ public class UIManager : MonoBehaviour
         {
             musicAndSoundOption.sprite = muteSprite;
         }
+
         updateCurrentCharacter(gameManager.GetSelectedCharacter(1), 1);
         updateCurrentCharacter(gameManager.GetSelectedCharacter(2), 2);
         updateCurrentShirt(gameManager.GetSelectedShirt(1), 1);
@@ -103,6 +109,18 @@ public class UIManager : MonoBehaviour
     }
     void Update()
     {
+        checkSave();
+        if (!isSave)
+        {
+            Button loadButton = GameObject.Find("LoadGameBtn").GetComponent<Button>();
+            loadButton.interactable = false;
+        }
+        else
+        {
+            Button loadButton = GameObject.Find("LoadGameBtn").GetComponent<Button>();
+            loadButton.interactable = true;
+
+        }
         if (currentMoneyText != null)
         {
             currentMoneyText.text = gameManager.CurrentMoney().ToString();
@@ -161,6 +179,30 @@ public class UIManager : MonoBehaviour
         levelUpMenu.SetActive(false);
         mainMenu.SetActive(false);
     }
+
+    public void LoadGame()
+    {
+        gameManager.LoadGame();
+        audioPlayerController.playButtonClickClip();
+        selecteModeMenu.SetActive(true);
+        OneVsOneMenu.SetActive(false);
+        OneVsAIMenu.SetActive(false);
+        levelUpMenu.SetActive(false);
+        mainMenu.SetActive(false);
+    }
+
+    public void checkSave()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
+        if (File.Exists(path))
+        {
+            isSave = true;
+        }
+        else
+        {
+            isSave = false;
+        }
+    }
     public void BackMainMenu()
     {
         mainMenu.SetActive(true);
@@ -210,11 +252,6 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Menu is not selected");
                 break;
         }
-    }
-
-    public void LoadGame()
-    {
-        audioPlayerController.playButtonClickClip();
     }
     public void ExitGame()
     {

@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
     public TMP_Text goalLeft, goalRight, timeMatchText;
     public int goalLeftCount = 0, goalRightCount = 0, timeMatch = 30;
-    public bool isScored = false, endMatch = false, isShowPanel = false;
+    public bool isScored = false, endMatch = false, isShowPanel = false, isAdd = true, isPaused = false;
     GameObject ball, AI, LPlayer, RPlayer;
     public bool Pve;
     public AudioPlayerController audioPlayer;
-    public GameObject panel, expPanel;
+    public GameObject panel, expPanel, pausePanel;
     int restartTime;
     private GameManager gameManager;
     private Character leftPlayer, rightPlayer;
@@ -96,16 +97,22 @@ public class GameController : MonoBehaviour
         {
             startScoreGameMode(9);
         }
-
-
+        showPausePanel();
     }
 
     IEnumerator CountDown()
     {
         while (timeMatch > 0)
         {
-            yield return new WaitForSeconds(1);
-            timeMatch--;
+            if (!isPaused)
+            {
+                yield return new WaitForSeconds(1);
+                timeMatch--;
+            }
+            else
+            {
+                yield return new WaitForSeconds(0);
+            }
         }
         endMatch = true;
         showPanel();
@@ -153,31 +160,70 @@ public class GameController : MonoBehaviour
         {
             expPanel.SetActive(true);
             ExpBar expBarLeft = expPanel.transform.Find("LeftPlayer").Find("Expbar").GetComponent<ExpBar>();
-            expBarLeft.AddExp(leftPlayer, calculateExp(goalLeftCount));
             Image iconLeft = expPanel.transform.Find("LeftPlayer").Find("Icon").GetComponent<Image>();
+            TMP_Text money = expPanel.transform.Find("Money").Find("MoneyText").GetComponent<TMP_Text>();
             iconLeft.sprite = LPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
-            if (!Pve)
+            if (isAdd)
             {
-                ExpBar expBarRight = expPanel.transform.Find("RightPlayer").Find("Expbar").GetComponent<ExpBar>();
-                if (leftPlayer.IsEqual(rightPlayer))
+                expBarLeft.AddExp(leftPlayer, calculateExp(goalLeftCount));
+                if (!Pve)
                 {
-                    expBarLeft.AddExp(leftPlayer, calculateExp(goalLeftCount + goalRightCount));
+                    ExpBar expBarRight = expPanel.transform.Find("RightPlayer").Find("Expbar").GetComponent<ExpBar>();
+                    if (leftPlayer.IsEqual(rightPlayer))
+                    {
+                        expBarLeft.AddExp(leftPlayer, calculateExp(goalLeftCount + goalRightCount));
+                    }
+                    else
+                    {
+                        expBarRight.AddExp(rightPlayer, calculateExp(goalRightCount));
+                    }
+                    Image iconRight = expPanel.transform.Find("RightPlayer").Find("Icon").GetComponent<Image>();
+                    iconRight.sprite = RPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                    gameManager.addMoney(goalLeftCount * 10 + goalRightCount * 10);
+                    money.text = (gameManager.CurrentMoney()).ToString();
                 }
                 else
                 {
-                    expBarRight.AddExp(rightPlayer, calculateExp(goalRightCount));
+                    GameObject expBarRight = expPanel.transform.Find("RightPlayer").gameObject;
+                    expBarRight.SetActive(false);
+                    Debug.Log("CurrentMoney: " + gameManager.CurrentMoney());
+                    Debug.Log("goalLeftCount: " + goalLeftCount * 10);
+                    gameManager.addMoney(goalLeftCount * 10);
+                    money.text = (gameManager.CurrentMoney()).ToString();
                 }
-                Image iconRight = expPanel.transform.Find("RightPlayer").Find("Icon").GetComponent<Image>();
-                iconRight.sprite = RPlayer.transform.Find("Root").Find("Head").GetComponent<SpriteRenderer>().sprite;
+                isAdd = false;
             }
-            else
-            {
-                GameObject expBarRight = expPanel.transform.Find("RightPlayer").gameObject;
-                expBarRight.SetActive(false);
-            }
+
             Button btnRestart = expPanel.transform.Find("RestartButton").GetComponent<Button>();
+            Button btnSave = expPanel.transform.Find("SaveButton").GetComponent<Button>();
+            Button btnHome = expPanel.transform.Find("HomeButton").GetComponent<Button>();
+            btnHome.onClick.AddListener(goToHomeScene);
             btnRestart.onClick.AddListener(restartGame);
+            btnSave.onClick.AddListener(GameManager.instance.SaveGame);
         }
+    }
+    public void showPausePanel()
+    {
+        if (isPaused)
+        {
+            pausePanel.SetActive(true);
+            isShowPanel = true;
+            ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            ball.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            Button btnSetting = pausePanel.transform.Find("SettingButton").GetComponent<Button>();
+            Button btnHome = pausePanel.transform.Find("HomeButton").GetComponent<Button>();
+            Button btnContinue = pausePanel.transform.Find("ContinueButton").GetComponent<Button>();
+            btnHome.onClick.AddListener(goToHomeScene);
+            btnContinue.onClick.AddListener(ContinueGameAfterpause);
+        }
+    }
+    public void ContinueGameAfterpause()
+    {
+        pausePanel.SetActive(false);
+        isShowPanel = false;
+        isPaused = false;
+        ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        ball.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
     void restartGame()
     {
@@ -185,6 +231,7 @@ public class GameController : MonoBehaviour
         goalRightCount = 0;
         endMatch = false;
         isScored = false;
+        isAdd = true;
         timeMatch = restartTime;
         if (expPanel)
         {
@@ -213,7 +260,11 @@ public class GameController : MonoBehaviour
             timeMatchText.enabled = false;
         }
     }
-
+    void goToHomeScene()
+    {
+        gameManager.SaveGame();
+        SceneManager.LoadScene("ChooseCharacterScene");
+    }
     void showResult(TMP_Text result, TMP_Text Lscore, TMP_Text Rscore, Image iconWinner)
     {
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -239,6 +290,7 @@ public class GameController : MonoBehaviour
                 else
                 {
                     audioPlayer.playMatchDrawClip();
+                    iconWinner.enabled = false;
                     result.text = "Draw";
                 }
             }
@@ -259,6 +311,7 @@ public class GameController : MonoBehaviour
                 else
                 {
                     audioPlayer.playMatchDrawClip();
+                    iconWinner.enabled = false;
                     result.text = "Draw";
                 }
             }

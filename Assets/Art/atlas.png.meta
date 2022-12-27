@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -103,6 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -15141,8 +15153,8 @@ TextureImporter:
       atlas_168: 307436840
       atlas_36: 2006260769
       atlas_615: 1975894647
-      atlas_339: -1633167669
       atlas_641: -211700264
+      atlas_339: -1633167669
       atlas_488: 1159232872
       atlas_357: -954092527
       atlas_138: -88980891
@@ -15385,8 +15397,8 @@ TextureImporter:
       atlas_52: 547360444
       atlas_545: 1008560952
       atlas_262: 604311905
-      atlas_129: -1827954725
       atlas_509: 873903174
+      atlas_129: -1827954725
       atlas_688: 1687557651
       atlas_81: -1303672556
       atlas_305: -1278987004
@@ -15439,10 +15451,10 @@ TextureImporter:
       atlas_433: 115214875
       atlas_627: 1660811823
       atlas_1: 532868013
-      atlas_352: -1158416578
-      atlas_647: 2133191542
       atlas_21: -1487724897
       atlas_319: -1843322761
+      atlas_647: 2133191542
+      atlas_352: -1158416578
       atlas_667: 197182584
       atlas_266: -596407649
       atlas_237: 1437700913
@@ -15546,8 +15558,8 @@ TextureImporter:
       atlas_590: 353919779
       atlas_696: 1987754134
       atlas_275: -1333747971
-      atlas_329: -2079371617
       atlas_460: 172746419
+      atlas_329: -2079371617
       atlas_513: -785438504
       atlas_569: -1644972007
       atlas_96: 1405564283
@@ -15586,8 +15598,8 @@ TextureImporter:
       atlas_679: 1870609309
       atlas_475: 1869677096
       atlas_76: 1379352330
-      atlas_677: 960718069
       atlas_516: 974147738
+      atlas_677: 960718069
       atlas_456: -1014891157
       atlas_440: 1547228625
       atlas_195: -1441953859
@@ -15645,17 +15657,17 @@ TextureImporter:
       atlas_53: 53939166
       atlas_72: -836868327
       atlas_58: -37197476
+      atlas_128: 1209269974
       atlas_227: -1940162169
       atlas_84: 1186171319
-      atlas_128: 1209269974
-      atlas_48: 1072783593
       atlas_308: 1054762852
+      atlas_48: 1072783593
       atlas_375: -371440433
       atlas_356: -1490298143
       atlas_177: 1767967567
       atlas_637: -637032462
-      atlas_582: 644268663
       atlas_697: 49164151
+      atlas_582: 644268663
       atlas_631: -1475067579
       atlas_368: 438998687
       atlas_620: 1359435794
@@ -15679,8 +15691,8 @@ TextureImporter:
       atlas_137: 886481572
       atlas_465: 1163588044
       atlas_57: 1064274854
-      atlas_95: -156371841
       atlas_194: -1836315693
+      atlas_95: -156371841
       atlas_420: 1218371186
       atlas_291: -647438500
       atlas_77: 915904580
@@ -15708,9 +15720,9 @@ TextureImporter:
       atlas_0: -284009207
       atlas_285: 341919365
       atlas_125: -30020862
+      atlas_548: -245889603
       atlas_306: -342670980
       atlas_614: -251692357
-      atlas_548: -245889603
       atlas_618: 251067583
       atlas_397: -1928780801
       atlas_402: -2031077617

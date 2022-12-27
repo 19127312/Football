@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a513212052c8a45ab7cfbc55807a08, type: 3}
   m_Name: Zebra
   m_EditorClassIdentifier: 
-  namePlayer: 
+  namePlayer: Zebra
   image: {fileID: 1518134795, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   goldToBuy: 50
-  level: 0
+  level: 1
+  exp: 10
   maxStat: 0
   statToUpgrade: 0
   speedStat: 6
   shootStat: 350
   jumpStat: 7
-  isOwn: 0
+  isOwn: 1
   skillPrefab: {fileID: 4451715478083833182, guid: 90943e645f2af254f888a953c4666713, type: 3}

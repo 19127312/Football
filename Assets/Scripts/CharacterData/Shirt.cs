@@ -9,8 +9,15 @@ public class Shirt : ScriptableObject
     [SerializeField] Sprite image;
     [SerializeField] bool isOwn;
     [SerializeField] int goldToBuy;
+    [SerializeField] string name;
 
     public int GoldToBuy { get => goldToBuy; }
     public Sprite Image { get => image; }
     public bool IsOwn { get => isOwn; set => isOwn = value; }
+    public string Name { get => name; set => name = value; }
+    public Shirt(ShirtData data)
+    {
+        isOwn = data.isOwn;
+        name = data.name;
+    }
 }

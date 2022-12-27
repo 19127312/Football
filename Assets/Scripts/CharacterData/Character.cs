@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "Character", menuName = "Football/Character", order = 0)]
 public class Character : ScriptableObject
@@ -25,7 +26,6 @@ public class Character : ScriptableObject
     public Sprite Image { get => image; set => image = value; }
     public int GoldToBuy { get => goldToBuy; }
     public int Level { get => level; set => level = value; }
-
     public float CurrentExp { get => exp; set => exp = value; }
     public int MaxStat { get => maxStat; }
     public int StatToUpgrade { get => statToUpgrade; set => statToUpgrade = value; }
@@ -34,6 +34,22 @@ public class Character : ScriptableObject
     public int JumpStat { get => jumpStat; set => jumpStat = value; }
     public bool IsOwn { get => isOwn; set => isOwn = value; }
     public GameObject SkillPrefab { get => skillPrefab; }
+
+    public string getPathImage()
+    {
+        return AssetDatabase.GetAssetPath(image);
+    }
+    public Character(CharacterData data)
+    {
+        name = data.namePlayer;
+        level = data.level;
+        exp = data.exp;
+        statToUpgrade = data.statToUpgrade;
+        speedStat = data.speedStat;
+        shootStat = data.shootStat;
+        jumpStat = data.jumpStat;
+        isOwn = data.isOwn;
+    }
     public bool IsMaxLevel()
     {
         return level == maxStat;

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -31,7 +32,6 @@ public class GameManager : MonoBehaviour
     public Character SelectedCharacter2 { get => selectedCharacter2; }
     public Shirt SelectedShirt1 { get => selectedShirt1; }
     public Shirt SelectedShirt2 { get => selectedShirt2; }
-
     private int currentMoney = 1000;
     public GameMode currentGameMode = GameMode.OneVsOne;
     public GameRule currentGameRule = GameRule.Score7;
@@ -87,6 +87,10 @@ public class GameManager : MonoBehaviour
         return currentMoney;
     }
 
+    public void addMoney(int money)
+    {
+        currentMoney += money;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -244,4 +248,55 @@ public class GameManager : MonoBehaviour
     {
         shirt.IsOwn = true;
     }
+    public void SaveGame()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
+        FileStream file = File.Create(path);
+        GameData gameData = new GameData(charactersInGame, shirtInGame, currentMoney);
+        BinaryFormatter formatter = new BinaryFormatter();
+        formatter.Serialize(file, gameData);
+        file.Close();
+    }
+    public void LoadGame()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
+        if (File.Exists(path))
+        {
+            FileStream file = File.Open(path, FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            GameData gameData = (GameData)bf.Deserialize(file);
+            file.Close();
+
+            gameData.charactersInGame.ForEach(x =>
+            {
+                Character temp = new Character(x);
+                charactersInGame.ForEach(y =>
+                {
+                    if (y.Name == temp.Name)
+                    {
+                        y.Level = temp.Level;
+                        y.CurrentExp = temp.CurrentExp;
+                        y.StatToUpgrade = temp.StatToUpgrade;
+                        y.SpeedStat = temp.SpeedStat;
+                        y.ShootStat = temp.ShootStat;
+                        y.JumpStat = temp.JumpStat;
+                        y.IsOwn = temp.IsOwn;
+                    }
+                });
+            });
+            gameData.shirtInGame.ForEach(x =>
+            {
+                Shirt temp = new Shirt(x);
+                shirtInGame.ForEach(y =>
+                {
+                    if (y.Name == temp.Name)
+                    {
+                        y.IsOwn = temp.IsOwn;
+                    }
+                });
+            });
+            currentMoney = gameData.currentMoney;
+        }
+    }
+
 }

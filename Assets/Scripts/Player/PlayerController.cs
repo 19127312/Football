@@ -147,9 +147,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnPause(InputValue value)
+    {
+        GameController.instance.isPaused = true;
+    }
     private void FixedUpdate()
     {
-        if (!GameController.instance.endMatch && !GameController.instance.isScored)
+        if (!GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
         {
             movePlayer();
         }
@@ -175,7 +179,7 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot()
     {
-        if (canShoot && !GameController.instance.endMatch && !GameController.instance.isScored)
+        if (canShoot && !GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
         {
             audioPlayer.playKickClip();
             shootEffect.SetActive(true);
@@ -186,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded && !GameController.instance.endMatch && !GameController.instance.isScored)
+        if (isGrounded && !GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
         {
             audioPlayer.playJumpClip();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
