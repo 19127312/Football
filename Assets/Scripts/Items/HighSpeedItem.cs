@@ -20,19 +20,37 @@ public class HighSpeedItem : Item
         isWorking = true;
         Ball ballScript = Ball.GetComponent<Ball>();
         PlayerController playerScript;
+        AIController aiScript;
+        audioPlayer.playSpeedClip();
         if (ballScript.isLeftPlayer)
         {
             playerScript = Player1.GetComponent<PlayerController>();
+            playerScript.speedLightEffect.SetActive(true);
+            playerScript.speed += 2.5f;
+            yield return new WaitForSeconds(workingTime);
+            playerScript.speed -= 2.5f;
+            playerScript.speedLightEffect.SetActive(false);
         }
         else
         {
-            playerScript = Player2.GetComponent<PlayerController>();
+            if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+            {
+                aiScript = AI.GetComponent<AIController>();
+                aiScript.speedLightEffect.SetActive(true);
+                aiScript.speed += 2.5f;
+                yield return new WaitForSeconds(workingTime);
+                aiScript.speed -= 2.5f;
+                aiScript.speedLightEffect.SetActive(false);
+            }
+            else
+            {
+                playerScript = Player2.GetComponent<PlayerController>();
+                playerScript.speedLightEffect.SetActive(true);
+                playerScript.speed += 2.5f;
+                yield return new WaitForSeconds(workingTime);
+                playerScript.speed -= 2.5f;
+                playerScript.speedLightEffect.SetActive(false);
+            }
         }
-        audioPlayer.playSpeedClip();
-        playerScript.speedLightEffect.SetActive(true);
-        playerScript.speed += 2.5f;
-        yield return new WaitForSeconds(workingTime);
-        playerScript.speed -= 2.5f;
-        playerScript.speedLightEffect.SetActive(false);
     }
 }

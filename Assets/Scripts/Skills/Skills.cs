@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
+    protected bool isLeftSkill;
+
+    protected AudioPlayerController audioPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        audioPlayer = FindObjectOfType<AudioPlayerController>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() { }
 
-    }
-    public virtual void UseSkill()
+    public virtual void UseSkill(bool isLeftPlayer)
     {
         Debug.Log("Skill used");
+        isLeftSkill = isLeftPlayer;
     }
 }

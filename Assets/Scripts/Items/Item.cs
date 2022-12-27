@@ -11,6 +11,8 @@ public class Item : MonoBehaviour
     protected GameObject Player2;
     protected GameObject Goal1;
     protected GameObject Goal2;
+    protected GameObject AI;
+    protected bool isAIMode = false;
 
     protected bool isWorking = false;
     protected float workingTime = 10.0f;
@@ -29,6 +31,7 @@ public class Item : MonoBehaviour
         Player2 = GameObject.Find("Player 2");
         Goal1 = GameObject.Find("LeftGoal");
         Goal2 = GameObject.Find("RightGoal");
+        AI = GameObject.Find("AI");
     }
 
     // Update is called once per frame

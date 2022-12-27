@@ -11,11 +11,11 @@ public class SmallSizeItem : Item
         if (other.gameObject.tag == "Ball")
         {
             workingTime = 3.0f;
-            StartCoroutine(GrowPlayerSize());
+            StartCoroutine(ReducePlayerSize());
         }
     }
 
-    IEnumerator GrowPlayerSize()
+    IEnumerator ReducePlayerSize()
     {
         isWorking = true;
         Ball ballScript = Ball.GetComponent<Ball>();
@@ -30,11 +30,22 @@ public class SmallSizeItem : Item
         }
         else
         {
-            Vector3 initSize = Player2.transform.localScale;
-            Player2.transform.localScale -= new Vector3(0.5f, 0.5f, 0f);
-            yield return new WaitForSeconds(workingTime);
-            Player2.transform.localScale = initSize;
-            Player2.transform.position += new Vector3(0f, 1f, 0f);
+            if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+            {
+                Vector3 initSize = AI.transform.localScale;
+                AI.transform.localScale -= new Vector3(0.5f, 0.5f, 0f);
+                yield return new WaitForSeconds(workingTime);
+                AI.transform.localScale = initSize;
+                AI.transform.position += new Vector3(0f, 1f, 0f);
+            }
+            else
+            {
+                Vector3 initSize = Player2.transform.localScale;
+                Player2.transform.localScale -= new Vector3(0.5f, 0.5f, 0f);
+                yield return new WaitForSeconds(workingTime);
+                Player2.transform.localScale = initSize;
+                Player2.transform.position += new Vector3(0f, 1f, 0f);
+            }
         }
         audioPlayer.playLargeBallClip();
     }

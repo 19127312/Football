@@ -20,20 +20,40 @@ public class JumpDisableItem : Item
         isWorking = true;
         Ball ballScript = Ball.GetComponent<Ball>();
         PlayerController playerScript;
+        AIController aiScript;
+        audioPlayer.playJumpDisableClip();
         if (!ballScript.isLeftPlayer)
         {
             playerScript = Player1.GetComponent<PlayerController>();
+            float initjumpForce = playerScript.jumpForce;
+            playerScript.bubbleGumEffect.SetActive(true);
+            playerScript.jumpForce = 0f;
+            yield return new WaitForSeconds(workingTime);
+            playerScript.jumpForce = initjumpForce;
+            playerScript.bubbleGumEffect.SetActive(false);
         }
         else
         {
-            playerScript = Player2.GetComponent<PlayerController>();
+            if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
+            {
+                aiScript = AI.GetComponent<AIController>();
+                float initjumpForce = aiScript.jumpForce;
+                aiScript.bubbleGumEffect.SetActive(true);
+                aiScript.jumpForce = 0f;
+                yield return new WaitForSeconds(workingTime);
+                aiScript.jumpForce = initjumpForce;
+                aiScript.bubbleGumEffect.SetActive(false);
+            }
+            else
+            {
+                playerScript = Player2.GetComponent<PlayerController>();
+                float initjumpForce = playerScript.jumpForce;
+                playerScript.bubbleGumEffect.SetActive(true);
+                playerScript.jumpForce = 0f;
+                yield return new WaitForSeconds(workingTime);
+                playerScript.jumpForce = initjumpForce;
+                playerScript.bubbleGumEffect.SetActive(false);
+            }
         }
-        audioPlayer.playJumpDisableClip();
-        float initjumpForce = playerScript.jumpForce;
-        playerScript.bubbleGumEffect.SetActive(true);
-        playerScript.jumpForce = 0f;
-        yield return new WaitForSeconds(workingTime);
-        playerScript.jumpForce = initjumpForce;
-        playerScript.bubbleGumEffect.SetActive(false);
     }
 }

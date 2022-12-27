@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class AIController : MonoBehaviour
 {
     public float rangeDefence = 5f;
@@ -10,18 +11,27 @@ public class AIController : MonoBehaviour
     private Rigidbody2D rb;
     float horizontal;
     float vertical;
-    public Transform defence, checkGround;
-    public bool canShoot, canHead, isGrounded;
+    public Transform defence,
+        checkGround;
+    public bool canShoot,
+        canHead,
+        isGrounded;
     public GameObject shootEffect;
     public LayerMask groundLayer;
     public Animator anim;
+    public GameObject freezeEffect;
+    public GameObject rocketEffect;
+    public GameObject speedLightEffect;
+    public GameObject bubbleGumEffect;
+    public GameObject blackLightningEffect;
+    public GameObject brokenLegEffect;
+    public bool isFreezed = false;
 
     GameObject player;
-    // Start is called before the first frame update
-    void Awake()
-    {
 
-    }
+    // Start is called before the first frame update
+    void Awake() { }
+
     void Start()
     {
         ball = GameObject.FindGameObjectWithTag("Ball");
@@ -56,6 +66,7 @@ public class AIController : MonoBehaviour
             Jump();
         }
     }
+
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(checkGround.position, 0.2f, groundLayer);
@@ -63,19 +74,31 @@ public class AIController : MonoBehaviour
 
     public void Move()
     {
-        if (Mathf.Abs(ball.transform.position.x - transform.position.x) < rangeDefence && transform.position.x > ball.transform.position.x)
+        if (
+            Mathf.Abs(ball.transform.position.x - transform.position.x) < rangeDefence
+            && transform.position.x > ball.transform.position.x
+        )
         {
-            if (Mathf.Abs(ball.transform.position.x - transform.position.x) <= Mathf.Abs(ball.transform.position.x - player.transform.position.x) && ball.transform.position.y < -0.5f)
+            if (
+                Mathf.Abs(ball.transform.position.x - transform.position.x)
+                    <= Mathf.Abs(ball.transform.position.x - player.transform.position.x)
+                && ball.transform.position.y < -0.5f
+            )
             {
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
             else
             {
-                if (ball.transform.position.x > transform.position.x && ball.transform.position.y < -0.5f)
+                if (
+                    ball.transform.position.x > transform.position.x
+                    && ball.transform.position.y < -0.5f
+                )
                 {
                     rb.velocity = new Vector2(0, rb.velocity.y);
                 }
-                else if (ball.transform.position.y >= -0.5f && defence.position.x <= transform.position.x)
+                else if (
+                    ball.transform.position.y >= -0.5f && defence.position.x <= transform.position.x
+                )
                 {
                     rb.velocity = new Vector2(0, rb.velocity.y);
                 }
@@ -107,13 +130,15 @@ public class AIController : MonoBehaviour
 
     void Shoot()
     {
-
         if (canShoot)
         {
-            anim.SetTrigger("Kick");
-            shootEffect.SetActive(true);
-            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-250, 300));
-            StartCoroutine(ExecuteAfterTime(0.1f));
+            if (!isFreezed)
+            {
+                anim.SetTrigger("Kick");
+                shootEffect.SetActive(true);
+                ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-250, 300));
+                StartCoroutine(ExecuteAfterTime(0.1f));
+            }
         }
     }
 
@@ -121,9 +146,10 @@ public class AIController : MonoBehaviour
     {
         if (canHead && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 10);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
+
     IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
