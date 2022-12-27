@@ -34,7 +34,6 @@ public class ExpBar : MonoBehaviour
         levelText.text = currentLevel.ToString();
         float totalExp = currentExp + exp;
         maxExp = currentLevel * 100;
-        Debug.Log(currentLevel);
         StartCoroutine(AnimateProgress(currentExp / maxExp, totalExp / maxExp, 0.5f, character));
     }
     void InitColor()
