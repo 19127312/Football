@@ -112,7 +112,7 @@ public class AIController : MonoBehaviour
         {
             anim.SetTrigger("Kick");
             shootEffect.SetActive(true);
-            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 500));
+            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-250, 300));
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
     }
