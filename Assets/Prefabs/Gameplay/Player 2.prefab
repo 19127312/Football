@@ -1053,7 +1053,7 @@ MonoBehaviour:
     m_Bits: 256
   canShoot: 0
   anim: {fileID: 0}
-  ShootForce: -400
+  ShootForce: 400
   shootEffect: {fileID: 3480955690223658426}
   freezeEffect: {fileID: 1297110707}
   rocketEffect: {fileID: 8312765225686367063}
@@ -1067,6 +1067,8 @@ MonoBehaviour:
   head: {fileID: 3480955689114759667}
   shirt: {fileID: 3480955689232816858}
   skill: {fileID: 0}
+  positionSkill: {fileID: 3480955690096363436}
+  coolDownTime: 15
 --- !u!114 &3480955690096363437
 MonoBehaviour:
   m_ObjectHideFlags: 0
