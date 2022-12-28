@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour
     private Shirt selectedShirt2;
 
     private Character selectedCharacter2;
+    private Character selectedCharacterLevelup;
     public int currentLevelPlayed = 0;
+    public Character SelectedCharacterLevelup { get => selectedCharacterLevelup; }
     public Character SelectedCharacter1 { get => selectedCharacter1; }
     public Character SelectedCharacter2 { get => selectedCharacter2; }
     public Shirt SelectedShirt1 { get => selectedShirt1; }
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         ManageSingleton();
+        selectedCharacterLevelup = charactersInGame[0];
         selectedCharacter1 = charactersInGame[0];
         selectedCharacter2 = charactersInGame[0];
         selectedShirt1 = shirtInGame[0];
@@ -98,6 +101,48 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+    public void changeLeftCharacterLevelUp()
+    {
+        List<Character> charactersBuyed = new List<Character>();
+        foreach (Character item in charactersInGame)
+        {
+            if (item.IsOwn)
+            {
+                charactersBuyed.Add(item);
+            }
+        }
+        int index = charactersBuyed.IndexOf(selectedCharacterLevelup);
+        if (index == 0)
+        {
+            index = charactersBuyed.Count - 1;
+        }
+        else
+        {
+            index--;
+        }
+        selectedCharacterLevelup = charactersBuyed[index];
+    }
+    public void changeRightCharacterLevelUp()
+    {
+        List<Character> charactersBuyed = new List<Character>();
+        foreach (Character item in charactersInGame)
+        {
+            if (item.IsOwn)
+            {
+                charactersBuyed.Add(item);
+            }
+        }
+        int index = charactersBuyed.IndexOf(selectedCharacterLevelup);
+        if (index == charactersBuyed.Count - 1)
+        {
+            index = 0;
+        }
+        else
+        {
+            index++;
+        }
+        selectedCharacterLevelup = charactersBuyed[index];
     }
     public void changeLeftCharacter(int playerNumber)
     {

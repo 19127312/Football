@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool canShoot;
     private GameObject ball;
     public Animator anim;
-    public int ShootForce;
+    public float ShootForce;
     Vector2 rawInput;
     public GameObject shootEffect;
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
             shirt.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedShirt1.Image;
             speed = (float)gameManager.SelectedCharacter1.SpeedStat;
             jumpForce = (float)gameManager.SelectedCharacter1.JumpStat;
-            ShootForce = (int)gameManager.SelectedCharacter1.ShootStat;
+            ShootForce = (float)gameManager.SelectedCharacter1.ShootStat;
             skill = gameManager.SelectedCharacter1.SkillPrefab;
             skillInit = Instantiate(skill, positionSkill.position, positionSkill.rotation);
             skillInit.gameObject.tag = "Skill1";
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
             shirt.GetComponent<SpriteRenderer>().sprite = gameManager.SelectedShirt2.Image;
             speed = (float)gameManager.SelectedCharacter2.SpeedStat;
             jumpForce = (float)gameManager.SelectedCharacter2.JumpStat;
-            ShootForce = -(int)gameManager.SelectedCharacter2.ShootStat;
+            ShootForce = -(float)gameManager.SelectedCharacter2.ShootStat;
             skill = gameManager.SelectedCharacter2.SkillPrefab;
             skillInit = Instantiate(skill, positionSkill.position, positionSkill.rotation);
             skillInit.gameObject.tag = "Skill2";

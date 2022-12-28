@@ -16,9 +16,12 @@ public class Character : ScriptableObject
     [SerializeField] float exp;
     [SerializeField] int maxStat;
     [SerializeField] int statToUpgrade;
-    [SerializeField] int speedStat;
-    [SerializeField] int shootStat;
-    [SerializeField] int jumpStat;
+    [SerializeField] float speedStat;
+    [SerializeField] float speedStatInit;
+    [SerializeField] float shootStat;
+    [SerializeField] float shootStatInit;
+    [SerializeField] float jumpStat;
+    [SerializeField] float jumpStatInit;
     [SerializeField] bool isOwn;
     [SerializeField] GameObject skillPrefab;
     [SerializeField] float coolDownTime;
@@ -30,9 +33,12 @@ public class Character : ScriptableObject
     public float CurrentExp { get => exp; set => exp = value; }
     public int MaxStat { get => maxStat; }
     public int StatToUpgrade { get => statToUpgrade; set => statToUpgrade = value; }
-    public int SpeedStat { get => speedStat; set => speedStat = value; }
-    public int ShootStat { get => shootStat; set => shootStat = value; }
-    public int JumpStat { get => jumpStat; set => jumpStat = value; }
+    public float SpeedStat { get => speedStat; set => speedStat = value; }
+    public float SpeedInit { get => speedStatInit; }
+    public float ShootStat { get => shootStat; set => shootStat = value; }
+    public float ShootInit { get => shootStatInit; }
+    public float JumpStat { get => jumpStat; set => jumpStat = value; }
+    public float JumpInit { get => jumpStatInit; }
     public bool IsOwn { get => isOwn; set => isOwn = value; }
     public GameObject SkillPrefab { get => skillPrefab; }
     public float CoolDownTime { get => coolDownTime; set => coolDownTime = value; }
