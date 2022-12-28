@@ -35,10 +35,6 @@ public class Character : ScriptableObject
     public bool IsOwn { get => isOwn; set => isOwn = value; }
     public GameObject SkillPrefab { get => skillPrefab; }
 
-    public string getPathImage()
-    {
-        return AssetDatabase.GetAssetPath(image);
-    }
     public Character(CharacterData data)
     {
         name = data.namePlayer;
