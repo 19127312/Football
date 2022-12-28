@@ -1028,6 +1028,50 @@ Transform:
   m_Father: {fileID: 1334915599}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+--- !u!1 &1334088981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1334088983}
+  - component: {fileID: 1334088982}
+  m_Layer: 0
+  m_Name: Environment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1334088982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334088981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0a1b3f4af757c47ab9d6065eefcb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1334088983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334088981}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3622481, y: 0.8083137, z: 0.06368585}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1334915598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1081,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1334915599}
+  - component: {fileID: 1334915600}
   m_Layer: 0
   m_Name: Enviroment
   m_TagString: Untagged
@@ -1070,6 +1115,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1334915600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334915598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0a1b3f4af757c47ab9d6065eefcb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1419584683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,10 +1385,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rtQuality: 3
   fade: 1
-  intensity: 2.68
+  intensity: 0.2
   blur: 1
   blurDownSampleNum: 1
-  blurSpreadSize: 0.7
+  blurSpreadSize: 0
   blurIterations: 1
 --- !u!114 &1677607147 stripped
 MonoBehaviour:
@@ -1541,6 +1598,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3055031521167623044, guid: f85ee5192e8f76945b45c5310dc6a156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055031521167623045, guid: f85ee5192e8f76945b45c5310dc6a156, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055031521167623045, guid: f85ee5192e8f76945b45c5310dc6a156, type: 3}
+      propertyPath: FrostAmount
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

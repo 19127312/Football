@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     // handle cool down
     float coolDownTimer;
-    public float coolDownTime = 15.0f;
+    public float coolDownTime = 10.0f;
     bool isSkillReady = true;
 
     // Start is called before the first frame update
@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
             skill = gameManager.SelectedCharacter1.SkillPrefab;
             skillInit = Instantiate(skill, positionSkill.position, positionSkill.rotation);
             skillInit.gameObject.tag = "Skill1";
+            coolDownTime = (float)gameManager.SelectedCharacter1.CoolDownTime;
         }
         else
         {
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
             skill = gameManager.SelectedCharacter2.SkillPrefab;
             skillInit = Instantiate(skill, positionSkill.position, positionSkill.rotation);
             skillInit.gameObject.tag = "Skill2";
+            coolDownTime = (float)gameManager.SelectedCharacter2.CoolDownTime;
         }
         if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
         {
@@ -135,15 +137,19 @@ public class PlayerController : MonoBehaviour
             coolDownTimer = coolDownTime;
             isSkillReady = false;
             GameObject skillObject;
+            GameObject spellUIObject;
             if (isLeftPlayer)
-            {
+            {   
                 skillObject = GameObject.FindGameObjectWithTag("Skill1");
+                spellUIObject = GameObject.FindGameObjectWithTag("LeftSpell");
             }
             else
             {
                 skillObject = GameObject.FindGameObjectWithTag("Skill2");
+                spellUIObject = GameObject.FindGameObjectWithTag("RightSpell");
             }
             skillObject.GetComponent<Skills>().UseSkill(isLeftPlayer);
+            spellUIObject.GetComponent<SpellCoolDown>().UseSpeel(isLeftPlayer);
         }
     }
 
@@ -151,9 +157,14 @@ public class PlayerController : MonoBehaviour
     {
         GameController.instance.isPaused = true;
     }
+
     private void FixedUpdate()
     {
-        if (!GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
+        if (
+            !GameController.instance.endMatch
+            && !GameController.instance.isScored
+            && !GameController.instance.isPaused
+        )
         {
             movePlayer();
         }
@@ -179,7 +190,12 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot()
     {
-        if (canShoot && !GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
+        if (
+            canShoot
+            && !GameController.instance.endMatch
+            && !GameController.instance.isScored
+            && !GameController.instance.isPaused
+        )
         {
             audioPlayer.playKickClip();
             shootEffect.SetActive(true);
@@ -190,7 +206,12 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded && !GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
+        if (
+            isGrounded
+            && !GameController.instance.endMatch
+            && !GameController.instance.isScored
+            && !GameController.instance.isPaused
+        )
         {
             audioPlayer.playJumpClip();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);

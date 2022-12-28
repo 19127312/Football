@@ -16,6 +16,8 @@ TagManager:
   - GameManager
   - Skill1
   - Skill2
+  - LeftSpell
+  - RightSpell
   layers:
   - Default
   - TransparentFX

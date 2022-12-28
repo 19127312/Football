@@ -14,6 +14,7 @@ public class CharacterData
     public int shootStat;
     public int jumpStat;
     public bool isOwn;
+    public float coolDownTime;
 
     public CharacterData(Character character)
     {
@@ -25,6 +26,7 @@ public class CharacterData
         shootStat = character.ShootStat;
         jumpStat = character.JumpStat;
         isOwn = character.IsOwn;
+        coolDownTime = character.CoolDownTime;
     }
 
 }
