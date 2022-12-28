@@ -71,26 +71,6 @@ public class Ball : MonoBehaviour
         {
             AI.GetComponent<AIController>().canHead = true;
         }
-
-    }
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "RightPlayer")
-        {
-            Rplayer.GetComponent<PlayerController>().canShoot = false;
-        }
-        if (col.gameObject.tag == "LeftPlayer")
-        {
-            Lplayer.GetComponent<PlayerController>().canShoot = false;
-        }
-        if (col.gameObject.tag == "AI")
-        {
-            AI.GetComponent<AIController>().canShoot = false;
-        }
-        if (col.gameObject.tag == "AIHead")
-        {
-            AI.GetComponent<AIController>().canHead = false;
-        }
         if (col.gameObject.tag == "RightGoal")
         {
             if (!GameController.instance.isScored && !GameController.instance.endMatch)
@@ -115,6 +95,27 @@ public class Ball : MonoBehaviour
                 GameController.instance.ContinueGame();
             }
         }
+
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "RightPlayer")
+        {
+            Rplayer.GetComponent<PlayerController>().canShoot = false;
+        }
+        if (col.gameObject.tag == "LeftPlayer")
+        {
+            Lplayer.GetComponent<PlayerController>().canShoot = false;
+        }
+        if (col.gameObject.tag == "AI")
+        {
+            AI.GetComponent<AIController>().canShoot = false;
+        }
+        if (col.gameObject.tag == "AIHead")
+        {
+            AI.GetComponent<AIController>().canHead = false;
+        }
+
     }
     void OnCollisionEnter2D(Collision2D other)
     {
