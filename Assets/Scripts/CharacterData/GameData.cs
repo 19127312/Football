@@ -10,9 +10,9 @@ public class CharacterData
     public int level;
     public float exp;
     public int statToUpgrade;
-    public int speedStat;
-    public int shootStat;
-    public int jumpStat;
+    public float speedStat;
+    public float shootStat;
+    public float jumpStat;
     public bool isOwn;
 
     public CharacterData(Character character)

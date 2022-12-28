@@ -260,6 +260,9 @@ public class UIManager : MonoBehaviour
     public void LevelUpPlayer()
     {
         audioPlayerController.playButtonClickClip();
+        selecteModeMenu.SetActive(false);
+
+        levelUpMenu.SetActive(true);
 
     }
     public void OneVsOne()
@@ -307,6 +310,23 @@ public class UIManager : MonoBehaviour
         }
 
     }
+    public void goToLeftCharacterLVUP()
+    {
+        audioPlayerController.playButtonClickClip();
+
+        gameManager.changeLeftCharacterLevelUp();
+        // updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup());
+        // updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+    }
+    public void goToRightCharacterLVUP()
+    {
+        audioPlayerController.playButtonClickClip();
+
+        gameManager.changeRightCharacterLevelUp();
+        // updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup());
+
+        // updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+    }
     public void goToLeftCharacter(int playerNumber)
     {
         audioPlayerController.playButtonClickClip();
@@ -338,6 +358,17 @@ public class UIManager : MonoBehaviour
         gameManager.changeRightShirt(playerNumber);
         updateCurrentShirt(gameManager.GetSelectedShirt(playerNumber), playerNumber);
         ManagementPlay();
+    }
+    public void updateCurrentCharacterLVUP(Character character)
+    {
+
+        currentCharacter1Image.sprite = character.Image;
+
+        currentPrice1Text.text = character.GoldToBuy.ToString();
+        currentShoot1Text.text = character.ShootStat.ToString();
+        currentSpeed1Text.text = character.SpeedStat.ToString();
+        currentJump1Text.text = character.JumpStat.ToString();
+
     }
     public void updateCurrentCharacter(Character character, int playerNumber)
     {
