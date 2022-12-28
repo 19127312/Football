@@ -5,7 +5,6 @@ using UnityEngine;
 public class InvicibleItem : Item
 {
     public Sprite InvicibleSprite;
-    public Sprite initSprite;
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,8 +21,15 @@ public class InvicibleItem : Item
     {
         isWorking = true;
         audioPlayer.playInvicibleClip();
+        Sprite initSprite = Ball.GetComponent<SpriteRenderer>().sprite;
         Ball.GetComponent<SpriteRenderer>().sprite = InvicibleSprite;
+        bool activeFire = Ball.gameObject.transform.GetChild(0).gameObject.activeSelf;
+        bool activeFrost = Ball.gameObject.transform.GetChild(1).gameObject.activeSelf;
+        Ball.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        Ball.gameObject.transform.GetChild(1).gameObject.SetActive(false);
         yield return new WaitForSeconds(workingTime);
         Ball.GetComponent<SpriteRenderer>().sprite = initSprite;
+        Ball.gameObject.transform.GetChild(0).gameObject.SetActive(activeFire);
+        Ball.gameObject.transform.GetChild(1).gameObject.SetActive(activeFrost);
     }
 }
