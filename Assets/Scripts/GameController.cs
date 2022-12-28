@@ -186,8 +186,6 @@ public class GameController : MonoBehaviour
                 {
                     GameObject expBarRight = expPanel.transform.Find("RightPlayer").gameObject;
                     expBarRight.SetActive(false);
-                    Debug.Log("CurrentMoney: " + gameManager.CurrentMoney());
-                    Debug.Log("goalLeftCount: " + goalLeftCount * 10);
                     gameManager.addMoney(goalLeftCount * 10);
                     money.text = (gameManager.CurrentMoney()).ToString();
                 }
@@ -197,11 +195,14 @@ public class GameController : MonoBehaviour
             Button btnRestart = expPanel.transform.Find("RestartButton").GetComponent<Button>();
             Button btnSave = expPanel.transform.Find("SaveButton").GetComponent<Button>();
             Button btnHome = expPanel.transform.Find("HomeButton").GetComponent<Button>();
+            TMP_Text SaveText = expPanel.transform.Find("Saving").GetComponent<TMP_Text>();
+            SaveText.enabled = false;
             btnHome.onClick.AddListener(goToHomeScene);
             btnRestart.onClick.AddListener(restartGame);
             btnSave.onClick.AddListener(GameManager.instance.SaveGame);
         }
     }
+
     public void showPausePanel()
     {
         if (isPaused)

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 public class GameManager : MonoBehaviour
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
     public GameMode currentGameMode = GameMode.OneVsOne;
     public GameRule currentGameRule = GameRule.Score7;
 
+    public TMP_Text text;
     private void Awake()
     {
         ManageSingleton();
@@ -301,6 +304,14 @@ public class GameManager : MonoBehaviour
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(file, gameData);
         file.Close();
+        text.enabled = true;
+        StartCoroutine(WaitSaveGame());
+
+    }
+    IEnumerator WaitSaveGame()
+    {
+        yield return new WaitForSeconds(2);
+        text.enabled = false;
     }
     public void LoadGame()
     {

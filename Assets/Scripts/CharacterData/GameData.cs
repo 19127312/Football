@@ -14,6 +14,7 @@ public class CharacterData
     public float shootStat;
     public float jumpStat;
     public bool isOwn;
+    public float coolDownTime;
 
     public CharacterData(Character character)
     {
@@ -25,6 +26,7 @@ public class CharacterData
         shootStat = character.ShootStat;
         jumpStat = character.JumpStat;
         isOwn = character.IsOwn;
+        coolDownTime = character.CoolDownTime;
     }
 
 }
@@ -34,10 +36,10 @@ public class ShirtData
 {
     public bool isOwn;
 
-    public string name;
+    public string shirtName;
     public ShirtData(Shirt shirt)
     {
-        name = shirt.name;
+        shirtName = shirt.name;
         isOwn = shirt.IsOwn;
 
     }
@@ -51,7 +53,6 @@ public class GameData
 
     public GameData(List<Character> charactersInGame, List<Shirt> shirtInGame, int money)
     {
-        Debug.Log("Character in game: " + charactersInGame[0].getPathImage());
         charactersInGame.ForEach(character => this.charactersInGame.Add(new CharacterData(character)));
         shirtInGame.ForEach(shirt => this.shirtInGame.Add(new ShirtData(shirt)));
         this.currentMoney = money;

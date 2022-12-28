@@ -50,6 +50,7 @@ public class UIManager : MonoBehaviour
     public GameObject OneVsAIMenu;
     public GameObject chooseLevelMenu;
     public GameObject mainMenu;
+    public GameObject settingMenu;
 
     private AudioPlayerController audioPlayerController;
     private GameManager gameManager;
@@ -79,7 +80,7 @@ public class UIManager : MonoBehaviour
     public Sprite lv3;
     public Sprite lv4;
     public Sprite lv5;
-
+    public Button loadButton;
     private bool isSave = false;
 
     // Start is called before the first frame update
@@ -110,14 +111,12 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         checkSave();
-        if (!isSave)
+        if (!isSave && loadButton)
         {
-            Button loadButton = GameObject.Find("LoadGameBtn").GetComponent<Button>();
             loadButton.interactable = false;
         }
-        else
+        else if (isSave && loadButton)
         {
-            Button loadButton = GameObject.Find("LoadGameBtn").GetComponent<Button>();
             loadButton.interactable = true;
 
         }
@@ -172,6 +171,10 @@ public class UIManager : MonoBehaviour
     }
     public void NewGame()
     {
+        if (isSave)
+        {
+
+        }
         audioPlayerController.playButtonClickClip();
         selecteModeMenu.SetActive(true);
         OneVsOneMenu.SetActive(false);
@@ -191,6 +194,12 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
+    public void goToSetting()
+    {
+        audioPlayerController.playButtonClickClip();
+        settingMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
     public void checkSave()
     {
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
@@ -207,7 +216,6 @@ public class UIManager : MonoBehaviour
     {
         mainMenu.SetActive(true);
         selecteModeMenu.SetActive(false);
-
     }
     public void BackToSelectModeMenu()
     {
@@ -216,6 +224,12 @@ public class UIManager : MonoBehaviour
         OneVsOneMenu.SetActive(false);
         OneVsAIMenu.SetActive(false);
         levelUpMenu.SetActive(false);
+    }
+    public void BackFromSettingMenu()
+    {
+        audioPlayerController.playButtonClickClip();
+        settingMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
     public void BackFromChooseLevelMenu()
     {
@@ -359,6 +373,7 @@ public class UIManager : MonoBehaviour
         updateCurrentShirt(gameManager.GetSelectedShirt(playerNumber), playerNumber);
         ManagementPlay();
     }
+
     public void updateCurrentCharacterLVUP(Character character)
     {
 
@@ -368,6 +383,27 @@ public class UIManager : MonoBehaviour
         currentShoot1Text.text = character.ShootStat.ToString();
         currentSpeed1Text.text = character.SpeedStat.ToString();
         currentJump1Text.text = character.JumpStat.ToString();
+  }
+
+    public void TurnFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
+    public void ChangeResolution(int resolutionIndex)
+    {
+        switch (resolutionIndex)
+        {
+            case 0:
+                Screen.SetResolution(1920, 1080, Screen.fullScreen);
+                break;
+            case 1:
+                Screen.SetResolution(1280, 720, Screen.fullScreen);
+                break;
+
+            default:
+                Screen.SetResolution(1920, 1080, Screen.fullScreen);
+                break;
+        }
 
     }
     public void updateCurrentCharacter(Character character, int playerNumber)
