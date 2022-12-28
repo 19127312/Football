@@ -16,7 +16,7 @@ MonoBehaviour:
   image: {fileID: -1541138330, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   goldToBuy: 100
   level: 3
-  exp: 110
+  exp: 160.00002
   maxStat: 0
   statToUpgrade: 2
   speedStat: 6
@@ -24,3 +24,4 @@ MonoBehaviour:
   jumpStat: 8
   isOwn: 1
   skillPrefab: {fileID: 4451715478083833182, guid: 90943e645f2af254f888a953c4666713, type: 3}
+  coolDownTime: 15

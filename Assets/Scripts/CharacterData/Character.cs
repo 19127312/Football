@@ -21,6 +21,7 @@ public class Character : ScriptableObject
     [SerializeField] int jumpStat;
     [SerializeField] bool isOwn;
     [SerializeField] GameObject skillPrefab;
+    [SerializeField] float coolDownTime;
 
     public string Name { get => name; set => name = value; }
     public Sprite Image { get => image; set => image = value; }
@@ -34,6 +35,7 @@ public class Character : ScriptableObject
     public int JumpStat { get => jumpStat; set => jumpStat = value; }
     public bool IsOwn { get => isOwn; set => isOwn = value; }
     public GameObject SkillPrefab { get => skillPrefab; }
+    public float CoolDownTime { get => coolDownTime; set => coolDownTime = value; }
 
     public string getPathImage()
     {
@@ -49,6 +51,7 @@ public class Character : ScriptableObject
         shootStat = data.shootStat;
         jumpStat = data.jumpStat;
         isOwn = data.isOwn;
+        coolDownTime = data.coolDownTime;
     }
     public bool IsMaxLevel()
     {
