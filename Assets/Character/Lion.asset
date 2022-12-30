@@ -20,8 +20,12 @@ MonoBehaviour:
   maxStat: 0
   statToUpgrade: 1
   speedStat: 7
+  speedStatInit: 7
   shootStat: 250
+  shootStatInit: 250
   jumpStat: 5
+  jumpStatInit: 5
   isOwn: 0
   skillPrefab: {fileID: 4774845365160988938, guid: cd4ae3c8d25b3b746b68874fedb68ef7, type: 3}
-  coolDownTime: 15
+  coolDownTime: 14
+  coolDownTimeInit: 14

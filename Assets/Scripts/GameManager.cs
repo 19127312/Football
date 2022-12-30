@@ -31,9 +31,9 @@ public class GameManager : MonoBehaviour
     private Character selectedCharacter2;
     private Character selectedCharacterLevelup;
     public int currentLevelPlayed = 0;
-    public Character SelectedCharacterLevelup { get => selectedCharacterLevelup; }
     public Character SelectedCharacter1 { get => selectedCharacter1; }
     public Character SelectedCharacter2 { get => selectedCharacter2; }
+    public Character SelectedCharacterLevelup { get => selectedCharacterLevelup; }
     public Shirt SelectedShirt1 { get => selectedShirt1; }
     public Shirt SelectedShirt2 { get => selectedShirt2; }
     private int currentMoney = 1000;
@@ -273,6 +273,7 @@ public class GameManager : MonoBehaviour
             return selectedCharacter2;
         }
     }
+
     public Shirt GetSelectedShirt(int playerNumber)
     {
         if (playerNumber == 1)
@@ -352,6 +353,30 @@ public class GameManager : MonoBehaviour
                 });
             });
             currentMoney = gameData.currentMoney;
+        }
+    }
+    public void ModifyStatPoint(int amount)
+    {
+        selectedCharacterLevelup.StatToUpgrade += amount;
+    }
+    public void ModifyStat(int index, float amount)
+    {
+        switch (index)
+        {
+            case 0:
+                selectedCharacterLevelup.ShootStat += amount;
+                break;
+            case 1:
+                selectedCharacterLevelup.SpeedStat += amount;
+                break;
+            case 2:
+                selectedCharacterLevelup.JumpStat += amount;
+                break;
+            case 3:
+                selectedCharacterLevelup.CoolDownTime -= amount;
+                break;
+            default:
+                break;
         }
     }
 
