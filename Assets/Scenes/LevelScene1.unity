@@ -374,18 +374,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 477210217950612844, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: f92f9accf89c4f04e8503093286a31c6, type: 2}
-    - target: {fileID: 6149273218788751714, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858534040969023015, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
 --- !u!4 &684492801 stripped
@@ -400,30 +388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 943267355, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 943267355, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2104316864, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2104316864, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2104316864, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.0000014305115
-      objectReference: {fileID: 0}
-    - target: {fileID: 2104316864, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.0000011920929
-      objectReference: {fileID: 0}
     - target: {fileID: 7730216873325401611, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -638,12 +602,20 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: currentGameMap
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: currentGameMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: currentGameRule
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: currentGameBallSkin
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141611, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: m_RootOrder
@@ -1097,6 +1069,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5469322614785653278, guid: f85ee5192e8f76945b45c5310dc6a156, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f85ee5192e8f76945b45c5310dc6a156, type: 3}
 --- !u!1001 &6076590801471110265
@@ -1106,14 +1082,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 389550983, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250877508, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6076590802544278634, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
       propertyPath: m_RootOrder
       value: 2

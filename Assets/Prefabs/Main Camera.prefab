@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3055031521167623035}
   - component: {fileID: 3055031521167623033}
   - component: {fileID: 3055031521167623045}
+  - component: {fileID: 5469322614785653278}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -106,3 +107,22 @@ MonoBehaviour:
   Frost: {fileID: 2800000, guid: 210743b88c99bcf45b28c3a4a4a3e178, type: 3}
   FrostNormals: {fileID: 2800000, guid: 065247d136abaa042a330ab6a7b030fc, type: 3}
   Shader: {fileID: 4800000, guid: db8aebe950ae3794aae5ed890f38549b, type: 3}
+--- !u!114 &5469322614785653278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055031521167623032}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6b8c5266f87466f96ec1339df978cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rtQuality: 3
+  fade: 1
+  intensity: 1.75
+  blur: 0
+  blurDownSampleNum: 2
+  blurSpreadSize: 3
+  blurIterations: 3
