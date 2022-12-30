@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
         OneVsOne,
         OneVsAI,
     }
+
     public enum GameRule
     {
         Time30,
@@ -20,6 +22,21 @@ public class GameManager : MonoBehaviour
         Score7,
         Score9,
     }
+
+    public enum GameMap
+    {
+        Normal,
+        Frozen,
+        Rain,
+    }
+
+    public enum GameBallSkin
+    {
+        Normal,
+        FireSkin,
+        ForstSkin,
+    }
+
     public static GameManager instance;
     public List<Character> charactersInGame = new List<Character>();
     public List<Shirt> shirtInGame = new List<Shirt>();
@@ -39,8 +56,11 @@ public class GameManager : MonoBehaviour
     private int currentMoney = 1000;
     public GameMode currentGameMode = GameMode.OneVsOne;
     public GameRule currentGameRule = GameRule.Score7;
+    public GameMap currentGameMap = GameMap.Normal;
+    public GameBallSkin currentGameBallSkin = GameBallSkin.FireSkin;
 
-    public TMP_Text text;
+    private TMP_Text text;
+
     private void Awake()
     {
         ManageSingleton();
@@ -53,7 +73,6 @@ public class GameManager : MonoBehaviour
 
     private void ManageSingleton()
     {
-
         if (instance != null)
         {
             gameObject.SetActive(false);
@@ -65,6 +84,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
     void Start()
     {
         int randomMode = UnityEngine.Random.Range(0, 4);
@@ -97,11 +117,10 @@ public class GameManager : MonoBehaviour
     {
         currentMoney += money;
     }
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
+    // Update is called once per frame
+    void Update() { }
+
     public void changeLeftCharacterLevelUp()
     {
         List<Character> charactersBuyed = new List<Character>();
@@ -123,6 +142,7 @@ public class GameManager : MonoBehaviour
         }
         selectedCharacterLevelup = charactersBuyed[index];
     }
+
     public void changeRightCharacterLevelUp()
     {
         List<Character> charactersBuyed = new List<Character>();
@@ -144,6 +164,7 @@ public class GameManager : MonoBehaviour
         }
         selectedCharacterLevelup = charactersBuyed[index];
     }
+
     public void changeLeftCharacter(int playerNumber)
     {
         int index = 0;
@@ -154,7 +175,6 @@ public class GameManager : MonoBehaviour
         else
         {
             index = charactersInGame.IndexOf(selectedCharacter2);
-
         }
         if (index == 0)
         {
@@ -174,6 +194,7 @@ public class GameManager : MonoBehaviour
             selectedCharacter2 = charactersInGame[index];
         }
     }
+
     public void changeLeftShirt(int playerNumber)
     {
         int index = 0;
@@ -184,7 +205,6 @@ public class GameManager : MonoBehaviour
         else
         {
             index = shirtInGame.IndexOf(selectedShirt2);
-
         }
         if (index == 0)
         {
@@ -204,6 +224,7 @@ public class GameManager : MonoBehaviour
             selectedShirt2 = shirtInGame[index];
         }
     }
+
     public void changeRightShirt(int playerNumber)
     {
         int index = 0;
@@ -214,7 +235,6 @@ public class GameManager : MonoBehaviour
         else
         {
             index = shirtInGame.IndexOf(selectedShirt2);
-
         }
         if (index == shirtInGame.Count - 1)
         {
@@ -233,6 +253,7 @@ public class GameManager : MonoBehaviour
             selectedShirt2 = shirtInGame[index];
         }
     }
+
     public void changeRightCharacter(int playerNumber)
     {
         int index = 0;
@@ -243,7 +264,6 @@ public class GameManager : MonoBehaviour
         else
         {
             index = charactersInGame.IndexOf(selectedCharacter2);
-
         }
         if (index == charactersInGame.Count - 1)
         {
@@ -262,6 +282,7 @@ public class GameManager : MonoBehaviour
             selectedCharacter2 = charactersInGame[index];
         }
     }
+
     public Character GetSelectedCharacter(int playerNumber)
     {
         if (playerNumber == 1)
@@ -285,18 +306,22 @@ public class GameManager : MonoBehaviour
             return selectedShirt2;
         }
     }
+
     public void ModifyMoney(int amount)
     {
         currentMoney += amount;
     }
+
     public void BuyCharacter(Character character)
     {
         character.IsOwn = true;
     }
+
     public void BuyShirt(Shirt shirt)
     {
         shirt.IsOwn = true;
     }
+
     public void SaveGame()
     {
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
@@ -307,13 +332,14 @@ public class GameManager : MonoBehaviour
         file.Close();
         text.enabled = true;
         StartCoroutine(WaitSaveGame());
-
     }
+
     IEnumerator WaitSaveGame()
     {
         yield return new WaitForSeconds(2);
         text.enabled = false;
     }
+
     public void LoadGame()
     {
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
@@ -355,6 +381,7 @@ public class GameManager : MonoBehaviour
             currentMoney = gameData.currentMoney;
         }
     }
+
     public void ModifyStatPoint(int amount)
     {
         selectedCharacterLevelup.StatToUpgrade += amount;

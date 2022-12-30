@@ -9,20 +9,39 @@ public class Environment : MonoBehaviour
     private GameObject Camera;
     private FrostEffect forstScript;
     private RealisticRainDrop rainScript;
+    private GameManager gameManager;
 
     void Start()
     {
         Camera = GameObject.Find("Main Camera");
         forstScript = Camera.GetComponent<FrostEffect>();
         rainScript = Camera.GetComponent<RealisticRainDrop>();
-
-        rainScript.blurSpreadSize = 0;
-        rainScript.intensity = 0;
-        forstScript.FrostAmount = 0;
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager.currentGameMap == GameManager.GameMap.Frozen)
+        {
+            forstScript.enabled = true;
+            forstScript.FrostAmount = 0;
+        }
+        if (gameManager.currentGameMap == GameManager.GameMap.Rain)
+        {
+            rainScript.enabled = true;
+            rainScript.blurSpreadSize = 0;
+            rainScript.intensity = 0;
+        }
     }
 
     // Update is called once per frame
-    void Update() { }
+    void Update()
+    {
+        if (gameManager.currentGameMap == GameManager.GameMap.Frozen)
+        {
+            updateFrost();
+        }
+        if (gameManager.currentGameMap == GameManager.GameMap.Rain)
+        {
+            updateRain();
+        }
+    }
 
     private void updateRain()
     {
