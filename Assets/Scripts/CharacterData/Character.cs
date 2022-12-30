@@ -25,6 +25,7 @@ public class Character : ScriptableObject
     [SerializeField] bool isOwn;
     [SerializeField] GameObject skillPrefab;
     [SerializeField] float coolDownTime;
+    [SerializeField] float coolDownTimeInit;
 
     public string Name { get => name; set => name = value; }
     public Sprite Image { get => image; set => image = value; }
@@ -42,6 +43,7 @@ public class Character : ScriptableObject
     public bool IsOwn { get => isOwn; set => isOwn = value; }
     public GameObject SkillPrefab { get => skillPrefab; }
     public float CoolDownTime { get => coolDownTime; set => coolDownTime = value; }
+    public float CoolDownTimeInit { get => coolDownTimeInit; }
 
     public Character(CharacterData data)
     {

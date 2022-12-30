@@ -19,6 +19,14 @@ public class UIManager : MonoBehaviour
         muteSprite,
         musicSprite;
 
+    [Header("Current Level Up Character")]
+    public Image currentCharacterLVImage;
+    public TextMeshProUGUI currentShootText;
+    public TextMeshProUGUI currentSpeedText;
+    public TextMeshProUGUI currentJumpText;
+    public TextMeshProUGUI currentLVText;
+    public TextMeshProUGUI currentCDSkillLVText;
+    public TextMeshProUGUI currentStatPointLVText;
 
     [Header("Current Player 1")]
     public Image currentCharacter1Image;
@@ -30,6 +38,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI currentShoot1Text;
     public TextMeshProUGUI currentSpeed1Text;
     public TextMeshProUGUI currentJump1Text;
+    public TextMeshProUGUI currentCDSkillLV1Text;
 
 
     [Header("Current Player 2")]
@@ -42,6 +51,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI currentShoot2Text;
     public TextMeshProUGUI currentSpeed2Text;
     public TextMeshProUGUI currentJump2Text;
+    public TextMeshProUGUI currentCDSkillLV2Text;
 
     [Header("Menu")]
     public GameObject selecteModeMenu;
@@ -106,7 +116,8 @@ public class UIManager : MonoBehaviour
         updateCurrentCharacter(gameManager.GetSelectedCharacter(2), 2);
         updateCurrentShirt(gameManager.GetSelectedShirt(1), 1);
         updateCurrentShirt(gameManager.GetSelectedShirt(2), 2);
-
+        updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup);
+        ManageStatPoint();
     }
     void Update()
     {
@@ -124,6 +135,7 @@ public class UIManager : MonoBehaviour
         {
             currentMoneyText.text = gameManager.CurrentMoney().ToString();
         }
+        ManageStatPoint();
 
     }
 
@@ -329,17 +341,16 @@ public class UIManager : MonoBehaviour
         audioPlayerController.playButtonClickClip();
 
         gameManager.changeLeftCharacterLevelUp();
-        // updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup());
-        // updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+        updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup);
     }
     public void goToRightCharacterLVUP()
     {
         audioPlayerController.playButtonClickClip();
 
         gameManager.changeRightCharacterLevelUp();
-        // updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup());
+        updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup);
 
-        // updateCurrentCharacter(gameManager.GetSelectedCharacter(playerNumber), playerNumber);
+
     }
     public void goToLeftCharacter(int playerNumber)
     {
@@ -377,13 +388,15 @@ public class UIManager : MonoBehaviour
     public void updateCurrentCharacterLVUP(Character character)
     {
 
-        currentCharacter1Image.sprite = character.Image;
+        currentCharacterLVImage.sprite = character.Image;
 
-        currentPrice1Text.text = character.GoldToBuy.ToString();
-        currentShoot1Text.text = character.ShootStat.ToString();
-        currentSpeed1Text.text = character.SpeedStat.ToString();
-        currentJump1Text.text = character.JumpStat.ToString();
-  }
+        currentShootText.text = character.ShootStat.ToString();
+        currentSpeedText.text = character.SpeedStat.ToString();
+        currentJumpText.text = character.JumpStat.ToString();
+        currentLVText.text = "LV " + character.Level.ToString();
+        currentCDSkillLVText.text = character.CoolDownTime.ToString();
+        currentStatPointLVText.text = "UPGRADE POINTS LEFT: " + character.StatToUpgrade.ToString();
+    }
 
     public void TurnFullscreen(bool isFullscreen)
     {
@@ -416,6 +429,7 @@ public class UIManager : MonoBehaviour
             currentShoot1Text.text = character.ShootStat.ToString();
             currentSpeed1Text.text = character.SpeedStat.ToString();
             currentJump1Text.text = character.JumpStat.ToString();
+            currentCDSkillLV1Text.text = character.CoolDownTime.ToString();
 
             if (character.IsOwn)
             {
@@ -436,6 +450,7 @@ public class UIManager : MonoBehaviour
             currentShoot2Text.text = character.ShootStat.ToString();
             currentSpeed2Text.text = character.SpeedStat.ToString();
             currentJump2Text.text = character.JumpStat.ToString();
+            currentCDSkillLV2Text.text = character.CoolDownTime.ToString();
             if (character.IsOwn)
             {
                 currentPrice2Panel.SetActive(false);
@@ -513,7 +528,134 @@ public class UIManager : MonoBehaviour
         ManagementPlay();
     }
 
+    public void UpgradeStat(int index)
+    {
+        // 0 : Shoot, 1 : Speed, 2 : Jump, 3 : CoolDownTime
+        if (gameManager.SelectedCharacterLevelup.StatToUpgrade > 0)
+        {
+            gameManager.ModifyStatPoint(-1);
+            gameManager.ModifyStat(index, 0.5f);
+            currentStatPointLVText.text = "UPGRADE POINTS LEFT: " + gameManager.SelectedCharacterLevelup.StatToUpgrade.ToString();
+            switch (index)
+            {
+                case 0:
 
+                    currentShoot1Text.text = gameManager.SelectedCharacter1.ShootStat.ToString();
+                    currentShoot2Text.text = gameManager.SelectedCharacter2.ShootStat.ToString();
+                    currentShootText.text = gameManager.SelectedCharacterLevelup.ShootStat.ToString();
+                    break;
+                case 1:
+                    currentSpeed1Text.text = gameManager.SelectedCharacter1.SpeedStat.ToString();
+                    currentSpeed2Text.text = gameManager.SelectedCharacter2.SpeedStat.ToString();
+                    currentSpeedText.text = gameManager.SelectedCharacterLevelup.SpeedStat.ToString();
+                    break;
+                case 2:
+                    currentJump1Text.text = gameManager.SelectedCharacter1.JumpStat.ToString();
+                    currentJump2Text.text = gameManager.SelectedCharacter2.JumpStat.ToString();
+                    currentJumpText.text = gameManager.SelectedCharacterLevelup.JumpStat.ToString();
+                    break;
+                case 3:
+                    currentCDSkillLV1Text.text = gameManager.SelectedCharacter1.CoolDownTime.ToString();
+                    currentCDSkillLV2Text.text = gameManager.SelectedCharacter2.CoolDownTime.ToString();
+                    currentCDSkillLVText.text = gameManager.SelectedCharacterLevelup.CoolDownTime.ToString();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }
+
+    public void DowngradeStat(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                if (gameManager.SelectedCharacterLevelup.ShootStat > gameManager.SelectedCharacterLevelup.ShootInit)
+                {
+                    gameManager.ModifyStatPoint(1);
+                    gameManager.ModifyStat(index, -0.5f);
+                    currentStatPointLVText.text = "UPGRADE POINTS LEFT: " + gameManager.SelectedCharacterLevelup.StatToUpgrade.ToString();
+                    currentShoot1Text.text = gameManager.SelectedCharacter1.ShootStat.ToString();
+                    currentShoot2Text.text = gameManager.SelectedCharacter2.ShootStat.ToString();
+                    currentShootText.text = gameManager.SelectedCharacterLevelup.ShootStat.ToString();
+                }
+                break;
+            case 1:
+                if (gameManager.SelectedCharacterLevelup.SpeedStat > gameManager.SelectedCharacterLevelup.SpeedInit)
+                {
+                    gameManager.ModifyStatPoint(1);
+                    gameManager.ModifyStat(index, -0.5f);
+                    currentStatPointLVText.text = "UPGRADE POINTS LEFT: " + gameManager.SelectedCharacterLevelup.StatToUpgrade.ToString();
+                    currentSpeed1Text.text = gameManager.SelectedCharacter1.SpeedStat.ToString();
+                    currentSpeed2Text.text = gameManager.SelectedCharacter2.SpeedStat.ToString();
+                    currentSpeedText.text = gameManager.SelectedCharacterLevelup.SpeedStat.ToString();
+                }
+                break;
+            case 2:
+                if (gameManager.SelectedCharacterLevelup.JumpStat > gameManager.SelectedCharacterLevelup.JumpInit)
+                {
+                    gameManager.ModifyStatPoint(1);
+                    gameManager.ModifyStat(index, -0.5f);
+                    currentStatPointLVText.text = "UPGRADE POINTS LEFT: " + gameManager.SelectedCharacterLevelup.StatToUpgrade.ToString();
+                    currentJump1Text.text = gameManager.SelectedCharacter1.JumpStat.ToString();
+                    currentJump2Text.text = gameManager.SelectedCharacter2.JumpStat.ToString();
+                    currentJumpText.text = gameManager.SelectedCharacterLevelup.JumpStat.ToString();
+                }
+                break;
+            case 3:
+                if (gameManager.SelectedCharacterLevelup.CoolDownTime < gameManager.SelectedCharacterLevelup.CoolDownTimeInit)
+                {
+                    gameManager.ModifyStatPoint(1);
+                    gameManager.ModifyStat(index, -0.5f);
+                    currentStatPointLVText.text = "UPGRADE POINTS LEFT: " + gameManager.SelectedCharacterLevelup.StatToUpgrade.ToString();
+                    currentCDSkillLV1Text.text = gameManager.SelectedCharacter1.CoolDownTime.ToString();
+                    currentCDSkillLV2Text.text = gameManager.SelectedCharacter2.CoolDownTime.ToString();
+                    currentCDSkillLVText.text = gameManager.SelectedCharacterLevelup.CoolDownTime.ToString();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    public void ManageStatPoint()
+    {
+        if (gameManager.SelectedCharacterLevelup.ShootStat != gameManager.SelectedCharacterLevelup.ShootInit)
+        {
+            currentShootText.color = Color.red;
+        }
+        else
+        {
+            currentShootText.color = Color.black;
+        }
+
+        if (gameManager.SelectedCharacterLevelup.SpeedStat != gameManager.SelectedCharacterLevelup.SpeedInit)
+        {
+            currentSpeedText.color = Color.red;
+        }
+        else
+        {
+            currentSpeedText.color = Color.black;
+        }
+
+        if (gameManager.SelectedCharacterLevelup.JumpStat != gameManager.SelectedCharacterLevelup.JumpInit)
+        {
+            currentJumpText.color = Color.red;
+        }
+        else
+        {
+            currentJumpText.color = Color.black;
+        }
+
+        if (gameManager.SelectedCharacterLevelup.CoolDownTime != gameManager.SelectedCharacterLevelup.CoolDownTimeInit)
+        {
+            currentCDSkillLVText.color = Color.red;
+        }
+        else
+        {
+            currentCDSkillLVText.color = Color.black;
+        }
+    }
     public void ChangeLevel(int level)
     {
         switch (level)
