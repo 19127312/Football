@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         Normal,
         Frozen,
         Rain,
+        Fire,
     }
 
     public enum GameBallSkin
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         Normal,
         FireSkin,
         ForstSkin,
+        RainSkin,
     }
 
     public static GameManager instance;
