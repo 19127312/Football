@@ -569,6 +569,7 @@ MonoBehaviour:
   goalLeft: {fileID: 0}
   goalRight: {fileID: 0}
   timeMatchText: {fileID: 0}
+  saveText: {fileID: 0}
   goalLeftCount: 0
   goalRightCount: 0
   timeMatch: 10

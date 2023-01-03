@@ -297,7 +297,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 511531194054233153}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 20163d65a5bc5a8439e8e3ea7570c167, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -637,7 +637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &511531194474331311
 Transform:
   m_ObjectHideFlags: 0
@@ -748,6 +748,7 @@ MonoBehaviour:
   bubbleGumEffect: {fileID: 7932574890791080220}
   blackLightningEffect: {fileID: 4911832264963598012}
   brokenLegEffect: {fileID: 4128408528253300477}
+  isFreezed: 0
 --- !u!1 &511531194495850146
 GameObject:
   m_ObjectHideFlags: 0

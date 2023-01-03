@@ -61,8 +61,6 @@ public class GameManager : MonoBehaviour
     public GameMap currentGameMap = GameMap.Normal;
     public GameBallSkin currentGameBallSkin = GameBallSkin.FireSkin;
 
-    private TMP_Text text;
-
     private void Awake()
     {
         ManageSingleton();
@@ -324,7 +322,7 @@ public class GameManager : MonoBehaviour
         shirt.IsOwn = true;
     }
 
-    public void SaveGame()
+    public void SaveGame(TMP_Text text)
     {
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
         FileStream file = File.Create(path);
@@ -332,14 +330,18 @@ public class GameManager : MonoBehaviour
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(file, gameData);
         file.Close();
-        text.enabled = true;
-        StartCoroutine(WaitSaveGame());
+        if (text)
+        {
+            text.enabled = true;
+            StartCoroutine(WaitSaveGame(text));
+        }
     }
 
-    IEnumerator WaitSaveGame()
+    IEnumerator WaitSaveGame(TMP_Text text)
     {
         yield return new WaitForSeconds(2);
-        text.enabled = false;
+        if (text)
+            text.enabled = false;
     }
 
     public void LoadGame()

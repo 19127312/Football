@@ -225,6 +225,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+--- !u!1 &89230083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1044658906, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 89230082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &89230084 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 351673499, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 89230082}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &195439921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -293,9 +309,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1189315569}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
+      propertyPath: saveText
+      value: 
+      objectReference: {fileID: 89230084}
+    - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: goalRight
       value: 
       objectReference: {fileID: 1296409917}
+    - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
+      propertyPath: pausePanel
+      value: 
+      objectReference: {fileID: 89230083}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatchText
       value: 
