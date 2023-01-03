@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     int levelLeftPlayer, levelRightPlayer;
     int currentExpLeftPlayer, currentExpRightPlayer;
     Image TimeMatchImage;
+    private LevelLoader levelLoader;
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        levelLoader = FindObjectOfType<LevelLoader>();
         ball = GameObject.FindGameObjectWithTag("Ball");
         LPlayer = GameObject.FindGameObjectWithTag("LeftPlayer");
         audioPlayer = FindObjectOfType<AudioPlayerController>();
@@ -196,7 +198,6 @@ public class GameController : MonoBehaviour
             Button btnSave = expPanel.transform.Find("SaveButton").GetComponent<Button>();
             Button btnHome = expPanel.transform.Find("HomeButton").GetComponent<Button>();
             saveText.enabled = false;
-            btnHome.onClick.AddListener(goToHomeScene);
             btnRestart.onClick.AddListener(restartGame);
             btnSave.onClick.AddListener(SaveGame);
         }
@@ -216,7 +217,6 @@ public class GameController : MonoBehaviour
             Button btnSetting = pausePanel.transform.Find("SettingButton").GetComponent<Button>();
             Button btnHome = pausePanel.transform.Find("HomeButton").GetComponent<Button>();
             Button btnContinue = pausePanel.transform.Find("ContinueButton").GetComponent<Button>();
-            btnHome.onClick.AddListener(goToHomeScene);
             btnContinue.onClick.AddListener(ContinueGameAfterpause);
         }
     }
@@ -263,12 +263,15 @@ public class GameController : MonoBehaviour
             timeMatchText.enabled = false;
         }
     }
-    void goToHomeScene()
-    {
-        //SaveGame();
-        SceneManager.LoadScene("ChooseCharacterScene");
-        Debug.Log("Go to home scene");
-    }
+    // public void goToHomeScene()
+    // {
+    //     //SaveGame();
+    //     StopAllCoroutines();
+    //     levelLoader.LoadScene("ChooseCharacterScene");
+
+    //     // SceneManager.LoadScene("ChooseCharacterScene");
+    //     Debug.Log("Go to home scene");
+    // }
     void showResult(TMP_Text result, TMP_Text Lscore, TMP_Text Rscore, Image iconWinner)
     {
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

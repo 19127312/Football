@@ -87,6 +87,7 @@ public class UIManager : MonoBehaviour
     public Sprite map4;
     public Button loadButton;
     private bool isSave = false;
+    private LevelLoader levelLoader;
 
     // Start is called before the first frame update
     void Start()
@@ -112,6 +113,7 @@ public class UIManager : MonoBehaviour
         updateCurrentShirt(gameManager.GetSelectedShirt(2), 2);
         updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup);
         ManageStatPoint();
+        levelLoader = FindObjectOfType<LevelLoader>();
     }
 
     void Update()
@@ -823,26 +825,26 @@ public class UIManager : MonoBehaviour
         switch (GameManager.instance.currentLevelPlayed)
         {
             case 0:
-                SceneManager.LoadScene("LevelScene" + UnityEngine.Random.Range(1, 6).ToString());
+                levelLoader.LoadScene("LevelScene" + UnityEngine.Random.Range(1, 6).ToString());
                 break;
             case 1:
-                SceneManager.LoadScene("LevelScene1");
+                levelLoader.LoadScene("LevelScene1");
 
                 break;
             case 2:
-                SceneManager.LoadScene("LevelScene2");
+                levelLoader.LoadScene("LevelScene2");
 
                 break;
             case 3:
-                SceneManager.LoadScene("LevelScene3");
+                levelLoader.LoadScene("LevelScene3");
 
                 break;
             case 4:
-                SceneManager.LoadScene("LevelScene4");
+                levelLoader.LoadScene("LevelScene4");
 
                 break;
             case 5:
-                SceneManager.LoadScene("LevelScene5");
+                levelLoader.LoadScene("LevelScene5");
                 break;
             default:
                 break;
