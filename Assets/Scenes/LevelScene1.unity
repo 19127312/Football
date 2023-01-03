@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 477210217950612832, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 477210217950612833, guid: 9234706f8dc397e4a8f3b323d6766815, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -602,8 +606,12 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 1438562973}
+    - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: currentGameMap
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: currentGameMode
@@ -611,11 +619,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: currentGameRule
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141610, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: currentGameBallSkin
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5932412920865141611, guid: 5587a41472947a447b4edfefa38837ef, type: 3}
       propertyPath: m_RootOrder
@@ -699,6 +707,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1373140157, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
   m_PrefabInstance: {fileID: 892073650}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1438562973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 351673499, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 892073650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1625253656 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7730216873407898535, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}

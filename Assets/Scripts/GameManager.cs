@@ -31,14 +31,6 @@ public class GameManager : MonoBehaviour
         Fire,
     }
 
-    public enum GameBallSkin
-    {
-        Normal,
-        FireSkin,
-        ForstSkin,
-        RainSkin,
-    }
-
     public static GameManager instance;
     public List<Character> charactersInGame = new List<Character>();
     public List<Shirt> shirtInGame = new List<Shirt>();
@@ -50,16 +42,30 @@ public class GameManager : MonoBehaviour
     private Character selectedCharacter2;
     private Character selectedCharacterLevelup;
     public int currentLevelPlayed = 0;
-    public Character SelectedCharacter1 { get => selectedCharacter1; }
-    public Character SelectedCharacter2 { get => selectedCharacter2; }
-    public Character SelectedCharacterLevelup { get => selectedCharacterLevelup; }
-    public Shirt SelectedShirt1 { get => selectedShirt1; }
-    public Shirt SelectedShirt2 { get => selectedShirt2; }
+    public Character SelectedCharacter1
+    {
+        get => selectedCharacter1;
+    }
+    public Character SelectedCharacter2
+    {
+        get => selectedCharacter2;
+    }
+    public Character SelectedCharacterLevelup
+    {
+        get => selectedCharacterLevelup;
+    }
+    public Shirt SelectedShirt1
+    {
+        get => selectedShirt1;
+    }
+    public Shirt SelectedShirt2
+    {
+        get => selectedShirt2;
+    }
     private int currentMoney = 1000;
     public GameMode currentGameMode = GameMode.OneVsOne;
     public GameRule currentGameRule = GameRule.Score7;
     public GameMap currentGameMap = GameMap.Normal;
-    public GameBallSkin currentGameBallSkin = GameBallSkin.FireSkin;
 
     private TMP_Text text;
 
@@ -388,6 +394,7 @@ public class GameManager : MonoBehaviour
     {
         selectedCharacterLevelup.StatToUpgrade += amount;
     }
+
     public void ModifyStat(int index, float amount)
     {
         switch (index)
@@ -408,5 +415,4 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
 }
