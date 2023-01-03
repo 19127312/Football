@@ -15,18 +15,28 @@ public class BackGround : MonoBehaviour
             backGround.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             backGround.gameObject.transform.GetChild(1).gameObject.SetActive(false);
             backGround.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            backGround.gameObject.transform.GetChild(3).gameObject.SetActive(false);
         }
         else if (GameManager.instance.currentGameMap == GameManager.GameMap.Frozen)
         {
             backGround.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             backGround.gameObject.transform.GetChild(1).gameObject.SetActive(true);
             backGround.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            backGround.gameObject.transform.GetChild(3).gameObject.SetActive(false);
         }
-        else
+        else if (GameManager.instance.currentGameMap == GameManager.GameMap.Rain)
         {
             backGround.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             backGround.gameObject.transform.GetChild(1).gameObject.SetActive(false);
             backGround.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+            backGround.gameObject.transform.GetChild(3).gameObject.SetActive(false);
+        }
+        else if (GameManager.instance.currentGameMap == GameManager.GameMap.Fire)
+        {
+            backGround.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            backGround.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            backGround.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            backGround.gameObject.transform.GetChild(3).gameObject.SetActive(true);
         }
     }
 
