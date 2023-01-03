@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public GameMode currentGameMode = GameMode.OneVsOne;
     public GameRule currentGameRule = GameRule.Score7;
     public GameMap currentGameMap = GameMap.Normal;
+    public LevelLoader levelLoader;
 
     private void Awake()
     {
