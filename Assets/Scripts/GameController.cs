@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    public TMP_Text goalLeft, goalRight, timeMatchText;
+    public TMP_Text goalLeft, goalRight, timeMatchText, saveText;
     public int goalLeftCount = 0, goalRightCount = 0, timeMatch = 30;
     public bool isScored = false, endMatch = false, isShowPanel = false, isAdd = true, isPaused = false;
     GameObject ball, AI, LPlayer, RPlayer;
@@ -195,14 +195,16 @@ public class GameController : MonoBehaviour
             Button btnRestart = expPanel.transform.Find("RestartButton").GetComponent<Button>();
             Button btnSave = expPanel.transform.Find("SaveButton").GetComponent<Button>();
             Button btnHome = expPanel.transform.Find("HomeButton").GetComponent<Button>();
-            TMP_Text SaveText = expPanel.transform.Find("Saving").GetComponent<TMP_Text>();
-            SaveText.enabled = false;
+            saveText.enabled = false;
             btnHome.onClick.AddListener(goToHomeScene);
             btnRestart.onClick.AddListener(restartGame);
-            btnSave.onClick.AddListener(GameManager.instance.SaveGame);
+            btnSave.onClick.AddListener(SaveGame);
         }
     }
-
+    public void SaveGame()
+    {
+        GameManager.instance.SaveGame(saveText);
+    }
     public void showPausePanel()
     {
         if (isPaused)
@@ -263,8 +265,9 @@ public class GameController : MonoBehaviour
     }
     void goToHomeScene()
     {
-        gameManager.SaveGame();
+        //SaveGame();
         SceneManager.LoadScene("ChooseCharacterScene");
+        Debug.Log("Go to home scene");
     }
     void showResult(TMP_Text result, TMP_Text Lscore, TMP_Text Rscore, Image iconWinner)
     {
