@@ -37,10 +37,10 @@ public class InjuryItem : Item
             {
                 aiScript = AI.GetComponent<AIController>();
                 aiScript.brokenLegEffect.SetActive(true);
-                aiScript.isFreezed = true;
+                aiScript.isLegBroken = true;
                 yield return new WaitForSeconds(workingTime);
                 aiScript.brokenLegEffect.SetActive(false);
-                aiScript.isFreezed = false;
+                aiScript.isLegBroken = false;
             }
             else
             {

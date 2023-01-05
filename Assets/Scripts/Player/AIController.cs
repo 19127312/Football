@@ -26,6 +26,8 @@ public class AIController : MonoBehaviour
     public GameObject blackLightningEffect;
     public GameObject brokenLegEffect;
     public bool isFreezed = false;
+    public bool isLegBroken = false;
+    public bool isJumpDisabled = false;
 
     GameObject player;
 
@@ -59,11 +61,24 @@ public class AIController : MonoBehaviour
 
         Vector2 move = new Vector2(horizontal, vertical);
         anim.SetFloat("Speed", move.magnitude);
-        if (!GameController.instance.endMatch && !GameController.instance.isScored && !GameController.instance.isPaused)
+        if (
+            !GameController.instance.endMatch
+            && !GameController.instance.isScored
+            && !GameController.instance.isPaused
+        )
         {
-            Move();
-            Shoot();
-            Jump();
+            if (!isFreezed)
+            {
+                Move();
+                if (!isLegBroken)
+                {
+                    Shoot();
+                }
+                if (!isJumpDisabled)
+                {
+                    Jump();
+                }
+            }
         }
     }
 
@@ -85,7 +100,14 @@ public class AIController : MonoBehaviour
                 && ball.transform.position.y < -0.5f
             )
             {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                if (isJumpDisabled)
+                {
+                    rb.velocity = new Vector2(-speed, 0);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-speed, rb.velocity.y);
+                }
             }
             else
             {
@@ -94,17 +116,38 @@ public class AIController : MonoBehaviour
                     && ball.transform.position.y < -0.5f
                 )
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    if (isJumpDisabled)
+                    {
+                        rb.velocity = new Vector2(0, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
                 }
                 else if (
                     ball.transform.position.y >= -0.5f && defence.position.x <= transform.position.x
                 )
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    if (isJumpDisabled)
+                    {
+                        rb.velocity = new Vector2(0, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
                 }
                 else
                 {
-                    rb.velocity = new Vector2(-speed, rb.velocity.y);
+                    if (isJumpDisabled)
+                    {
+                        rb.velocity = new Vector2(-speed, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(-speed, rb.velocity.y);
+                    }
                 }
             }
         }
@@ -112,18 +155,39 @@ public class AIController : MonoBehaviour
         {
             if (transform.position.x > defence.position.x)
             {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                if (isJumpDisabled)
+                {
+                    rb.velocity = new Vector2(-speed, 0);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-speed, rb.velocity.y);
+                }
             }
             else if (transform.position.x <= ball.transform.position.x)
             {
                 if (isGrounded)
                 {
-                    rb.velocity = new Vector2(speed, 7);
+                    if (isJumpDisabled)
+                    {
+                        rb.velocity = new Vector2(speed, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(speed, 7);
+                    }
                 }
             }
             else
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                if (isJumpDisabled)
+                {
+                    rb.velocity = new Vector2(0, 0);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
             }
         }
     }

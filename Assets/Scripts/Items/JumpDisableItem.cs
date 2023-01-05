@@ -40,8 +40,10 @@ public class JumpDisableItem : Item
                 float initjumpForce = aiScript.jumpForce;
                 aiScript.bubbleGumEffect.SetActive(true);
                 aiScript.jumpForce = 0f;
+                aiScript.isJumpDisabled = true;
                 yield return new WaitForSeconds(workingTime);
                 aiScript.jumpForce = initjumpForce;
+                aiScript.isJumpDisabled = false;
                 aiScript.bubbleGumEffect.SetActive(false);
             }
             else

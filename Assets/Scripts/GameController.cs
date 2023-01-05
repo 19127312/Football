@@ -270,15 +270,7 @@ public class GameController : MonoBehaviour
             timeMatchText.enabled = false;
         }
     }
-    // public void goToHomeScene()
-    // {
-    //     //SaveGame();
-    //     StopAllCoroutines();
-    //     levelLoader.LoadScene("ChooseCharacterScene");
 
-    //     // SceneManager.LoadScene("ChooseCharacterScene");
-    //     Debug.Log("Go to home scene");
-    // }
     void showResult(TMP_Text result, TMP_Text Lscore, TMP_Text Rscore, Image iconWinner)
     {
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
