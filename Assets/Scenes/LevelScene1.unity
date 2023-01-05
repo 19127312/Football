@@ -506,6 +506,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &892073653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1141228770, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 892073650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &901335965 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7730216873435850145, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
@@ -999,6 +1004,10 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 892073651}
+    - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
+      propertyPath: warningPanel
+      value: 
+      objectReference: {fileID: 892073653}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: timeMatchText
       value: 

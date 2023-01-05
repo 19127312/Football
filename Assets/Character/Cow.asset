@@ -16,7 +16,7 @@ MonoBehaviour:
   image: {fileID: -887815127, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   goldToBuy: 50
   level: 1
-  exp: 80
+  exp: 0
   maxStat: 0
   statToUpgrade: 0
   speedStat: 5
@@ -25,7 +25,7 @@ MonoBehaviour:
   shootStatInit: 300.5
   jumpStat: 10
   jumpStatInit: 10
-  isOwn: 1
+  isOwn: 0
   skillPrefab: {fileID: 4774845365160988938, guid: cd4ae3c8d25b3b746b68874fedb68ef7, type: 3}
   coolDownTime: 14
   coolDownTimeInit: 14
