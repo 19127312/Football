@@ -15,10 +15,10 @@ MonoBehaviour:
   namePlayer: Fox
   image: {fileID: -1541138330, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   goldToBuy: 100
-  level: 3
-  exp: 160.00002
+  level: 1
+  exp: 0
   maxStat: 0
-  statToUpgrade: 2
+  statToUpgrade: 0
   speedStat: 6
   speedStatInit: 6
   shootStat: 291

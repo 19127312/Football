@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     {
         get => selectedShirt2;
     }
-    private int currentMoney = 1000;
+    private int currentMoney = 0;
     public GameMode currentGameMode = GameMode.OneVsOne;
     public GameRule currentGameRule = GameRule.Score7;
     public GameMap currentGameMap = GameMap.Normal;
@@ -394,6 +394,8 @@ public class GameManager : MonoBehaviour
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
         if (File.Exists(path))
         {
+
+            Debug.Log(path);
             FileStream file = File.Open(path, FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             GameData gameData = (GameData)bf.Deserialize(file);
