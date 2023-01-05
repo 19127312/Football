@@ -583,3 +583,4 @@ MonoBehaviour:
   panel: {fileID: 0}
   expPanel: {fileID: 0}
   pausePanel: {fileID: 0}
+  warningPanel: {fileID: 0}

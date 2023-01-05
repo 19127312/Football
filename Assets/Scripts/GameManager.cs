@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
     public GameMap currentGameMap = GameMap.Normal;
     public LevelLoader levelLoader;
 
+    private GameObject warningPanel;
+    private TMP_Text saveText;
     private void Awake()
     {
         ManageSingleton();
@@ -329,19 +331,55 @@ public class GameManager : MonoBehaviour
         shirt.IsOwn = true;
     }
 
-    public void SaveGame(TMP_Text text)
+    public void SaveGame(TMP_Text text, GameObject panel)
     {
+        string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
+        if (File.Exists(path))
+        {
+            panel.SetActive(true);
+            warningPanel = panel;
+            if (text)
+            {
+                saveText = text;
+            }
+        }
+        else
+        {
+            FileStream file = File.Create(path);
+            GameData gameData = new GameData(charactersInGame, shirtInGame, currentMoney);
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(file, gameData);
+            file.Close();
+            if (text)
+            {
+                text.enabled = true;
+                StartCoroutine(WaitSaveGame(text));
+            }
+        }
+
+    }
+
+    public void ChooseYesSaveGame()
+    {
+        Debug.Log("Yes");
+        warningPanel.SetActive(false);
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
         FileStream file = File.Create(path);
         GameData gameData = new GameData(charactersInGame, shirtInGame, currentMoney);
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(file, gameData);
         file.Close();
-        if (text)
+        if (saveText)
         {
-            text.enabled = true;
-            StartCoroutine(WaitSaveGame(text));
+            saveText.enabled = true;
+            StartCoroutine(WaitSaveGame(saveText));
         }
+    }
+
+    public void ChooseNoSaveGame()
+    {
+        Debug.Log("No");
+        warningPanel.SetActive(false);
     }
 
     IEnumerator WaitSaveGame(TMP_Text text)
