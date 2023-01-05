@@ -25,11 +25,14 @@ public class InvicibleItem : Item
         Ball.GetComponent<SpriteRenderer>().sprite = InvicibleSprite;
         bool activeFire = Ball.gameObject.transform.GetChild(0).gameObject.activeSelf;
         bool activeFrost = Ball.gameObject.transform.GetChild(1).gameObject.activeSelf;
+        bool waterFrost = Ball.gameObject.transform.GetChild(2).gameObject.activeSelf;
         Ball.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         Ball.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        Ball.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         yield return new WaitForSeconds(workingTime);
         Ball.GetComponent<SpriteRenderer>().sprite = initSprite;
         Ball.gameObject.transform.GetChild(0).gameObject.SetActive(activeFire);
         Ball.gameObject.transform.GetChild(1).gameObject.SetActive(activeFrost);
+        Ball.gameObject.transform.GetChild(2).gameObject.SetActive(waterFrost);
     }
 }

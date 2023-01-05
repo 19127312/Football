@@ -949,7 +949,7 @@ MonoBehaviour:
   shirt: {fileID: 2556844780306129755}
   skill: {fileID: 0}
   positionSkill: {fileID: 2556844780294968277}
-  coolDownTime: 15
+  coolDownTime: 10
 --- !u!114 &1491413331
 MonoBehaviour:
   m_ObjectHideFlags: 0
