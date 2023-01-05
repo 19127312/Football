@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
             GameObject skillObject;
             GameObject spellUIObject;
             if (isLeftPlayer)
-            {   
+            {
                 skillObject = GameObject.FindGameObjectWithTag("Skill1");
                 spellUIObject = GameObject.FindGameObjectWithTag("LeftSpell");
             }

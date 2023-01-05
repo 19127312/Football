@@ -56,9 +56,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 295bed37fc1914a48aae3ca6231e14e9, type: 2}
   - {fileID: 11400000, guid: 1b67a9ad633663548aaef955df45d0e3, type: 2}
   currentLevelPlayed: 0
-  currentGameMode: 0
-  currentGameRule: 1
-  currentGameMap: 0
+  currentGameMode: 1
+  currentGameRule: 3
+  currentGameMap: 2
   levelLoader: {fileID: 2696619830891867732}
 --- !u!114 &2696619830891867732
 MonoBehaviour:
