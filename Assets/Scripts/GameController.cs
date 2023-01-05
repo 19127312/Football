@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     GameObject ball, AI, LPlayer, RPlayer;
     public bool Pve;
     public AudioPlayerController audioPlayer;
-    public GameObject panel, expPanel, pausePanel;
+    public GameObject panel, expPanel, pausePanel, warningPanel;
     int restartTime;
     private GameManager gameManager;
     private Character leftPlayer, rightPlayer;
@@ -204,7 +204,7 @@ public class GameController : MonoBehaviour
     }
     public void SaveGame()
     {
-        GameManager.instance.SaveGame(saveText);
+        GameManager.instance.SaveGame(saveText, warningPanel);
     }
     public void showPausePanel()
     {
@@ -214,7 +214,6 @@ public class GameController : MonoBehaviour
             isShowPanel = true;
             ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             ball.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            Button btnSetting = pausePanel.transform.Find("SettingButton").GetComponent<Button>();
             Button btnHome = pausePanel.transform.Find("HomeButton").GetComponent<Button>();
             Button btnContinue = pausePanel.transform.Find("ContinueButton").GetComponent<Button>();
             btnContinue.onClick.AddListener(ContinueGameAfterpause);
@@ -227,6 +226,14 @@ public class GameController : MonoBehaviour
         isPaused = false;
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         ball.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+    }
+    public void chooseYesWarningMenu()
+    {
+        GameManager.instance.ChooseYesSaveGame();
+    }
+    public void chooseNoWarningMenu()
+    {
+        GameManager.instance.ChooseNoSaveGame();
     }
     void restartGame()
     {

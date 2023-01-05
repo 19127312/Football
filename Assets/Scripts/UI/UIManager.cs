@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
     public GameObject chooseLevelMenu;
     public GameObject mainMenu;
     public GameObject settingMenu;
+    public GameObject warningMenu;
 
     private AudioPlayerController audioPlayerController;
     private GameManager gameManager;
@@ -179,15 +180,37 @@ public class UIManager : MonoBehaviour
 
     public void NewGame()
     {
-        if (isSave) { }
+        if (isSave)
+        {
+            audioPlayerController.playButtonClickClip();
+            warningMenu.SetActive(true);
+        }
+        else
+        {
+            audioPlayerController.playButtonClickClip();
+            selecteModeMenu.SetActive(true);
+            OneVsOneMenu.SetActive(false);
+            OneVsAIMenu.SetActive(false);
+            levelUpMenu.SetActive(false);
+            mainMenu.SetActive(false);
+        }
+
+    }
+
+    public void chooseYesWarningMenu()
+    {
         audioPlayerController.playButtonClickClip();
+        warningMenu.SetActive(false);
         selecteModeMenu.SetActive(true);
         OneVsOneMenu.SetActive(false);
         OneVsAIMenu.SetActive(false);
         levelUpMenu.SetActive(false);
         mainMenu.SetActive(false);
     }
-
+    public void chooseNoWarningMenu()
+    {
+        warningMenu.SetActive(false);
+    }
     public void LoadGame()
     {
         gameManager.LoadGame();
