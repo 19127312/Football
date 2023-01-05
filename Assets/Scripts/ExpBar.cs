@@ -74,6 +74,9 @@ public class ExpBar : MonoBehaviour
 
     void changeStat(Character character)
     {
-        character.StatToUpgrade += 1;
+        if (character.Level < 11)
+        {
+            character.StatToUpgrade += 1;
+        }
     }
 }
