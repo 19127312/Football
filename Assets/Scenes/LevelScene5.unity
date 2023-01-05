@@ -157,6 +157,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: chooseNoWarningMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 1141228770, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923033338, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7730216873325401611, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
