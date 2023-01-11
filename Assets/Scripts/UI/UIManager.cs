@@ -187,6 +187,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            gameManager.ResetSaveFile();
             audioPlayerController.playButtonClickClip();
             selecteModeMenu.SetActive(true);
             OneVsOneMenu.SetActive(false);
