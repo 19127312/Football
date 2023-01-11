@@ -185,6 +185,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3480955690096363436, guid: c7318849b7b84664dafeb0cc84b1749e, type: 3}
   m_PrefabInstance: {fileID: 197800216}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &317876274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 317876274, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
+  m_PrefabInstance: {fileID: 892073650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &504335696 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7730216872896944395, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
@@ -388,18 +399,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2229600526641635439}
-    - target: {fileID: 108038474, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: chooseYesWarningMenu
-      objectReference: {fileID: 0}
     - target: {fileID: 776129670, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2229600526641635439}
-    - target: {fileID: 776129670, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: chooseNoWarningMenu
-      objectReference: {fileID: 0}
     - target: {fileID: 7730216873325401611, guid: 9f701b4d19b365c468bbdb82fa019b6d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -989,6 +992,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1923033338}
     - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
+      propertyPath: gameMode
+      value: 
+      objectReference: {fileID: 317876274}
+    - target: {fileID: 2229600527790636285, guid: ac9118dbb1677b94eb3e38811fb1cfde, type: 3}
       propertyPath: goalLeft
       value: 
       objectReference: {fileID: 1625253656}
@@ -1089,6 +1096,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 389550983, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250877508, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186641179512541191, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5351270423126043789, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6076590802544278634, guid: 09243e37d312dac4d84c74cf0c24125b, type: 3}
       propertyPath: m_RootOrder
       value: 2
