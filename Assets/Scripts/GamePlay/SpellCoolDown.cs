@@ -38,7 +38,7 @@ public class SpellCoolDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isCoolDown)
+        if (isCoolDown && !GameController.instance.isPaused)
         {
             ApplyCoolDown();
         }

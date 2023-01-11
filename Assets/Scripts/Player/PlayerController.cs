@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isSkillReady)
+        if (!isSkillReady && !GameController.instance.isPaused)
         {
             coolDownTimer -= Time.deltaTime;
             if (coolDownTimer < 0)

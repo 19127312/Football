@@ -488,7 +488,7 @@ public class GameManager : MonoBehaviour
                 y.IsOwn = false;
             }
         });
-        currentMoney = 0;
+        currentMoney = 500;
     }
 
     public void ModifyStatPoint(int amount)
