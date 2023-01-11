@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject warningPanel;
     private TMP_Text saveText;
+
     private void Awake()
     {
         ManageSingleton();
@@ -356,7 +357,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(WaitSaveGame(text));
             }
         }
-
     }
 
     public void ChooseYesSaveGame()
@@ -394,7 +394,6 @@ public class GameManager : MonoBehaviour
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
         if (File.Exists(path))
         {
-
             Debug.Log(path);
             FileStream file = File.Open(path, FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
@@ -431,6 +430,65 @@ public class GameManager : MonoBehaviour
             });
             currentMoney = gameData.currentMoney;
         }
+    }
+
+    public void ResetSaveFile()
+    {
+        charactersInGame.ForEach(y =>
+        {
+            if (y.Name == "Fox")
+            {
+                y.Level = 1;
+                y.CurrentExp = 0;
+                y.StatToUpgrade = 0;
+                y.SpeedStat = 6;
+                y.ShootStat = 291;
+                y.JumpStat = 8.5f;
+                y.IsOwn = true;
+            }
+            if (y.Name == "Cow")
+            {
+                y.Level = 1;
+                y.CurrentExp = 0;
+                y.StatToUpgrade = 0;
+                y.SpeedStat = 5;
+                y.ShootStat = 300.5f;
+                y.JumpStat = 10;
+                y.IsOwn = false;
+            }
+            if (y.Name == "Lion")
+            {
+                y.Level = 1;
+                y.CurrentExp = 0;
+                y.StatToUpgrade = 0;
+                y.SpeedStat = 7;
+                y.ShootStat = 250;
+                y.JumpStat = 5;
+                y.IsOwn = false;
+            }
+            if (y.Name == "Zebra")
+            {
+                y.Level = 1;
+                y.CurrentExp = 0;
+                y.StatToUpgrade = 0;
+                y.SpeedStat = 6;
+                y.ShootStat = 350;
+                y.JumpStat = 7;
+                y.IsOwn = false;
+            }
+        });
+        shirtInGame.ForEach(y =>
+        {
+            if (y.Name == "Shirt 1")
+            {
+                y.IsOwn = true;
+            }
+            else
+            {
+                y.IsOwn = false;
+            }
+        });
+        currentMoney = 0;
     }
 
     public void ModifyStatPoint(int amount)

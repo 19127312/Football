@@ -15,4 +15,4 @@ MonoBehaviour:
   image: {fileID: -800020139, guid: 962b14f3c75439642a2b1485a8947c0e, type: 3}
   isOwn: 0
   goldToBuy: 15
-  name: shirt3
+  shirtName: Shirt 3
