@@ -194,11 +194,11 @@ public class UIManager : MonoBehaviour
             levelUpMenu.SetActive(false);
             mainMenu.SetActive(false);
         }
-
     }
 
     public void chooseYesWarningMenu()
     {
+        gameManager.ResetSaveFile();
         audioPlayerController.playButtonClickClip();
         warningMenu.SetActive(false);
         selecteModeMenu.SetActive(true);
@@ -207,10 +207,12 @@ public class UIManager : MonoBehaviour
         levelUpMenu.SetActive(false);
         mainMenu.SetActive(false);
     }
+
     public void chooseNoWarningMenu()
     {
         warningMenu.SetActive(false);
     }
+
     public void LoadGame()
     {
         gameManager.LoadGame();
