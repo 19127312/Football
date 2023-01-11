@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
     Image TimeMatchImage;
     private LevelLoader levelLoader;
 
+    public TMP_Text gameMode;
+
     void Awake()
     {
         if (instance == null)
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour
         ball = GameObject.FindGameObjectWithTag("Ball");
         LPlayer = GameObject.FindGameObjectWithTag("LeftPlayer");
         audioPlayer = FindObjectOfType<AudioPlayerController>();
+        String gameModeText = "";
 
         gameManager = FindObjectOfType<GameManager>();
         leftPlayer = gameManager.GetSelectedCharacter(1);
@@ -63,27 +66,38 @@ public class GameController : MonoBehaviour
         if (gameManager.currentGameRule == GameManager.GameRule.Time30)
         {
             timeMatch = 30;
+            gameModeText = "Game Mode: 30s";
             StartCoroutine(CountDown());
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Time60)
         {
             timeMatch = 60;
+            gameModeText = "Game Mode: 60s";
             StartCoroutine(CountDown());
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Score7)
         {
             TimeMatchImage.enabled = false;
             timeMatchText.enabled = false;
+            gameModeText = "Game Mode: Score 7";
 
         }
         else if (gameManager.currentGameRule == GameManager.GameRule.Score9)
         {
             TimeMatchImage.enabled = false;
             timeMatchText.enabled = false;
+            gameModeText = "Game Mode: Score 7";
         }
         restartTime = timeMatch;
+        gameMode.enabled = true;
+        gameMode.text = gameModeText;
+        StartCoroutine(ShowGameMode());
     }
 
+    IEnumerator ShowGameMode(){
+        yield return new WaitForSeconds(3);
+        gameMode.enabled = false;
+    }
     // Update is called once per frame
     void Update()
     {
