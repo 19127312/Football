@@ -11,7 +11,6 @@ public class ExchangeSkill : Skills
         //TODO: Implement skill
 
         StartCoroutine(Exchange());
-        Debug.Log("ExchangeSkill skill used");
     }
 
     IEnumerator Exchange()

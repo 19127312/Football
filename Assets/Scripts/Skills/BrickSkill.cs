@@ -11,7 +11,6 @@ public class BrickSkill : Skills
         //TODO: Implement skill
 
         StartCoroutine(DefenceSkill());
-        Debug.Log("Brick skill used");
     }
 
     IEnumerator DefenceSkill()

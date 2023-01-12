@@ -173,7 +173,6 @@ public class UIManager : MonoBehaviour
                 }
                 break;
             default:
-                Debug.Log("Game Mode is not selected");
                 break;
         }
     }
@@ -188,6 +187,7 @@ public class UIManager : MonoBehaviour
         else
         {
             gameManager.ResetSaveFile();
+            ResetUI();
             audioPlayerController.playButtonClickClip();
             selecteModeMenu.SetActive(true);
             OneVsOneMenu.SetActive(false);
@@ -200,6 +200,7 @@ public class UIManager : MonoBehaviour
     public void chooseYesWarningMenu()
     {
         gameManager.ResetSaveFile();
+        ResetUI();
         audioPlayerController.playButtonClickClip();
         warningMenu.SetActive(false);
         selecteModeMenu.SetActive(true);
@@ -281,7 +282,6 @@ public class UIManager : MonoBehaviour
                 OneVsAIMenu.SetActive(true);
                 break;
             default:
-                Debug.Log("Menu is not selected");
                 break;
         }
     }
@@ -299,7 +299,6 @@ public class UIManager : MonoBehaviour
                 OneVsAIMenu.SetActive(false);
                 break;
             default:
-                Debug.Log("Menu is not selected");
                 break;
         }
     }
@@ -875,5 +874,14 @@ public class UIManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void ResetUI()
+    {
+        updateCurrentCharacter(gameManager.GetSelectedCharacter(1), 1);
+        updateCurrentCharacter(gameManager.GetSelectedCharacter(2), 2);
+        updateCurrentShirt(gameManager.GetSelectedShirt(1), 1);
+        updateCurrentShirt(gameManager.GetSelectedShirt(2), 2);
+        updateCurrentCharacterLVUP(gameManager.SelectedCharacterLevelup);
     }
 }
