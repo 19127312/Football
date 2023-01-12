@@ -361,7 +361,6 @@ public class GameManager : MonoBehaviour
 
     public void ChooseYesSaveGame()
     {
-        Debug.Log("Yes");
         warningPanel.SetActive(false);
         string path = Path.Combine(Application.persistentDataPath, "saveFile.json");
         FileStream file = File.Create(path);
@@ -378,7 +377,6 @@ public class GameManager : MonoBehaviour
 
     public void ChooseNoSaveGame()
     {
-        Debug.Log("No");
         warningPanel.SetActive(false);
     }
 
@@ -488,7 +486,12 @@ public class GameManager : MonoBehaviour
                 y.IsOwn = false;
             }
         });
-        currentMoney = 500;
+        currentMoney = 100;
+        selectedCharacterLevelup = charactersInGame[0];
+        selectedCharacter1 = charactersInGame[0];
+        selectedCharacter2 = charactersInGame[0];
+        selectedShirt1 = shirtInGame[0];
+        selectedShirt2 = shirtInGame[0];
     }
 
     public void ModifyStatPoint(int amount)

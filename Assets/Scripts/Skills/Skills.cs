@@ -19,7 +19,6 @@ public class Skills : MonoBehaviour
 
     public virtual void UseSkill(bool isLeftPlayer)
     {
-        Debug.Log("Skill used");
         isLeftSkill = isLeftPlayer;
     }
 }

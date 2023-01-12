@@ -44,7 +44,6 @@ public class AIController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("LeftPlayer");
         if (GameManager.instance.currentGameMode == GameManager.GameMode.OneVsAI)
         {
-            Debug.Log("AI");
             gameObject.SetActive(true);
         }
         else
